@@ -1,0 +1,557 @@
+/* =====================================================================
+   MUARE ADMIN — 관리자 화면
+   홈페이지와 같은 색·같은 서체를 쓰되, 편집에 필요한 밀도만 더했습니다.
+   ===================================================================== */
+
+.admin-root{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+}
+
+/* ---- 로그인 ---- */
+.login-screen{
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  padding:24px;
+}
+.login-card{ width:100%; max-width:380px; }
+.login-mark{
+  font-family:var(--font-heading); font-size:26px; letter-spacing:.18em;
+  text-align:center; margin-bottom:6px;
+}
+.login-sub{
+  text-align:center; font-size:12px; color:var(--text-soft);
+  letter-spacing:.2em; margin-bottom:48px;
+}
+.login-form{ display:flex; flex-direction:column; gap:22px; }
+
+/* ---- 공통 폼 ---- */
+.field{ display:flex; flex-direction:column; gap:8px; }
+.field label{
+  font-size:11px; letter-spacing:.14em; color:var(--text-soft);
+}
+.field input, .field textarea, .field select{
+  font:inherit; font-size:15px; color:var(--text);
+  background:transparent; border:none; border-bottom:1px solid var(--line);
+  padding:10px 2px; border-radius:0; width:100%;
+  transition:border-color .25s;
+}
+.field textarea{ resize:vertical; min-height:90px; line-height:1.6; }
+.field input:focus, .field textarea:focus, .field select:focus{
+  outline:none; border-bottom-color:var(--terracotta);
+}
+.field input::placeholder, .field textarea::placeholder{ color:#BFB5A6; }
+.field .hint{ font-size:11px; color:var(--text-soft); line-height:1.6; }
+
+.btn{
+  font:inherit; font-size:13px; letter-spacing:.1em;
+  padding:13px 28px; border-radius:999px; cursor:pointer;
+  border:1px solid var(--text); background:var(--text); color:var(--bg);
+  transition:.25s ease;
+}
+.btn:hover:not(:disabled){ background:transparent; color:var(--text); }
+.btn:disabled{ opacity:.4; cursor:default; }
+.btn.ghost{ background:transparent; color:var(--text-soft); border-color:var(--line); }
+.btn.ghost:hover:not(:disabled){ color:var(--text); border-color:var(--text-soft); background:transparent; }
+.btn.danger{ background:transparent; border-color:#C08573; color:#A8604A; }
+.btn.danger:hover:not(:disabled){ background:#A8604A; color:var(--bg); border-color:#A8604A; }
+.btn.sm{ padding:8px 16px; font-size:12px; }
+/* 상담 답변 작성 영역 — 라벨이 너무 작아 보여 이 부분만 키웁니다 */
+.consult-reply-field label{ font-size:12px; letter-spacing:.06em; }
+.consult-reply-submit{ font-size:12px; }
+
+.form-msg{ font-size:13px; line-height:1.6; }
+.form-msg.error{ color:#A8604A; }
+.form-msg.ok{ color:#6F7A5A; }
+
+/* ---- 레이아웃 ---- */
+.admin-shell{ display:grid; grid-template-columns:248px 1fr; min-height:100vh; }
+@media(max-width:900px){ .admin-shell{ grid-template-columns:1fr; } }
+
+.admin-side{
+  border-right:1px solid var(--line); padding:44px 32px;
+  display:flex; flex-direction:column; gap:44px;
+  position:sticky; top:0; height:100vh;
+}
+@media(max-width:900px){
+  .admin-side{
+    position:sticky; top:0; z-index:10; height:auto; border-right:none;
+    border-bottom:1px solid var(--line); padding:14px 24px;
+    flex-direction:row; align-items:center; gap:14px; flex-wrap:wrap;
+    background:color-mix(in srgb, var(--bg) 94%, transparent);
+    backdrop-filter:blur(6px);
+    /* 그리드 칸(.admin-shell 의 1fr)이 안의 메뉴(.admin-nav) 때문에 화면보다 넓게 늘어나지
+       않도록 합니다 — 이게 없으면 메뉴가 가로 스크롤되지 않고 화면 밖으로 잘려 보입니다 */
+    min-width:0;
+  }
+}
+.admin-mark{ font-family:var(--font-heading); font-size:19px; letter-spacing:.2em; white-space:nowrap; }
+.admin-nav{ display:flex; flex-direction:column; gap:4px; flex:1; }
+@media(max-width:900px){
+  /* 메뉴가 5개라 좁은 화면에선 줄바꿈되지 않고, 대신 한 줄로 두고 가로로 스크롤합니다 */
+  .admin-nav{
+    flex-direction:row; gap:4px; flex:1 1 100%;
+    order:3; flex-wrap:nowrap; font-size:13px;
+    overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch;
+  }
+  .admin-nav::-webkit-scrollbar{ display:none; }
+}
+.admin-nav a{
+  font-size:14px; color:var(--text-soft); padding:9px 0;
+  position:relative; transition:color .25s; white-space:nowrap;
+}
+@media(max-width:900px){ .admin-nav a{ padding:9px 10px; flex-shrink:0; } }
+.admin-nav a:hover{ color:var(--text); }
+.admin-nav a.active{ color:var(--text); }
+.admin-nav a.active::before{
+  content:''; position:absolute; left:-32px; top:50%; width:18px; height:1px;
+  background:var(--terracotta); transform:translateY(-50%);
+}
+@media(max-width:900px){ .admin-nav a.active::before{ display:none; }
+  .admin-nav a.active{ border-bottom:1px solid var(--terracotta); } }
+.admin-side-foot{ font-size:12px; color:var(--text-soft); }
+@media(max-width:900px){
+  /* 좁은 화면에서는 상단 바를 낮게 유지합니다 */
+  .admin-side-foot{ margin-left:auto; display:flex; align-items:center; gap:12px; }
+  .admin-side-foot .side-email,
+  .admin-side-foot .side-home{ display:none; }
+}
+
+/* min-width:0 이 없으면 그리드 자식(.admin-main)이 안의 줄바꿈 없는 내용(작성자·날짜 등) 때문에
+   그리드 칸(1fr)보다 넓게 늘어나면서 모바일에서 화면 오른쪽으로 잘려 나가 보일 수 있습니다 */
+.admin-main{ padding:36px 40px 80px; max-width:1100px; min-width:0; }
+@media(max-width:900px){ .admin-main{ padding:22px 18px 56px; } }
+
+.admin-head{
+  display:flex; justify-content:space-between; align-items:flex-start;
+  gap:20px; flex-wrap:wrap; margin-bottom:26px;
+}
+.admin-head > div:first-child{ flex:1 1 320px; }
+.admin-title{ font-family:var(--font-heading); font-size:26px; font-style:italic; }
+/* Consultations 페이지 제목 — 누르면 열려 있던 글을 모두 접고 목록으로 돌아갑니다 */
+.admin-title-clickable{ cursor:pointer; transition:color .15s; }
+.admin-title-clickable:hover{ color:var(--terracotta); }
+.admin-desc{ font-size:13px; color:var(--text-soft); margin-top:8px; max-width:56ch; line-height:1.7; }
+/* 화면이 좁을 땐 자연스럽게 줄바꿈, 넓을 땐 한 줄로 이어서 보여줍니다 */
+@media(min-width:640px){
+  .admin-desc.one-line{ max-width:none; white-space:nowrap; }
+}
+
+/* ---- 프로젝트 목록 ---- */
+.proj-row{
+  display:grid; grid-template-columns:76px 1fr auto; gap:20px;
+  align-items:center; padding:18px 0; border-top:1px solid var(--line);
+}
+.proj-row:last-child{ border-bottom:1px solid var(--line); }
+.proj-thumb{
+  width:76px; aspect-ratio:4/5; border-radius:3px; overflow:hidden;
+  background:linear-gradient(150deg,#E9DFCC,#CBB58F); flex-shrink:0;
+}
+.proj-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.proj-name{ font-family:var(--font-heading); font-size:20px; }
+.proj-sub{ font-size:12px; color:var(--text-soft); margin-top:5px; }
+.proj-actions{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
+@media(max-width:700px){
+  .proj-row{ grid-template-columns:64px 1fr; padding:11px 0; }
+  .proj-thumb{ width:64px; }
+  .proj-actions{ grid-column:1 / -1; justify-content:flex-start; }
+}
+
+/* ---- 상담게시판(Consultations) — 다른 관리자 화면과 구분되도록 더 밝은 카드 배경 ---- */
+.admin-board-page{
+  background:#FFFFFF; border:1px solid var(--line); border-radius:14px;
+  padding:6px 24px;
+}
+.admin-board-page .proj-row:first-child{ border-top:none; }
+@media(max-width:700px){ .admin-board-page{ padding:2px 14px; } }
+
+/* 글과 글 사이 여백 — 한 화면에 더 많은 글이 보이도록 목록(.proj-row) 자체보다
+   상담글 목록에서만 위아래 간격을 더 좁게 줍니다 */
+.admin-board-page .proj-row{ padding:2px 0; }
+@media(max-width:700px){ .admin-board-page .proj-row{ padding:2px 0; } }
+
+/* 상담글 한 줄 요약 — 제목 · 작성자/날짜 · 답변 상태를 한 줄로 보여주고,
+   화면이 좁아지면 제목이 줄바꿈되면서 작성자/날짜·상태가 그 아래 오른쪽으로 묶입니다 */
+.consult-row-head{
+  display:flex; align-items:center; gap:3px 10px; flex-wrap:wrap;
+}
+/* 글씨 크기·글씨체 모두 방문자 페이지 상담게시판(.board-table)과 맞췄습니다 — 데스크톱 14px,
+   모바일은 방문자 페이지가 guide.css 에서 다시 좁혀 쓰는 실제 값(제목 12px / 작성자·날짜 10px / 상태 8px)에 맞췄습니다.
+   .proj-name 이 기본으로 쓰는 --font-heading(Cormorant)은 한글 글리프가 없어 한글은 시스템 세리프체로
+   깨져 보이므로, 방문자 페이지와 같은 --font-body(한글 지원 서체)로 되돌립니다. */
+.consult-row-title{
+  flex:1 1 240px; min-width:0; font-size:14px; font-family:var(--font-body);
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.consult-row-meta{
+  flex-shrink:0; margin:0; margin-left:auto; white-space:nowrap; font-size:14px;
+}
+@media(max-width:560px){
+  .consult-row-title{ flex-basis:100%; white-space:normal; }
+}
+.badge{
+  font-size:11px; letter-spacing:.12em; padding:4px 10px; border-radius:999px;
+  border:1px solid var(--line); color:var(--text-soft);
+}
+.badge.on{ border-color:#8C9A73; color:#6F7A5A; }
+.consult-row-delete{ flex-shrink:0; }
+/* .btn.sm 보다 크기를 더 줄여서 옆의 답변대기/답변완료 뱃지와 같은 크기로 맞춥니다.
+   (.btn.sm 과 동일한 특이도로 만들어야 뒤에 오는 이 규칙이 실제로 이깁니다) */
+.consult-row-delete.btn{
+  font-size:11px; padding:4px 10px; letter-spacing:.12em;
+}
+@media(max-width:700px){
+  .consult-row-title{ font-size:11px; font-weight:600; }
+  .consult-row-meta{ font-size:9px; }
+  .badge{ font-size:8px; padding:2px 6px; }
+  .consult-row-delete.btn{ font-size:8px; padding:2px 6px; }
+}
+
+/* 상세보기(모바일) — "상담내용"부터 아래 모든 항목의 글씨 크기를
+   게시판 목록의 글 제목(.consult-row-title, 11px)과 맞춥니다. */
+@media(max-width:700px){
+  .consult-block-head{ font-size:11px; padding-bottom:5px; margin-bottom:8px; }
+  .admin-board-page .consult-answer-section-head h4{ font-size:11px; }
+  .admin-board-page .consult-answer-num{ font-size:11px; min-width:22px; height:22px; }
+  .admin-board-page .consult-answer-label{ font-size:9px; }
+  .consult-legacy-content{ font-size:11px; }
+}
+
+/* ---- 상담글 상세 — 방문자가 남긴 글을 한눈에, 헷갈림 없이 확인할 수 있도록
+   (1) 항목 제목(섹션/라벨)과 (2) 방문자가 실제로 입력한 답변을 뚜렷하게
+   구분합니다. 라벨은 폼과 같은 작고 옅은 스타일로, 답변은 테라코타 포인트가
+   있는 카드로 감싸 "여기가 실제 내용"이라는 게 바로 보이게 했습니다.
+   ⚠️ 아래 .consult-answer-*, .consult-contact-*, .consult-thread-* 는 방문자 페이지
+   (site.css) 에서도 같은 클래스 이름을 재사용합니다. App.tsx 가 site.css/guide.css를
+   전역으로 불러오기 때문에 관리자 화면에서도 그 규칙들이 함께 로드되어 있어, 이 파일만
+   보면 괜찮아 보이는 규칙도 site.css 쪽 규칙과 뒤섞여 깨질 수 있습니다 — 그래서
+   전부 ".admin-board-page" 조상 선택자를 앞에 붙여 site.css 쪽 규칙보다 항상 우선하도록
+   했습니다. 이 계열 클래스를 새로 추가/수정할 때도 반드시 ".admin-board-page" 를 붙이세요. ---- */
+.consult-detail-panel{
+  margin-top:10px; padding-top:12px; border-top:1px solid var(--line);
+}
+/* 작성자/전화번호/이메일 — 상담 내용 맨 위(상담예약보다 위)에 자기소개서처럼 보여줍니다.
+   왼쪽엔 라벨 + 값(consult-answer-value 재사용) 한 줄씩, 오른쪽엔 나의 이미지(아바타)를 큼직하게 —
+   게시판 전체에서 쓰는 카드 테두리·라벨·값 박스와 같은 스타일 언어로 통일했습니다. */
+.admin-board-page .consult-contact-card{
+  display:flex; align-items:stretch; gap:0; margin:0 0 14px; width:100%;
+  border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#fff;
+}
+/* 라벨+값을 컴팩트하게 — 위쪽만 여백을 두고, 이메일(마지막 줄) 아래쪽은 최소한으로 줄였습니다.
+   라벨을 값 왼쪽에 고정폭으로 두지 않고, 아래 "01 기본정보" 등 답변 항목(.consult-answer-item)과
+   똑같이 라벨을 값 위에 두는 방식으로 통일했습니다 — 값 칸이 라벨 폭만큼 오른쪽으로 밀리지 않고
+   답변 칸들과 같은 왼쪽 시작선에 맞춰집니다. */
+.admin-board-page .consult-contact-rows{
+  flex:1; min-width:0; display:flex; flex-direction:column; gap:6px;
+  padding:10px 14px 6px;
+}
+/* align-items 를 명시적으로 stretch 로 줍니다 — 방문자 페이지(site.css)의 같은 클래스 규칙이
+   align-items:center 를 쓰는데, 여기서 이 속성을 안 정해주면 그 규칙이 그대로 적용되어
+   라벨/값이 한가운데로 쏠려 보입니다(이 파일과 site.css 가 관리자 화면에 함께 로드되기 때문). */
+.admin-board-page .consult-contact-row{ display:flex; flex-direction:column; align-items:stretch; gap:2px; }
+/* flex/min-width 를 명시적으로 꺼둡니다 — site.css 의 같은 클래스가 flex:1 을 쓰는데
+   안 정해주면 그 값이 그대로 적용되어 값 칸이 세로로 늘어나며 큰 빈 공간이 생깁니다. */
+.admin-board-page .consult-contact-row-value{ flex:none; min-width:0; margin:0; word-break:break-all; }
+/* site.css 의 ".consult-contact-row .consult-answer-label"(라벨을 값 옆 62px 고정폭으로 두는 규칙)과
+   특이도가 같아서, 이 규칙을 명시적으로 다시 꺼주지 않으면 라벨 칸이 그 62px 높이로 늘어나 보입니다. */
+.admin-board-page .consult-contact-row .consult-answer-label{ flex:none; }
+/* 건물 사진 — 따로 색이 있는 "칸(박스)"으로 감싸지 않고, 카드 안에 사진만 바로 둡니다.
+   경계는 얇은 세로선 하나로만 구분합니다.
+   (flex-direction/gap/background 도 명시했습니다 — site.css 의 같은 클래스가 세로 배치·간격·
+   테라코타 톤 배경을 쓰는데, 안 정해주면 그 값들이 새어 들어와 다시 "박스 안에 박스"처럼 보입니다.) */
+.admin-board-page .consult-contact-photo{
+  flex:0 0 100px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:0; padding:8px; border-left:1px solid var(--line); background:none;
+}
+/* 건물 그림이 가로:세로 = 3:4인 세로로 긴 비율입니다. 칸을 컴팩트하게 줄인 만큼
+   사진도 라벨+값 칸 높이에 맞춰 작게 조정했습니다.
+   테두리·모서리 둥글림·배경을 명시적으로 없앱니다 — 그림 자체에 이미 여백이 있어서
+   테두리 박스를 씌우면 "칸 안에 또 칸"처럼 보였고, 안 정해주면 site.css 의 같은 클래스가
+   쓰는 테두리·둥근모서리·배경이 새어 들어와 다시 그렇게 보입니다. */
+.admin-board-page .consult-contact-photo img{
+  width:80px; height:107px; object-fit:cover; display:block;
+  border:none; border-radius:0; background:none;
+}
+@media(max-width:560px){
+  /* 방문자 페이지와 같은 방식 — 사진이 아래로 떨어지지 않고 오른편에 그대로 유지되도록
+     행(가로) 배치를 유지하고, 라벨/값도 위·아래로 쌓아 값이 가로 폭을 최대한 씁니다.
+     실제 폰에서 전화번호·이메일 값이 한 줄에 안 들어가 어색하게 끊기는 문제가 있어,
+     카드 속 여백을 더 좁히고 글자도 살짝 줄여 한 줄에 들어가도록 다듬었습니다.
+     (좌우 여백은 별도로 더 주지 않습니다 — 아래 "01 기본 정보" 등 답변 박스는
+     좌우 마진이 없이 부모 폭을 꽉 채우는데, 이 카드에만 좌우 마진을 더 주면
+     그만큼 답변 박스보다 좁아져서 오른쪽 끝이 맞지 않아 보입니다.) */
+  .admin-board-page .consult-contact-card{ margin:10px 0 0; }
+  .admin-board-page .consult-contact-rows{ padding:8px 10px 5px; gap:4px; }
+  .admin-board-page .consult-contact-row{ gap:2px; }
+  .admin-board-page .consult-contact-row .consult-answer-label{ font-size:9px; }
+  .admin-board-page .consult-contact-row-value{ font-size:11px; padding:5px 7px; }
+  .admin-board-page .consult-contact-photo{ flex:0 0 70px; padding:6px; }
+  .admin-board-page .consult-contact-photo img{ width:54px; height:72px; }
+}
+
+/* 답변 댓글창 — 관리자와 작성자가 여러 번 주고받는 댓글 형태의 답변.
+   문의 내용(상담 내용)과 색을 다르게 줘서 한눈에 구분되게 했습니다. */
+.admin-board-page .consult-thread-empty{ font-size:12px; color:var(--text-soft); padding:4px 0 8px; text-align:left; }
+.admin-board-page .consult-thread-list{
+  display:flex; flex-direction:column; gap:6px; margin-bottom:8px; text-align:left;
+  list-style:none; padding-left:0;
+}
+.admin-board-page .consult-thread-item{
+  padding:9px 11px; border-radius:6px; border:1px solid var(--line); background:#FFFFFF;
+  text-align:left;
+}
+.admin-board-page .consult-thread-item.admin{
+  background:color-mix(in srgb, var(--terracotta) 8%, transparent);
+  border-color:color-mix(in srgb, var(--terracotta) 30%, transparent);
+}
+.admin-board-page .consult-thread-meta{ display:flex; align-items:baseline; gap:8px; margin-bottom:3px; flex-wrap:wrap; text-align:left; }
+.admin-board-page .consult-thread-author{ font-size:11px; font-weight:700; letter-spacing:.02em; color:var(--terracotta); }
+.admin-board-page .consult-thread-item:not(.admin) .consult-thread-author{ color:var(--text); }
+.admin-board-page .consult-thread-date{ font-size:10px; color:var(--text-soft); }
+.admin-board-page .consult-thread-body{
+  font-size:12.5px; font-weight:400; line-height:1.5; white-space:pre-wrap; word-break:break-word;
+  text-align:left; color:color-mix(in srgb, var(--terracotta) 82%, var(--text));
+}
+
+.consult-block-head{
+  font-family:var(--font-body); font-style:normal; font-weight:700; font-size:13px;
+  color:var(--text); padding-bottom:6px; margin-bottom:10px;
+  border-bottom:1px solid var(--line);
+}
+.consult-reply-head{ margin-top:18px; }
+
+.consult-legacy-content{
+  font-size:13px; white-space:pre-wrap; color:var(--text-soft); line-height:1.4;
+}
+
+/* 위의 작성자/연락처 카드와 떨어져 보이도록 "01 기본 정보" 위에 여백을 둡니다
+   (섹션 사이 간격은 방문자 페이지와 같은 정도로 좁혔습니다) */
+.admin-board-page .consult-answers{ display:flex; flex-direction:column; gap:8px; margin-top:10px; }
+.admin-board-page .consult-answer-section-head{
+  display:flex; align-items:center; gap:8px; margin-bottom:6px;
+}
+.admin-board-page .consult-answer-num{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:24px; height:24px; padding:0 5px; flex-shrink:0;
+  font-family:var(--font-body); font-style:normal; font-weight:700; font-size:12px;
+  line-height:1; letter-spacing:0; color:#fff; font-variant-numeric:tabular-nums;
+  background:var(--terracotta); border-radius:7px;
+}
+.admin-board-page .consult-answer-section-head h4{
+  font-size:12px; font-weight:700; letter-spacing:.04em; color:var(--text);
+}
+.admin-board-page .consult-answer-grid{ display:flex; flex-direction:column; gap:6px; }
+.admin-board-page .consult-answer-item{ display:flex; flex-direction:column; gap:2px; }
+.admin-board-page .consult-answer-label{
+  font-size:10px; letter-spacing:.12em; color:var(--text-soft); font-weight:600;
+}
+.admin-board-page .consult-answer-value{
+  font-size:12.5px; line-height:1.35; color:var(--text);
+  white-space:pre-wrap; word-break:break-word;
+  background:color-mix(in srgb, var(--terracotta) 5%, transparent);
+  border:1px solid var(--line); border-left:3px solid var(--terracotta);
+  border-radius:0 6px 6px 0; padding:7px 11px;
+}
+.admin-board-page .consult-answer-value.empty{ color:var(--text-soft); font-style:italic; }
+@media(max-width:560px){
+  .admin-board-page .consult-answer-value{ padding:6px 9px; font-size:11px; }
+}
+
+/* ---- 에디터 ---- */
+.editor-grid{ display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+@media(max-width:800px){ .editor-grid{ grid-template-columns:1fr; gap:24px; } }
+.editor-block{ margin-bottom:52px; }
+.editor-block > h3{
+  font-size:11px; letter-spacing:.16em; color:var(--text-soft);
+  font-weight:400; padding-bottom:14px; margin-bottom:26px;
+  border-bottom:1px solid var(--line);
+}
+/* ---- 항목 옆 "실제로 어디에 반영되나요" 구조도 ---- */
+.with-preview{ display:grid; grid-template-columns:1fr 200px; gap:32px; align-items:start; }
+@media(max-width:860px){ .with-preview{ grid-template-columns:1fr; gap:16px; } }
+.section-preview{ position:sticky; top:24px; }
+.section-preview-caption{ font-size:11.5px; color:var(--text-soft); line-height:1.65; margin-top:10px; }
+
+.preview-page{
+  display:flex; flex-direction:column; gap:4px;
+  border:1px solid var(--line); border-radius:10px; padding:8px;
+  background:var(--bg);
+}
+.preview-block{
+  flex-shrink:0; border-radius:5px; border:1px solid var(--line);
+  background:color-mix(in srgb, var(--line) 45%, transparent);
+  display:flex; align-items:center; padding:0 10px;
+  font-size:10.5px; color:var(--text-soft); line-height:1.3;
+}
+.preview-block.muted{ font-style:italic; opacity:.65; }
+.preview-block.active{
+  border-color:var(--terracotta); border-width:1.6px;
+  background:color-mix(in srgb, var(--terracotta) 14%, transparent);
+  color:var(--terracotta); font-weight:700;
+}
+
+.preview-tab-mock{ border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--bg); }
+.preview-tab-bar{
+  display:flex; align-items:center; gap:5px; padding:9px 10px;
+  background:color-mix(in srgb, var(--line) 40%, transparent);
+}
+.preview-tab-bar .dot{ width:6px; height:6px; border-radius:50%; background:var(--line); flex-shrink:0; }
+.preview-tab-chip{
+  margin-left:6px; padding:5px 10px; border-radius:6px 6px 0 0;
+  font-size:10px; font-weight:700; color:var(--terracotta);
+  background:var(--bg); border:1px solid var(--terracotta); border-bottom:none;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.preview-tab-page{ height:34px; background:var(--bg); }
+
+.preview-search-card{
+  border:1px solid var(--line); border-radius:10px; padding:14px 14px;
+  background:var(--bg);
+}
+.preview-search-title{ font-size:12px; color:#1a0dab; margin-bottom:2px; }
+.preview-search-url{ font-size:10px; color:#4d5156; margin-bottom:6px; }
+.preview-search-desc{
+  font-size:10.5px; color:var(--terracotta); font-weight:700; line-height:1.5;
+  padding:4px 6px; border-radius:4px;
+  background:color-mix(in srgb, var(--terracotta) 12%, transparent);
+}
+
+.editor-actions{
+  position:sticky; bottom:0; background:var(--bg);
+  border-top:1px solid var(--line); padding:20px 0;
+  display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+  margin-top:40px; z-index:4;
+}
+@media(max-width:700px){
+  .editor-actions{
+    padding:14px 0; gap:8px;
+    margin-left:-24px; margin-right:-24px; padding-left:24px; padding-right:24px;
+    box-shadow:0 -8px 24px color-mix(in srgb, var(--bg) 70%, transparent);
+  }
+  .editor-actions .btn{ padding:11px 18px; font-size:12px; }
+  .editor-actions > div[style]{ display:none; }
+}
+
+/* ---- 이미지 업로더 ---- */
+.dropzone{
+  border:1px dashed var(--line); border-radius:4px; padding:44px 24px;
+  text-align:center; cursor:pointer; transition:.25s ease;
+  background:color-mix(in srgb, var(--bg) 60%, #fff);
+}
+.dropzone:hover, .dropzone.over{
+  border-color:var(--terracotta);
+  background:color-mix(in srgb, var(--bg) 40%, #fff);
+}
+.dropzone .big{ font-family:var(--font-heading); font-size:21px; margin-bottom:8px; }
+.dropzone .small{ font-size:12px; color:var(--text-soft); line-height:1.7; }
+
+.quality-picker{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:8px 0 4px; }
+@media(max-width:700px){ .quality-picker{ grid-template-columns:1fr; } }
+.quality-opt{
+  border:1px solid var(--line); border-radius:4px; padding:16px;
+  cursor:pointer; text-align:left; background:transparent; font:inherit;
+  transition:.25s ease;
+}
+.quality-opt:hover{ border-color:var(--text-soft); }
+.quality-opt.active{ border-color:var(--terracotta); background:color-mix(in srgb, var(--terracotta) 6%, transparent); }
+.quality-opt .q-name{ font-size:14px; margin-bottom:6px; display:flex; align-items:center; gap:8px; }
+.quality-opt .q-dot{
+  width:8px; height:8px; border-radius:999px; border:1px solid var(--text-soft);
+  flex-shrink:0;
+}
+.quality-opt.active .q-dot{ background:var(--terracotta); border-color:var(--terracotta); }
+.quality-opt .q-desc{ font-size:11px; color:var(--text-soft); line-height:1.6; }
+
+.img-grid{
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr));
+  gap:16px; margin-top:24px;
+}
+.img-tile{
+  position:relative; border-radius:4px; overflow:hidden;
+  border:1px solid var(--line); background:#fff;
+  transition:box-shadow .2s, opacity .2s, transform .2s;
+  touch-action:none;
+}
+.img-tile.dragging{ opacity:.35; }
+.img-tile.drop-target{ box-shadow:inset 0 0 0 2px var(--terracotta); }
+.img-tile .pic{ aspect-ratio:4/5; background:#EFE9DE; }
+.img-tile .pic img{ width:100%; height:100%; object-fit:cover; display:block; }
+.img-tile .bar{
+  padding:10px; display:flex; flex-direction:column; gap:8px;
+  border-top:1px solid var(--line);
+}
+.img-tile .meta{ font-size:10px; color:var(--text-soft); line-height:1.5; word-break:break-all; }
+.img-tile .row{ display:flex; gap:6px; flex-wrap:wrap; }
+.tile-btn{
+  font:inherit; font-size:10px; letter-spacing:.06em; padding:5px 9px;
+  border:1px solid var(--line); background:transparent; color:var(--text-soft);
+  border-radius:999px; cursor:pointer; transition:.2s;
+}
+.tile-btn:hover{ color:var(--text); border-color:var(--text-soft); }
+.tile-btn.del:hover{ color:#A8604A; border-color:#C08573; }
+.cover-flag{
+  position:absolute; top:8px; left:8px; z-index:2;
+  font-size:9px; letter-spacing:.14em; padding:4px 9px; border-radius:999px;
+  background:var(--text); color:var(--bg);
+}
+.drag-handle{
+  position:absolute; top:8px; right:8px; z-index:2;
+  width:26px; height:26px; border-radius:999px; cursor:grab;
+  background:rgba(33,30,27,.5); backdrop-filter:blur(4px);
+  color:#EFE9DD; display:flex; align-items:center; justify-content:center;
+  font-size:11px; border:none; touch-action:none;
+}
+.drag-handle:active{ cursor:grabbing; }
+
+.upload-bar{
+  height:2px; background:var(--line); border-radius:999px; overflow:hidden; margin-top:8px;
+}
+.upload-bar i{
+  display:block; height:100%; background:var(--terracotta);
+  transition:width .3s ease;
+}
+.upload-status{ font-size:10px; color:var(--text-soft); margin-top:6px; }
+.upload-status.err{ color:#A8604A; }
+
+/* ---- 디자인 설정 ---- */
+.color-row{
+  display:flex; align-items:center; gap:14px; padding:14px 0;
+  border-bottom:1px solid var(--line);
+}
+.color-row .name{ font-size:13px; flex:1; }
+.color-row .code{ font-size:12px; color:var(--text-soft); font-variant-numeric:tabular-nums; width:80px; }
+.color-swatch{
+  width:38px; height:38px; border-radius:4px; border:1px solid var(--line);
+  padding:0; cursor:pointer; background:none; overflow:hidden;
+}
+.color-swatch input{
+  width:200%; height:200%; margin:-25%; border:none; padding:0; cursor:pointer; background:none;
+}
+
+.setup-note{
+  border:1px solid var(--line); border-left:2px solid var(--terracotta);
+  border-radius:4px; padding:20px 24px; margin-bottom:36px;
+  font-size:13px; line-height:1.85; color:var(--text-soft);
+  background:color-mix(in srgb, var(--bg) 55%, #fff);
+}
+.setup-note strong{ color:var(--text); font-weight:500; }
+.setup-note code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px;
+  background:color-mix(in srgb, var(--line) 40%, transparent);
+  padding:2px 6px; border-radius:3px;
+}
+.setup-note ol{ margin:10px 0 0 18px; }
+.setup-note li{ margin-bottom:6px; }
+
+.admin-empty{
+  padding:64px 0; text-align:center; color:var(--text-soft); font-size:14px;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+}
+.toast{
+  position:fixed; left:50%; bottom:32px; transform:translateX(-50%);
+  background:var(--text); color:var(--bg); font-size:13px;
+  padding:13px 26px; border-radius:999px; z-index:200;
+  animation:toastIn .3s ease; box-shadow:0 10px 34px rgba(33,30,27,.2);
+}
+@keyframes toastIn{ from{ opacity:0; transform:translate(-50%, 10px) } to{ opacity:1; transform:translate(-50%,0) } }
