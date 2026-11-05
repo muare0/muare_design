@@ -58,13 +58,12 @@ export default function Header({ site }: { site: SiteMeta }) {
     <header id="site-header" className={scrolled ? 'scrolled' : undefined}>
       <style>{`
 .muare-header-symbol, .muare-header-lettering { position: relative; display: block; overflow: hidden; flex-shrink: 0; }
-#site-header .wordmark { align-items: center; }
-.muare-header-symbol { width: 32px; aspect-ratio: 740 / 548; }
+#site-header .wordmark { display: grid; grid-template-columns: auto auto; align-items: center; row-gap: 5px; }
+.muare-header-symbol { width: 42px; aspect-ratio: 740 / 548; }
 .muare-header-symbol img { position: absolute; width: 337.84%; max-width: none; left: -118.65%; top: -131.75%; }
-.muare-header-name { display: grid; justify-items: center; gap: 4px; }
-.muare-header-lettering { width: 63px; aspect-ratio: 1056 / 240; }
+.muare-header-lettering { width: 85px; aspect-ratio: 1056 / 240; }
 .muare-header-lettering img { position: absolute; width: 236.74%; max-width: none; left: -68.37%; top: -17.5%; }
-.muare-header-descriptor { display: block; width: 100%; height: 6px; font: 500 9px var(--font-body); fill: currentColor; }
+.muare-header-descriptor { grid-column: 1 / -1; display: block; width: 100%; height: auto; font: 500 9px var(--font-body); fill: currentColor; }
 #site-header:not(.scrolled):has(+ .hero) .muare-header-symbol img,
 #site-header:not(.scrolled):has(+ .hero) .muare-header-lettering img { filter: brightness(0) invert(1); }
 #site-header .desktop-nav { text-transform: uppercase; }
@@ -75,10 +74,9 @@ export default function Header({ site }: { site: SiteMeta }) {
 @media (max-width: 520px) {
   #site-header .headrow { padding-inline: 16px; }
   #site-header .desktop-nav { font-size: 10px; gap: clamp(5px, 1.7vw, 8px); }
-  .muare-header-symbol { width: 24px; }
-  .muare-header-lettering { width: 45px; }
-  .muare-header-name { gap: 3px; }
-  .muare-header-descriptor { height: 5px; }
+  .muare-header-symbol { width: 32px; }
+  .muare-header-lettering { width: 65px; }
+  #site-header .wordmark { row-gap: 4px; }
 }
 `}</style>
       <div className="wrap headrow">
@@ -86,14 +84,12 @@ export default function Header({ site }: { site: SiteMeta }) {
           <span className="muare-header-symbol">
             <img src="/images/muare-header-symbol.png" alt="" />
           </span>
-          <span className="muare-header-name">
             <span className="muare-header-lettering">
               <img src="/images/muare-header-lettering.png" alt={site.wordmark} />
             </span>
-            <svg className="muare-header-descriptor" viewBox="0 0 104 9" aria-label="Design Studio" role="img">
-              <text x="0" y="8" textLength="104" lengthAdjust="spacing">DESIGN STUDIO</text>
+            <svg className="muare-header-descriptor" viewBox="0 0 137 9" aria-label="Design Studio" role="img">
+              <text x="0" y="8" textLength="137" lengthAdjust="spacing">DESIGN STUDIO</text>
             </svg>
-          </span>
         </Link>
         <nav className="desktop-nav">
           {LINKS.map((l) =>
