@@ -13,6 +13,34 @@ import { isSupabaseConfigured } from '../lib/supabase'
 import { PLACEHOLDER_PORTFOLIOS } from '../content/defaults'
 import type { Portfolio } from '../lib/types'
 
+const sampleProject: Portfolio = {
+  ...PLACEHOLDER_PORTFOLIOS[0],
+  id: 'sample-residential-concept',
+  slug: 'sample-residential-concept',
+  title: '따뜻한 주거 공간',
+  category: '임시 예시 · 공간 콘셉트',
+  year: null,
+  description: '홈페이지 구성을 확인하기 위한 임시 예시입니다.',
+  images: [{
+    id: 'sample-residential-cover',
+    portfolio_id: 'sample-residential-concept',
+    storage_path: '/images/hero-arch.webp',
+    image_url: '/images/hero-arch.webp',
+    thumb_path: null,
+    original_path: null,
+    thumb_url: null,
+    quality: 'web',
+    width: null,
+    height: null,
+    bytes: null,
+    original_bytes: null,
+    original_name: null,
+    alt: '주거 공간 콘셉트 예시',
+    caption: null,
+    sort_order: 0,
+  }],
+}
+
 export default function Home() {
   const { content } = useSiteContent()
   const { portfolios, loading } = usePortfolios()
@@ -42,9 +70,7 @@ export default function Home() {
     }
   }, [location.hash])
 
-  // Supabase 연결 전이거나 등록된 작품이 없으면 기존 홈페이지의 항목을 그대로 보여줍니다
-  const list: Portfolio[] =
-    portfolios.length > 0 ? portfolios : loading ? [] : PLACEHOLDER_PORTFOLIOS
+  const list = loading && portfolios.length === 0 ? [] : [...portfolios, sampleProject]
 
   const [openProject, setOpenProject] = useState<Portfolio | null>(null)
 
@@ -78,15 +104,13 @@ export default function Home() {
       <Hero hero={content.hero} />
       <About about={content.about} />
 
-      {/* 서비스 자세히 보기 바로 아래 — 서비스 대상(다) 미리보기.
-          전체 내용(작업범위/작업순서 등)은 /about 페이지에서 이어집니다. */}
+      <PortfolioSection head={content.portfolio} projects={list} onOpen={open} />
       <section className="divider svc-section" id="home-targets">
         <div className="wrap">
           <ServiceTargets />
         </div>
       </section>
 
-      <PortfolioSection head={content.portfolio} projects={list} onOpen={open} />
       <Contact contact={content.contact} />
       <Footer site={content.site} contact={content.contact} />
 
