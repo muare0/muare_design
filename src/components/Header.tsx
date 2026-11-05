@@ -72,7 +72,8 @@ export default function Header({ site }: { site: SiteMeta }) {
   #site-header:not(.scrolled):has(+ .hero) .headrow { height: 88px; padding-top: 8px; }
 }
 @media (max-width: 520px) {
-  #site-header .desktop-nav { font-size: 10px; }
+  #site-header .headrow { padding-inline: 16px; }
+  #site-header .desktop-nav { font-size: 10px; gap: clamp(5px, 1.7vw, 8px); }
   .muare-header-symbol { width: 34px; }
   .muare-header-lettering { width: 69px; }
   .muare-header-name { gap: 4px; }
