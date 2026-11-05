@@ -64,6 +64,9 @@ header.scrolled{ border-color:var(--line); }
   display:flex; align-items:center; gap:10px;
 }
 .wordmark-icon{ height:34px; width:auto; display:block; }
+.wordmark-lettering{ position:relative; display:block; width:clamp(78px, 10vw, 142px); aspect-ratio:5.05; overflow:hidden; }
+.wordmark-lettering img{ position:absolute; width:124%; max-width:none; left:-12%; top:-337%; }
+#site-header:not(.scrolled):has(+ .hero) .wordmark-lettering img{ filter:brightness(0) invert(1); }
 nav.desktop-nav{ display:flex; align-items:center; gap:40px; font-size:14px; color:var(--text-soft); }
 nav.desktop-nav::before{
   content:''; width:1px; height:20px; background:var(--line); align-self:center;
