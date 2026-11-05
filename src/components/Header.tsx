@@ -70,6 +70,7 @@ export default function Header({ site }: { site: SiteMeta }) {
 #site-header .desktop-nav { text-transform: uppercase; }
 @media (min-width: 769px) {
   #site-header:not(.scrolled):has(+ .hero) .headrow { height: 88px; padding-top: 8px; }
+  #site-header:not(.scrolled):has(+ .hero) .wordmark { transform: translateY(6px); }
 }
 @media (max-width: 520px) {
   #site-header .headrow { padding-inline: 16px; }
