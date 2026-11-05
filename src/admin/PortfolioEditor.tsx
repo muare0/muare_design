@@ -6,6 +6,23 @@ import ImageManager from './ImageManager'
 import ProjectView from '../components/ProjectView'
 import type { ImageQuality, Portfolio, PortfolioImage } from '../lib/types'
 
+const portfolioCategories = [
+  "Residential",
+  "Office",
+  "Public & Civic",
+  "School",
+  "Academy",
+  "Clinic",
+  "Café & Bakery",
+  "Restaurant & Bar",
+  "Retail & Showroom",
+  "Pilates & Fitness",
+  "Beauty & Spa",
+  "Hospitality",
+  "Culture",
+  "Exhibition"
+]
+
 export default function PortfolioEditor({ onToast }: { onToast: (m: string) => void }) {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
@@ -151,22 +168,20 @@ export default function PortfolioEditor({ onToast }: { onToast: (m: string) => v
             />
           </div>
           <div className="field">
-            <label>CATEGORY — 분류</label>
-            <input
+            <label htmlFor="portfolio-category">CATEGORY — 분류</label>
+            <select
+              id="portfolio-category"
               value={project.category ?? ''}
               onChange={(e) => set('category', e.target.value)}
-              placeholder="Brand Identity / Editorial Design ..."
-              list="muare-categories"
-            />
-            <datalist id="muare-categories">
-              <option value="Brand Design" />
-              <option value="Brand Identity" />
-              <option value="Graphic Design" />
-              <option value="Editorial Design" />
-              <option value="Visual Design" />
-              <option value="Packaging" />
-              <option value="Custom Design" />
-            </datalist>
+            >
+              <option value="">분류를 선택해 주세요</option>
+              {project.category && !portfolioCategories.includes(project.category) && (
+                <option value={project.category}>{project.category} (기존 분류)</option>
+              )}
+              {portfolioCategories.map((category) => (
+                <option key={category} value={category}>{category}</option>
+              ))}
+            </select>
           </div>
           <div className="field">
             <label>YEAR — 연도</label>
