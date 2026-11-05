@@ -56,11 +56,33 @@ export default function Header({ site }: { site: SiteMeta }) {
 
   return (
     <header id="site-header" className={scrolled ? 'scrolled' : undefined}>
+      <style>{`
+.muare-header-symbol, .muare-header-lettering { position: relative; display: block; overflow: hidden; flex-shrink: 0; }
+.muare-header-symbol { width: 33px; aspect-ratio: 740 / 548; }
+.muare-header-symbol img { position: absolute; width: 337.84%; max-width: none; left: -118.65%; top: -131.75%; }
+.muare-header-name { display: grid; justify-items: center; gap: 6px; }
+.muare-header-lettering { width: 104px; aspect-ratio: 1056 / 240; }
+.muare-header-lettering img { position: absolute; width: 236.74%; max-width: none; left: -68.37%; top: -17.5%; }
+.muare-header-descriptor { font: 500 8px/1 var(--font-body); letter-spacing: .14em; white-space: nowrap; }
+#site-header:not(.scrolled):has(+ .hero) .muare-header-symbol img,
+#site-header:not(.scrolled):has(+ .hero) .muare-header-lettering img { filter: brightness(0) invert(1); }
+@media (max-width: 520px) {
+  .muare-header-symbol { width: 23px; }
+  .muare-header-lettering { width: 76px; }
+  .muare-header-name { gap: 4px; }
+  .muare-header-descriptor { font-size: 6px; }
+}
+`}</style>
       <div className="wrap headrow">
         <Link to="/" className="wordmark" onClick={goHome}>
-          <img src="/images/muare-mark.png" alt="" className="wordmark-icon" />
-          <span className="wordmark-lettering">
-            <img src="/images/muare%20CI.png" alt={site.wordmark} />
+          <span className="muare-header-symbol">
+            <img src="/images/muare-header-symbol.png" alt="" />
+          </span>
+          <span className="muare-header-name">
+            <span className="muare-header-lettering">
+              <img src="/images/muare-header-lettering.png" alt={site.wordmark} />
+            </span>
+            <span className="muare-header-descriptor">DESIGN STUDIO</span>
           </span>
         </Link>
         <nav className="desktop-nav">
