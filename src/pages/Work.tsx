@@ -6,7 +6,44 @@ import { PortfolioCard } from '../components/PortfolioSection'
 import ProjectView from '../components/ProjectView'
 import Reveal from '../components/Reveal'
 import { useSiteContent, usePortfolios } from '../hooks/useSiteData'
+import { PLACEHOLDER_PORTFOLIOS } from '../content/defaults'
 import type { Portfolio } from '../lib/types'
+
+export const sampleProjects: Portfolio[] = [
+  ['따뜻한 주거 공간', '채광을 살린 아파트', '우드톤 거실', '차분한 주방', '미니멀 주택'],
+  ['카페 콘셉트', '쇼룸 콘셉트', '오피스 라운지', '리테일 매장', '레스토랑 콘셉트'],
+].flatMap((titles, group) => titles.map((title, index): Portfolio => {
+  const category = group === 0 ? 'Residential' : 'Commercial'
+  const id = group === 0 && index === 0 ? 'sample-residential-concept' : `sample-${category.toLowerCase()}-${index + 1}`
+  const image = (group + index) % 2 === 0 ? '/images/hero-arch.webp' : '/images/back2-clean.png'
+  return {
+    ...PLACEHOLDER_PORTFOLIOS[0],
+    id,
+    slug: id,
+    title,
+    category: `${category} · 임시 예시`,
+    year: null,
+    description: '홈페이지 구성을 확인하기 위한 임시 예시입니다.',
+    images: [{
+      id: `${id}-cover`,
+      portfolio_id: id,
+      storage_path: image,
+      image_url: image,
+      thumb_path: null,
+      original_path: null,
+      thumb_url: null,
+      quality: 'web',
+      width: null,
+      height: null,
+      bytes: null,
+      original_bytes: null,
+      original_name: null,
+      alt: `${title} 임시 예시`,
+      caption: null,
+      sort_order: 0,
+    }],
+  }
+}))
 
 /** 전체 포트폴리오 아카이브 — 카테고리별로 걸러볼 수 있습니다 */
 export default function Work() {
@@ -25,7 +62,7 @@ export default function Work() {
     { key: 'commercial', label: 'COMMERCIAL', match: /상업|commercial/i },
   ]
   const active = categories.find(({ key }) => key === filter)!
-  const filtered = portfolios.filter(({ category }) => active.match.test(category ?? ''))
+  const filtered = [...portfolios, ...sampleProjects].filter(({ category }) => active.match.test(category ?? ''))
 
   useEffect(() => {
     setPage(1)
