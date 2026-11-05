@@ -193,16 +193,6 @@ nav.desktop-nav a:hover::after{ width:100%; }
   color: #fff;
 }
 .hero-eyebrow::before { content: none; }
-.hero h1 {
-  font-family: inherit;
-  font-style: normal;
-  font-weight: 650;
-  font-size: calc(clamp(32px, 4.4vw, 68px) * var(--heading-scale));
-  line-height: 1.12;
-  text-transform: uppercase;
-  max-width: 22ch;
-  color: #fff;
-}
 .hero-sub { color: #fff; }
 @media (max-width: 560px) {
   .hero-inner { padding-top: 64px; }
