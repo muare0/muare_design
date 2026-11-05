@@ -14,19 +14,18 @@ export function PortfolioCard({
   onOpen: (p: Portfolio) => void
 }) {
   const cover = coverOf(project)
-  const count = project.images?.length ?? 0
 
   return (
     <Reveal delay={(index % 3) * 90}>
       <a
         className="p-card"
+        aria-label={project.title}
         href={`/work/${project.slug || project.id}`}
         onClick={(e) => {
           e.preventDefault()
           onOpen(project)
         }}
       >
-        <div className="p-index">{String(index + 1).padStart(2, '0')}</div>
         <div className="p-thumb">
           {cover && (
             <img
@@ -38,18 +37,6 @@ export function PortfolioCard({
               height={cover.height ?? undefined}
             />
           )}
-          {count > 1 && <span className="p-count">{count} IMAGES</span>}
-          <div className="p-hover-title">
-            <span className="p-hover-name">{project.title}</span>
-            {project.category && <span className="p-hover-cat">{project.category}</span>}
-          </div>
-        </div>
-        <div className="p-meta-row">
-          <div>
-            <div className="p-title">{project.title}</div>
-            <div className="p-cat">{project.category}</div>
-          </div>
-          {project.year && <div className="p-year">{project.year}</div>}
         </div>
       </a>
     </Reveal>
