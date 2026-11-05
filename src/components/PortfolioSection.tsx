@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Portfolio, SectionHead } from '../lib/types'
 import { coverOf } from '../hooks/useSiteData'
@@ -48,6 +49,52 @@ export function PortfolioCard({
         </div>
       </a>
     </Reveal>
+  )
+}
+
+export function PortfolioGallery({ projects, onOpen, startIndex = 0 }: {
+  projects: Portfolio[]
+  onOpen: (project: Portfolio) => void
+  startIndex?: number
+}) {
+  const track = useRef<HTMLDivElement>(null)
+  const [active, setActive] = useState(0)
+
+  return (
+    <>
+      <style>{`
+.portfolio-dots { display: none; }
+@media (max-width: 560px) {
+  .portfolio-grid.portfolio-gallery { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 100%; gap: 0; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .portfolio-gallery::-webkit-scrollbar { display: none; }
+  .portfolio-gallery > * { min-width: 0; scroll-snap-align: start; }
+  .portfolio-dots { display: flex; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+  .portfolio-dots button { width: 30px; height: 32px; display: grid; place-items: center; padding: 0; border: 0; background: transparent; cursor: pointer; }
+  .portfolio-dots button::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .35; }
+  .portfolio-dots button[aria-current='true']::before { opacity: 1; }
+}
+`}</style>
+      <div className="portfolio-grid portfolio-gallery" ref={track} onScroll={(event) => {
+        const { scrollLeft, clientWidth } = event.currentTarget
+        if (clientWidth) setActive(Math.min(projects.length - 1, Math.max(0, Math.round(scrollLeft / clientWidth))))
+      }}>
+        {projects.map((project, index) => (
+          <PortfolioCard key={project.id} project={project} index={startIndex + index} onOpen={onOpen} />
+        ))}
+      </div>
+      {projects.length > 1 && (
+        <div className="portfolio-dots" role="group" aria-label="포트폴리오 사진 선택">
+          {projects.map((project, index) => (
+            <button key={project.id} type="button" aria-label={`${index + 1}번 사진`}
+              aria-current={active === index ? 'true' : undefined}
+              onClick={() => {
+                const gallery = track.current
+                if (gallery) gallery.scrollTo({ left: index * gallery.clientWidth, behavior: 'auto' })
+              }} />
+          ))}
+        </div>
+      )}
+    </>
   )
 }
 
@@ -105,11 +152,7 @@ export default function PortfolioSection({
               )}
             </h3>
             {items.length ? (
-              <div className="portfolio-grid">
-                {items.slice(0, limit).map((project, index) => (
-                  <PortfolioCard key={project.id} project={project} index={index} onOpen={onOpen} />
-                ))}
-              </div>
+              <PortfolioGallery projects={items.slice(0, limit)} onOpen={onOpen} />
             ) : (
               <div className="portfolio-empty">등록된 {title} 프로젝트가 없습니다.</div>
             )}
