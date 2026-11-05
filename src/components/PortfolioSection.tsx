@@ -14,6 +14,10 @@ export function PortfolioCard({
   onOpen: (p: Portfolio) => void
 }) {
   const cover = coverOf(project)
+  const category = project.category ?? ''
+  const label = /주거|residential|^home$/i.test(category)
+    ? 'RESIDENTIAL'
+    : /상업|commercial/i.test(category) ? 'COMMERCIAL' : category
 
   return (
     <Reveal delay={(index % 3) * 90}>
@@ -37,6 +41,10 @@ export function PortfolioCard({
               height={cover.height ?? undefined}
             />
           )}
+          <div className="p-hover-title" aria-hidden="true">
+            <span className="p-hover-name">{project.title}</span>
+            {label && <span className="p-hover-cat">{label}{project.id.startsWith('sample-') ? ' · 임시 예시' : ''}</span>}
+          </div>
         </div>
       </a>
     </Reveal>
