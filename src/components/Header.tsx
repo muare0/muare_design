@@ -59,7 +59,10 @@ export default function Header({ site }: { site: SiteMeta }) {
       <div className="wrap headrow">
         <Link to="/" className="wordmark" onClick={goHome}>
           <img src="/images/muare-mark.png" alt="" className="wordmark-icon" />
-          {site.wordmark}
+          <span style={{ display: 'grid', gap: 3, lineHeight: 1 }}>
+            <span>{site.wordmark}</span>
+            <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.29em', fontWeight: 650, letterSpacing: '.15em', whiteSpace: 'nowrap' }}>DESIGN STUDIO</span>
+          </span>
         </Link>
         <nav className="desktop-nav">
           {LINKS.map((l) =>
