@@ -97,16 +97,18 @@ export default function PortfolioSection({
             <div className="eyebrow-plain">{head.eyebrow}</div>
             <h2 className="section-title">{heading}</h2>
           </Reveal>
-          {groups.some(({ items }) => items.length > limit) && (
-            <Link to="/work" className="link-underline">
-              전체 보기
-            </Link>
-          )}
+          <Link to="/work" className="link-underline">포트폴리오 전체 보기</Link>
         </div>
 
         {groups.map(({ title, items }) => (
           <div key={title} style={{ marginTop: 32 }}>
-            <h3 style={{ marginBottom: 16 }}>{title}</h3>
+            <h3 style={{ marginBottom: 16 }}>
+              {title === '기타' ? title : (
+                <Link to={title === '주거' ? '/work?category=residential' : '/work?category=commercial'}>
+                  {title === '주거' ? 'RESIDENTIAL' : 'COMMERCIAL'}
+                </Link>
+              )}
+            </h3>
             {items.length ? (
               <div className="portfolio-grid">
                 {items.slice(0, limit).map((project, index) => (
