@@ -58,8 +58,8 @@ export default function Header({ site }: { site: SiteMeta }) {
     <header id="site-header" className={scrolled ? 'scrolled' : undefined}>
       <style>{`
 .muare-header-symbol, .muare-header-lettering { position: relative; display: block; overflow: hidden; flex-shrink: 0; }
-#site-header .wordmark { display: grid; grid-template-columns: 42px 85px; align-items: center; row-gap: 5px; }
-.muare-header-symbol { width: 42px; aspect-ratio: 740 / 548; }
+#site-header .wordmark { display: grid; grid-template-columns: 28px 85px; align-items: center; row-gap: 5px; }
+.muare-header-symbol { width: 28px; aspect-ratio: 740 / 548; }
 .muare-header-symbol img { position: absolute; width: 337.84%; max-width: none; left: -118.65%; top: -131.75%; }
 .muare-header-lettering { width: 85px; aspect-ratio: 1056 / 240; }
 .muare-header-lettering img { position: absolute; width: 236.74%; max-width: none; left: -68.37%; top: -17.5%; }
@@ -74,9 +74,9 @@ export default function Header({ site }: { site: SiteMeta }) {
 @media (max-width: 520px) {
   #site-header .headrow { padding-inline: 16px; }
   #site-header .desktop-nav { font-size: 10px; gap: clamp(5px, 1.7vw, 8px); }
-  .muare-header-symbol { width: 32px; }
+  .muare-header-symbol { width: 21px; }
   .muare-header-lettering { width: 65px; }
-  #site-header .wordmark { grid-template-columns: 32px 65px; row-gap: 4px; }
+  #site-header .wordmark { grid-template-columns: 21px 65px; row-gap: 4px; }
 }
 `}</style>
       <div className="wrap headrow">
@@ -87,8 +87,8 @@ export default function Header({ site }: { site: SiteMeta }) {
             <span className="muare-header-lettering">
               <img src="/images/muare-header-lettering.png" alt={site.wordmark} />
             </span>
-            <svg className="muare-header-descriptor" viewBox="0 0 137 9" aria-label="Design Studio" role="img">
-              <text x="0" y="8" textLength="137" lengthAdjust="spacing">DESIGN STUDIO</text>
+            <svg className="muare-header-descriptor" viewBox="0 0 123 9" aria-label="Design Studio" role="img">
+              <text x="0" y="8" textLength="123" lengthAdjust="spacing">DESIGN STUDIO</text>
             </svg>
         </Link>
         <nav className="desktop-nav">
