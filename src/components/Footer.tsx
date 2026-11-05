@@ -1,3 +1,4 @@
+import { MuareWordmark } from './Header'
 import type { SiteMeta, ContactContent } from '../lib/types'
 
 /** 관리자 화면에서 값을 비워두면 쓸 기본 카카오 채널 주소 */
@@ -15,8 +16,7 @@ export default function Footer({
       <div className="wrap">
         <div className="footer-row">
           <div className="wordmark">
-            <img src="/images/muare-mark.png" alt="" className="wordmark-icon" />
-            {site.wordmark}
+            <MuareWordmark name={site.wordmark} />
           </div>
           <div className="footer-links">
             <a
