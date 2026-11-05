@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { ContactContent } from '../lib/types'
 import Reveal from './Reveal'
-import FloralMark from './FloralMark'
 
 /** 관리자 화면에서 값을 비워두면 쓸 기본 카카오 채널 주소 */
 const KAKAO_FALLBACK_URL = 'https://pf.kakao.com/_AkFen'
@@ -9,7 +8,6 @@ const KAKAO_FALLBACK_URL = 'https://pf.kakao.com/_AkFen'
 export default function Contact({ contact }: { contact: ContactContent }) {
   return (
     <section className="cta section-watermark" id="contact">
-      <FloralMark />
       <img
         src="/images/muare-mark-light.png"
         alt=""
