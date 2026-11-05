@@ -58,19 +58,20 @@ export default function Header({ site }: { site: SiteMeta }) {
     <header id="site-header" className={scrolled ? 'scrolled' : undefined}>
       <style>{`
 .muare-header-symbol, .muare-header-lettering { position: relative; display: block; overflow: hidden; flex-shrink: 0; }
-.muare-header-symbol { width: 33px; aspect-ratio: 740 / 548; }
+#site-header .wordmark { align-items: flex-start; }
+.muare-header-symbol { width: 32px; aspect-ratio: 740 / 548; }
 .muare-header-symbol img { position: absolute; width: 337.84%; max-width: none; left: -118.65%; top: -131.75%; }
 .muare-header-name { display: grid; justify-items: center; gap: 6px; }
 .muare-header-lettering { width: 104px; aspect-ratio: 1056 / 240; }
 .muare-header-lettering img { position: absolute; width: 236.74%; max-width: none; left: -68.37%; top: -17.5%; }
-.muare-header-descriptor { font: 500 8px/1 var(--font-body); letter-spacing: .14em; white-space: nowrap; }
+.muare-header-descriptor { display: block; width: 100%; height: 9px; font: 500 9px var(--font-body); fill: currentColor; }
 #site-header:not(.scrolled):has(+ .hero) .muare-header-symbol img,
 #site-header:not(.scrolled):has(+ .hero) .muare-header-lettering img { filter: brightness(0) invert(1); }
 @media (max-width: 520px) {
   .muare-header-symbol { width: 23px; }
   .muare-header-lettering { width: 76px; }
   .muare-header-name { gap: 4px; }
-  .muare-header-descriptor { font-size: 6px; }
+  .muare-header-descriptor { height: 7px; }
 }
 `}</style>
       <div className="wrap headrow">
@@ -82,7 +83,9 @@ export default function Header({ site }: { site: SiteMeta }) {
             <span className="muare-header-lettering">
               <img src="/images/muare-header-lettering.png" alt={site.wordmark} />
             </span>
-            <span className="muare-header-descriptor">DESIGN STUDIO</span>
+            <svg className="muare-header-descriptor" viewBox="0 0 104 9" aria-label="Design Studio" role="img">
+              <text x="0" y="8" textLength="104" lengthAdjust="spacing">DESIGN STUDIO</text>
+            </svg>
           </span>
         </Link>
         <nav className="desktop-nav">
