@@ -9,6 +9,7 @@ export default function About({ about }: { about: AboutContent }) {
 #about .about-photo{aspect-ratio:auto;min-height:620px;position:relative}
 #about .about-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 #about .about-copy{min-width:0}
+#about .about-copy .section-title{white-space:normal;word-break:keep-all;overflow-wrap:anywhere;line-height:1.35;font-size:clamp(28px,3vw,42px)}
 #about .about-copy p{max-width:none;line-height:1.85;margin-top:22px}
 #about .about-copy p strong{display:block;color:var(--text);font-size:1.12em;font-weight:600;margin-bottom:7px;line-height:1.5}
 @media(max-width:900px){#about .about-grid{grid-template-columns:minmax(0,1fr)}#about .about-photo{min-height:0;aspect-ratio:4/5;max-height:620px}#about .about-copy p{margin-top:20px}}`}</style>
