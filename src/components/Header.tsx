@@ -59,19 +59,22 @@ export default function Header({ site }: { site: SiteMeta }) {
       <style>{`
 .muare-header-symbol, .muare-header-lettering { position: relative; display: block; overflow: hidden; flex-shrink: 0; }
 #site-header .wordmark { align-items: center; }
-.muare-header-symbol { width: 52px; aspect-ratio: 740 / 548; }
+.muare-header-symbol { width: 45px; aspect-ratio: 740 / 548; }
 .muare-header-symbol img { position: absolute; width: 337.84%; max-width: none; left: -118.65%; top: -131.75%; }
-.muare-header-name { display: grid; justify-items: center; gap: 6px; }
-.muare-header-lettering { width: 104px; aspect-ratio: 1056 / 240; }
+.muare-header-name { display: grid; justify-items: center; gap: 5px; }
+.muare-header-lettering { width: 91px; aspect-ratio: 1056 / 240; }
 .muare-header-lettering img { position: absolute; width: 236.74%; max-width: none; left: -68.37%; top: -17.5%; }
-.muare-header-descriptor { display: block; width: 100%; height: 9px; font: 500 9px var(--font-body); fill: currentColor; }
+.muare-header-descriptor { display: block; width: 100%; height: 8px; font: 500 9px var(--font-body); fill: currentColor; }
 #site-header:not(.scrolled):has(+ .hero) .muare-header-symbol img,
 #site-header:not(.scrolled):has(+ .hero) .muare-header-lettering img { filter: brightness(0) invert(1); }
+@media (min-width: 769px) {
+  #site-header:not(.scrolled):has(+ .hero) .headrow { height: 60px; }
+}
 @media (max-width: 520px) {
-  .muare-header-symbol { width: 38px; }
-  .muare-header-lettering { width: 76px; }
+  .muare-header-symbol { width: 34px; }
+  .muare-header-lettering { width: 69px; }
   .muare-header-name { gap: 4px; }
-  .muare-header-descriptor { height: 7px; }
+  .muare-header-descriptor { height: 6px; }
 }
 `}</style>
       <div className="wrap headrow">
