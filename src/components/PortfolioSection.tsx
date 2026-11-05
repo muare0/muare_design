@@ -67,7 +67,27 @@ export default function PortfolioSection({
   onOpen: (p: Portfolio) => void
   limit?: number
 }) {
-  const shown = projects.slice(0, limit)
+  const residential: Portfolio[] = []
+  const commercial: Portfolio[] = []
+  const other: Portfolio[] = []
+
+  for (const project of projects) {
+    const category = project.category ?? ''
+    if (/주거|residential|^home$/i.test(category) || project.id === 'sample-residential-concept') {
+      residential.push(project)
+    } else if (/상업|commercial/i.test(category)) {
+      commercial.push(project)
+    } else {
+      other.push(project)
+    }
+  }
+
+  const groups = [
+    { title: '주거', items: residential },
+    { title: '상업', items: commercial },
+    ...(other.length ? [{ title: '기타', items: other }] : []),
+  ]
+  const heading = /^selected works$/i.test(head.heading.trim()) ? '프로젝트' : head.heading
 
   return (
     <section id="portfolio" className="divider">
@@ -75,26 +95,29 @@ export default function PortfolioSection({
         <div className="portfolio-head">
           <Reveal>
             <div className="eyebrow-plain">{head.eyebrow}</div>
-            <h2 className="section-title">{head.heading}</h2>
+            <h2 className="section-title">{heading}</h2>
           </Reveal>
-          {projects.length > limit && (
+          {groups.some(({ items }) => items.length > limit) && (
             <Link to="/work" className="link-underline">
               전체 보기
             </Link>
           )}
         </div>
 
-        {shown.length === 0 ? (
-          <div className="portfolio-empty">
-            아직 등록된 프로젝트가 없습니다. 관리자 페이지에서 첫 작품을 추가해 주세요.
+        {groups.map(({ title, items }) => (
+          <div key={title} style={{ marginTop: 32 }}>
+            <h3 style={{ marginBottom: 16 }}>{title}</h3>
+            {items.length ? (
+              <div className="portfolio-grid">
+                {items.slice(0, limit).map((project, index) => (
+                  <PortfolioCard key={project.id} project={project} index={index} onOpen={onOpen} />
+                ))}
+              </div>
+            ) : (
+              <div className="portfolio-empty">등록된 {title} 프로젝트가 없습니다.</div>
+            )}
           </div>
-        ) : (
-          <div className="portfolio-grid">
-            {shown.map((p, i) => (
-              <PortfolioCard key={p.id} project={p} index={i} onOpen={onOpen} />
-            ))}
-          </div>
-        )}
+        ))}
       </div>
     </section>
   )
