@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import { PortfolioCard } from '../components/PortfolioSection'
+import { PortfolioGallery } from '../components/PortfolioSection'
 import ProjectView from '../components/ProjectView'
 import Reveal from '../components/Reveal'
 import { useSiteContent, usePortfolios } from '../hooks/useSiteData'
@@ -109,18 +109,14 @@ export default function Work() {
           <div className="portfolio-empty">{loading ? '프로젝트를 불러오는 중입니다.' : '등록된 프로젝트가 없습니다.'}</div>
         ) : (
           <>
-            <div className="portfolio-grid">
-              {paged.map((p, i) => (
-                <PortfolioCard
-                  key={p.id}
-                  project={p}
-                  index={(page - 1) * PAGE_SIZE + i}
-                  onOpen={(proj) => {
-                    if (!proj.id.startsWith('placeholder-')) setOpenProject(proj)
-                  }}
-                />
-              ))}
-            </div>
+            <PortfolioGallery
+              key={`${filter}-${page}`}
+              projects={paged}
+              startIndex={(page - 1) * PAGE_SIZE}
+              onOpen={(project) => {
+                if (!project.id.startsWith('placeholder-')) setOpenProject(project)
+              }}
+            />
 
             {totalPages > 1 && (
               <div className="pagination">
