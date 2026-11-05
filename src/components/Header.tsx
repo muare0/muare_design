@@ -67,10 +67,12 @@ export default function Header({ site }: { site: SiteMeta }) {
 .muare-header-descriptor { display: block; width: 100%; height: 8px; font: 500 9px var(--font-body); fill: currentColor; }
 #site-header:not(.scrolled):has(+ .hero) .muare-header-symbol img,
 #site-header:not(.scrolled):has(+ .hero) .muare-header-lettering img { filter: brightness(0) invert(1); }
+#site-header .desktop-nav { text-transform: uppercase; }
 @media (min-width: 769px) {
-  #site-header:not(.scrolled):has(+ .hero) .headrow { height: 60px; }
+  #site-header:not(.scrolled):has(+ .hero) .headrow { height: 88px; padding-top: 8px; }
 }
 @media (max-width: 520px) {
+  #site-header .desktop-nav { font-size: 10px; }
   .muare-header-symbol { width: 34px; }
   .muare-header-lettering { width: 69px; }
   .muare-header-name { gap: 4px; }
