@@ -62,7 +62,7 @@ export default function Work() {
     { key: 'commercial', label: 'COMMERCIAL', match: /상업|commercial/i },
   ]
   const active = categories.find(({ key }) => key === filter)!
-  const filtered = [...portfolios, ...sampleProjects].filter(({ category }) => active.match.test(category ?? ''))
+  const filtered = loading ? [] : [...portfolios, ...sampleProjects].filter(({ category }) => active.match.test(category ?? ''))
 
   useEffect(() => {
     setPage(1)
