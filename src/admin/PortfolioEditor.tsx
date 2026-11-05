@@ -171,13 +171,10 @@ export default function PortfolioEditor({ onToast }: { onToast: (m: string) => v
             <label htmlFor="portfolio-category">CATEGORY — 분류</label>
             <select
               id="portfolio-category"
-              value={project.category ?? ''}
+              value={portfolioCategories.includes(project.category ?? '') ? project.category ?? '' : ''}
               onChange={(e) => set('category', e.target.value)}
             >
               <option value="">분류를 선택해 주세요</option>
-              {project.category && !portfolioCategories.includes(project.category) && (
-                <option value={project.category}>{project.category} (기존 분류)</option>
-              )}
               {portfolioCategories.map((category) => (
                 <option key={category} value={category}>{category}</option>
               ))}
