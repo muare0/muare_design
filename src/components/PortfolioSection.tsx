@@ -102,7 +102,7 @@ export default function PortfolioSection({
   head,
   projects,
   onOpen,
-  limit = 6,
+  limit = 4,
 }: {
   head: SectionHead
   projects: Portfolio[]
