@@ -63,8 +63,8 @@ header.scrolled{ border-color:var(--line); }
   font-family:var(--font-heading); font-size:32px; letter-spacing:0.06em; font-weight:500;
   display:flex; align-items:center; gap:10px;
 }
-.wordmark-icon{ height:34px; width:auto; display:block; }
-.wordmark-lettering{ position:relative; display:block; width:clamp(78px, 10vw, 142px); aspect-ratio:5.05; overflow:hidden; }
+.wordmark-icon{ height:24px; width:auto; display:block; }
+.wordmark-lettering{ position:relative; display:block; width:clamp(65px, 8vw, 108px); aspect-ratio:5.05; overflow:hidden; }
 .wordmark-lettering img{ position:absolute; width:124%; max-width:none; left:-12%; top:-337%; }
 #site-header:not(.scrolled):has(+ .hero) .wordmark-lettering img{ filter:brightness(0) invert(1); }
 nav.desktop-nav{ display:flex; align-items:center; gap:40px; font-size:14px; color:var(--text-soft); }
@@ -90,7 +90,7 @@ nav.desktop-nav a:hover::after{ width:100%; }
 @media(max-width:520px){
   .headrow{ height:64px; }
   .wordmark{ font-size:20px; gap:6px; }
-  .wordmark-icon{ height:21px; }
+  .wordmark-icon{ height:17px; }
   nav.desktop-nav{ gap:clamp(7px,2.5vw,14px); font-size:11.5px; letter-spacing:.01em; }
   .board-icon-link{ width:26px; height:26px; }
   .board-icon-link svg{ width:14px; height:14px; }
