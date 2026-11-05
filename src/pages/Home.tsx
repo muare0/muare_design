@@ -10,36 +10,8 @@ import Footer from '../components/Footer'
 import ProjectView from '../components/ProjectView'
 import { useSiteContent, usePortfolios } from '../hooks/useSiteData'
 import { isSupabaseConfigured } from '../lib/supabase'
-import { PLACEHOLDER_PORTFOLIOS } from '../content/defaults'
+import { sampleProjects } from './Work'
 import type { Portfolio } from '../lib/types'
-
-const sampleProject: Portfolio = {
-  ...PLACEHOLDER_PORTFOLIOS[0],
-  id: 'sample-residential-concept',
-  slug: 'sample-residential-concept',
-  title: '따뜻한 주거 공간',
-  category: '임시 예시 · 공간 콘셉트',
-  year: null,
-  description: '홈페이지 구성을 확인하기 위한 임시 예시입니다.',
-  images: [{
-    id: 'sample-residential-cover',
-    portfolio_id: 'sample-residential-concept',
-    storage_path: '/images/hero-arch.webp',
-    image_url: '/images/hero-arch.webp',
-    thumb_path: null,
-    original_path: null,
-    thumb_url: null,
-    quality: 'web',
-    width: null,
-    height: null,
-    bytes: null,
-    original_bytes: null,
-    original_name: null,
-    alt: '주거 공간 콘셉트 예시',
-    caption: null,
-    sort_order: 0,
-  }],
-}
 
 export default function Home() {
   const { content } = useSiteContent()
@@ -70,7 +42,7 @@ export default function Home() {
     }
   }, [location.hash])
 
-  const list = loading && portfolios.length === 0 ? [] : [...portfolios, sampleProject]
+  const list = loading && portfolios.length === 0 ? [] : [...portfolios, ...sampleProjects]
 
   const [openProject, setOpenProject] = useState<Portfolio | null>(null)
 
