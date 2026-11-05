@@ -61,17 +61,18 @@ export function PortfolioGallery({ projects, onOpen, startIndex = 0 }: {
   const [active, setActive] = useState(0)
 
   return (
-    <>
+    <div className="portfolio-gallery-frame">
       <style>{`
 .portfolio-dots { display: none; }
 @media (max-width: 560px) {
-  .portfolio-grid.portfolio-gallery { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 100%; gap: 0; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .portfolio-gallery-frame { position: relative; }
+  .portfolio-grid.portfolio-gallery { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 100%; gap: 0; overflow-x: auto; overflow-y: hidden; touch-action: pan-x pinch-zoom; scroll-snap-type: x mandatory; scrollbar-width: none; }
   .portfolio-gallery::-webkit-scrollbar { display: none; }
   .portfolio-gallery > * { min-width: 0; scroll-snap-align: start; }
-  .portfolio-dots { display: flex; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
-  .portfolio-dots button { width: 30px; height: 32px; display: grid; place-items: center; padding: 0; border: 0; background: transparent; cursor: pointer; }
+  .portfolio-dots { display: flex; justify-content: center; flex-wrap: wrap; position: absolute; inset-inline: 0; bottom: 8px; z-index: 4; color: #fff; pointer-events: none; }
+  .portfolio-dots button { width: 30px; height: 32px; display: grid; place-items: center; padding: 0; border: 0; background: transparent; cursor: pointer; color: inherit; pointer-events: auto; }
   .portfolio-dots button::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .35; }
-  .portfolio-dots button[aria-current='true']::before { opacity: 1; }
+  .portfolio-dots button[aria-current='true']::before { opacity: .9; }
 }
 `}</style>
       <div className="portfolio-grid portfolio-gallery" ref={track} onScroll={(event) => {
@@ -94,7 +95,7 @@ export function PortfolioGallery({ projects, onOpen, startIndex = 0 }: {
           ))}
         </div>
       )}
-    </>
+    </div>
   )
 }
 
