@@ -12,7 +12,7 @@ export default function About({ about }: { about: AboutContent }) {
 #about .about-copy .section-title{white-space:normal;word-break:keep-all;overflow-wrap:anywhere;line-height:1.35;font-size:clamp(28px,3vw,42px)}
 #about .about-copy p{max-width:none;line-height:1.9;margin-top:28px;white-space:pre-line;word-break:normal;overflow-wrap:break-word;text-wrap:pretty}
 #about .about-copy p strong{color:var(--text);font-size:inherit;font-weight:650}
-@media(max-width:900px){#about .about-grid{grid-template-columns:minmax(0,1fr)}#about .about-photo{min-height:0;aspect-ratio:4/5;max-height:620px}#about .about-copy p{margin-top:20px}}`}</style>
+@media(max-width:900px){#about .about-grid{grid-template-columns:minmax(0,1fr)}#about .about-photo{min-height:0;aspect-ratio:4/5;max-height:620px}#about .about-copy p{margin-top:20px;line-height:1.8;white-space:normal}}`}</style>
       <img src="/images/muare-mark.png" alt="" className="section-watermark-mark" aria-hidden="true" />
       <div className="wrap about-grid">
         <Reveal className="about-photo">
