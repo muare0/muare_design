@@ -58,8 +58,8 @@ export default function Header({ site }: { site: SiteMeta }) {
     <header id="site-header" className={scrolled ? 'scrolled' : undefined}>
       <style>{`
 .muare-header-symbol, .muare-header-lettering { position: relative; display: block; overflow: hidden; flex-shrink: 0; }
-#site-header .wordmark { align-items: flex-start; }
-.muare-header-symbol { width: 32px; aspect-ratio: 740 / 548; }
+#site-header .wordmark { align-items: center; }
+.muare-header-symbol { width: 52px; aspect-ratio: 740 / 548; }
 .muare-header-symbol img { position: absolute; width: 337.84%; max-width: none; left: -118.65%; top: -131.75%; }
 .muare-header-name { display: grid; justify-items: center; gap: 6px; }
 .muare-header-lettering { width: 104px; aspect-ratio: 1056 / 240; }
@@ -68,7 +68,7 @@ export default function Header({ site }: { site: SiteMeta }) {
 #site-header:not(.scrolled):has(+ .hero) .muare-header-symbol img,
 #site-header:not(.scrolled):has(+ .hero) .muare-header-lettering img { filter: brightness(0) invert(1); }
 @media (max-width: 520px) {
-  .muare-header-symbol { width: 23px; }
+  .muare-header-symbol { width: 38px; }
   .muare-header-lettering { width: 76px; }
   .muare-header-name { gap: 4px; }
   .muare-header-descriptor { height: 7px; }
