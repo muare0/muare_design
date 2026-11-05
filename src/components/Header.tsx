@@ -58,7 +58,7 @@ export default function Header({ site }: { site: SiteMeta }) {
     <header id="site-header" className={scrolled ? 'scrolled' : undefined}>
       <style>{`
 .muare-header-symbol, .muare-header-lettering { position: relative; display: block; overflow: hidden; flex-shrink: 0; }
-#site-header .wordmark { display: grid; grid-template-columns: auto auto; align-items: center; row-gap: 5px; }
+#site-header .wordmark { display: grid; grid-template-columns: 42px 85px; align-items: center; row-gap: 5px; }
 .muare-header-symbol { width: 42px; aspect-ratio: 740 / 548; }
 .muare-header-symbol img { position: absolute; width: 337.84%; max-width: none; left: -118.65%; top: -131.75%; }
 .muare-header-lettering { width: 85px; aspect-ratio: 1056 / 240; }
@@ -76,7 +76,7 @@ export default function Header({ site }: { site: SiteMeta }) {
   #site-header .desktop-nav { font-size: 10px; gap: clamp(5px, 1.7vw, 8px); }
   .muare-header-symbol { width: 32px; }
   .muare-header-lettering { width: 65px; }
-  #site-header .wordmark { row-gap: 4px; }
+  #site-header .wordmark { grid-template-columns: 32px 65px; row-gap: 4px; }
 }
 `}</style>
       <div className="wrap headrow">
