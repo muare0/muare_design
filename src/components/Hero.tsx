@@ -10,6 +10,33 @@ import type { HeroContent } from '../lib/types'
  * 평소처럼 페이지가 그대로 아래/위로 스크롤됩니다.
  */
 export default function Hero({ hero }: { hero: HeroContent }) {
+  const messages = [
+  {
+    "titleTop": "From thought,",
+    "titleBottom": "to space.",
+    "subtitle": "당신의 생각에서 시작되는 공간.\n막연한 상상을 함께 다듬어, 완성될 공간을 선명하게 보여드립니다."
+  },
+  {
+    "titleTop": "See it,",
+    "titleBottom": "before it’s built.",
+    "subtitle": "선택하기 전에, 먼저 만나보세요.\n가구의 배치부터 소재와 빛의 조화까지, 미리 확인하고 더 자신 있게 선택하세요."
+  },
+  {
+    "titleTop": "Detail,",
+    "titleBottom": "makes the whole.",
+    "subtitle": "보이지 않는 곳까지 헤아리는 디테일이 브랜드와 공간의 완성도를 만듭니다."
+  },
+  {
+    "titleTop": "Your vision,",
+    "titleBottom": "clearly expressed.",
+    "subtitle": "좋은 제안에는, 선명한 이미지가 필요합니다.\n말과 도면으로 전하기 어려웠던 생각을, 공간의 의도가 전달되는 이미지로 완성합니다."
+  },
+  {
+    "titleTop": "A space to see,",
+    "titleBottom": "a reason to believe.",
+    "subtitle": "나에게는 확신을, 누군가에게는 설득을.\n당신의 아이디어를 구체적인 공간으로 그려, 다음 결정을 돕습니다."
+  }
+]
   const slides = [
     '/images/01-arched-living.png',
     '/images/02-city-apartment.png',
@@ -18,10 +45,8 @@ export default function Hero({ hero }: { hero: HeroContent }) {
     '/images/05-bedroom-retreat.png',
   ].map((image, index) => ({
     image,
-    eyebrow: index === 0 ? hero.eyebrow : hero.eyebrow2 || hero.eyebrow,
-    titleTop: index === 0 ? hero.titleTop : hero.titleTop2 || hero.titleTop,
-    titleBottom: index === 0 ? hero.titleBottom : hero.titleBottom2 || hero.titleBottom,
-    subtitle: index === 0 ? hero.subtitle : hero.subtitle2 || hero.subtitle,
+    eyebrow: hero.eyebrow,
+    ...messages[index],
   }))
   const [active, setActive] = useState(0)
   useEffect(() => {
@@ -104,7 +129,7 @@ export default function Hero({ hero }: { hero: HeroContent }) {
           <br />
           {slide.titleBottom}
         </h1>
-        <p className="hero-sub" key={`sub-${active}`}>
+        <p className="hero-sub" style={{ whiteSpace: 'pre-line', maxWidth: '44ch' }} key={`sub-${active}`}>
           {slide.subtitle}
         </p>
       </div>
