@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
@@ -42,7 +42,10 @@ export default function Home() {
     }
   }, [location.hash])
 
-  const list = loading && portfolios.length === 0 ? [] : [...portfolios, ...sampleProjects]
+  const list = useMemo(
+    () => loading && portfolios.length === 0 ? [] : [...portfolios, ...sampleProjects],
+    [loading, portfolios],
+  )
 
   const [openProject, setOpenProject] = useState<Portfolio | null>(null)
 
@@ -59,7 +62,7 @@ export default function Home() {
   function open(p: Portfolio) {
     if (p.id.startsWith('placeholder-')) return // 자리표시 항목은 상세가 없습니다
     setOpenProject(p)
-    window.history.pushState({}, '', `/work/${p.slug || p.id}`)
+    navigate(`/work/${p.slug || p.id}`, { preventScrollReset: true })
   }
   function close() {
     setOpenProject(null)
