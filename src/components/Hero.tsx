@@ -137,7 +137,6 @@ export default function Hero({ hero }: { hero: HeroContent }) {
       </div>
 
       <div className="wrap hero-inner">
-        <div className="hero-specialties">3D VISUALIZATION · INTERIOR · ARCHITECTURE · EXHIBITION · COMMERCIAL</div>
         <h1 key={`h1-${active}`}>
           {slide.titleTop}
           <br />
