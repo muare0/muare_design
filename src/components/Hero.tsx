@@ -137,7 +137,7 @@ export default function Hero({ hero }: { hero: HeroContent }) {
       </div>
 
       <div className="wrap hero-inner">
-        <div className="hero-eyebrow" key={`eb-${active}`}>
+        <div className="hero-eyebrow">
           {slide.eyebrow}
         </div>
         <div className="hero-specialties">3D VISUALIZATION · INTERIOR · ARCHITECTURE · EXHIBITION · COMMERCIAL</div>
