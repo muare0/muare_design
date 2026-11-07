@@ -9,7 +9,7 @@ export default function About({ about }: { about: AboutContent }) {
 #about .about-photo{aspect-ratio:auto;min-height:620px;position:relative}
 #about .about-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 #about .about-copy{min-width:0}
-#about .section-watermark-mark{top:auto;bottom:40px;transform:none;right:8px;width:clamp(240px,42vw,640px);max-width:calc(100% - 16px);max-height:calc(100% - 80px);object-fit:contain}
+#about .section-watermark-mark{top:auto;bottom:52px;transform:none;right:8px;width:clamp(240px,42vw,640px);max-width:calc(100% - 16px);max-height:calc(100% - 80px);object-fit:contain}
 @media(max-width:900px){#about .section-watermark-mark{right:8px;width:min(70vw,360px)}}
 #about .about-specialties{font-size:11px;line-height:1.8;letter-spacing:.025em}
 #about .about-specialties::before{flex-shrink:0}
