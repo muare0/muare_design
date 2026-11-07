@@ -131,7 +131,7 @@ export default function ProjectView({
           {String((project.sort_order ?? 0) + 1).padStart(2, '0')}
           {project.title_en ? ` — ${project.title_en}` : ''}
         </div>
-        <h1 className="project-title">{project.title}</h1>
+        <h1 className="project-title" style={project.slug === 'gwonseon-xi' ? { whiteSpace: 'nowrap', maxWidth: 'none', fontSize: 'clamp(20px, 4.8vw, 38px)' } : undefined}>{project.title}</h1>
         {project.description && <p className="project-lede">{project.description}</p>}
 
         {facts.length > 0 && (
