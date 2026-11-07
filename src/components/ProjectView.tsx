@@ -80,7 +80,7 @@ export default function ProjectView({
     { title: 'LIVING ROOM / 거실', note: '밝은 톤의 마감과 큰 창으로 개방감을 살린 거실입니다.', indices: [0, 1] },
     { title: 'KITCHEN / 주방', note: '거실과 이어지는 대면형 주방에 수납장과 우드 포인트를 더했습니다.', indices: [2, 3] },
     { title: 'MASTER BEDROOM / 안방', note: '밝은 붙박이장과 자연광으로 차분하게 구성한 안방입니다.', indices: [4] },
-    { title: 'BATHROOM / 공용욕실', note: '그레이 타일과 조명 거울로 구성한 공용욕실입니다.', indices: [5, 6] },
+    { title: 'BATHROOM / 공용욕실', note: '그레이 타일과 조명 거울로 구성한 공용욕실입니다.', indices: [6] },
     { title: 'MASTER BATHROOM / 안방욕실', note: '밝은 타일과 우드 수납장으로 따뜻한 분위기를 더한 안방욕실입니다.', indices: [7] },
   ] : []
   const gallery = roomGroups.length ? roomGroups.flatMap((group) =>
