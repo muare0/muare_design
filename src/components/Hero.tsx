@@ -11,7 +11,6 @@ import type { HeroContent } from '../lib/types'
  */
 export default function Hero({ hero }: { hero: HeroContent }) {
   const slides = [
-    '/images/ChatGPT%20%EC%9D%B4%EB%AF%B8%EC%A7%80%202026%EB%85%84%2011%EC%9B%94%207%EC%9D%BC%20%EC%98%A4%ED%9B%84%2008_14_00.png',
     '/images/01-arched-living.png',
     '/images/02-city-apartment.png',
     '/images/03-dining-courtyard.png',
