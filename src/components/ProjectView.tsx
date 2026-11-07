@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import type { Portfolio } from '../lib/types'
 import Lightbox from './Lightbox'
 
@@ -68,7 +68,22 @@ export default function ProjectView({
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const [barScrolled, setBarScrolled] = useState(false)
   const scrollerRef = useRef<HTMLDivElement>(null)
-  const images = project.images ?? []
+  const sourceImages = project.images ?? []
+  const roomGroups = project.slug === 'gwonseon-xi' ? [
+    { title: 'LIVING ROOM / 거실', note: '밝은 벽과 우드 바닥에 간접조명을 더해 편안한 분위기로 구성한 거실입니다.', indices: [4, 5] },
+    { title: 'KITCHEN / 주방', note: '밝은 톤의 수납장과 넓은 작업대, 유리 장식장으로 구성한 주방입니다.', indices: [7, 8] },
+    { title: 'ENTRANCE / 현관', note: '벽면 수납과 간접조명으로 정돈된 인상을 주는 현관입니다.', indices: [1] },
+    { title: 'STORAGE / 수납공간', note: '우드 바닥과 밝은 붙박이장으로 통일감을 준 수납공간입니다.', indices: [6] },
+    { title: 'ROOM / 방', note: '발코니와 연결된 창을 중심으로 밝고 간결하게 구성한 방입니다.', indices: [9] },
+    { title: 'BATHROOM / 욕실', note: '그레이 타일과 어두운 하부장, 조명 거울로 구성한 욕실입니다.', indices: [0, 2, 3, 10, 11] },
+  ] : []
+  const gallery = roomGroups.length ? roomGroups.flatMap((group) =>
+    group.indices.flatMap((index, position) => sourceImages[index] ? [{
+      image: sourceImages[index], title: position === 0 ? group.title : '',
+      note: position === 0 ? group.note : '',
+    }] : []),
+  ) : sourceImages.map((image) => ({ image, title: '', note: '' }))
+  const images = gallery.map(({ image }) => image)
 
   /* 배경(홈) 스크롤 잠금 + 상세는 항상 맨 위에서 시작 */
   useEffect(() => {
@@ -135,9 +150,15 @@ export default function ProjectView({
         {images.length === 0 ? (
           <p className="portfolio-empty">이 프로젝트에는 아직 이미지가 없습니다.</p>
         ) : (
-          images.map((img, i) => (
+          gallery.map(({ image: img, title, note }, i) => (
+            <Fragment key={img.id}>
+              {title && (
+                <div style={{ margin: '56px 0 24px' }}>
+                  <h2 style={{ fontFamily: 'var(--font-body)', fontSize: 18, fontWeight: 500 }}>{title}</h2>
+                  <p style={{ marginTop: 12, color: 'var(--text-soft)', fontSize: 14 }}>{note}</p>
+                </div>
+              )}
             <GalleryImage
-              key={img.id}
               src={img.image_url}
               alt={img.alt || `${project.title} ${i + 1}`}
               width={img.width}
