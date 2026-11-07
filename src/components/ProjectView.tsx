@@ -82,6 +82,16 @@ export default function ProjectView({
     { title: 'MASTER BEDROOM / 안방', note: '밝은 붙박이장과 자연광으로 차분하게 구성한 안방입니다.', indices: [4] },
     { title: 'BATHROOM / 공용욕실', note: '그레이 타일과 조명 거울로 구성한 공용욕실입니다.', indices: [6] },
     { title: 'MASTER BATHROOM / 안방욕실', note: '밝은 타일과 우드 수납장으로 따뜻한 분위기를 더한 안방욕실입니다.', indices: [7] },
+  ] : project.slug === 'gwanggyo-hoban-gardenheim' ? [
+    { title: '01. LIVING ROOM / 거실', note: '넓은 창과 밝은 타일에 우드 포인트와 간접조명을 더한 거실입니다.', indices: [0, 1] },
+    { title: '02. KITCHEN / 주방', note: '대면형 아일랜드와 벽면 수납을 배치하고, 밝은 마감에 우드 소재를 더했습니다.', indices: [2, 3, 4] },
+    { title: '03. ENTRANCE / 현관', note: '벽면 수납에 우드 선반과 거울을 더하고 유리 중문으로 실내와 연결했습니다.', indices: [5, 6] },
+    { title: '04. STORAGE / 수납 공간', note: '벽면 붙박이장에 우드 오픈 선반과 아치형 입구를 조합했습니다.', indices: [7, 8, 9] },
+    { title: '05. BEDROOM / 침실', note: '우드 프레임 유리문과 수납형 침대, 붙박이 선반으로 구성한 침실입니다.', indices: [10, 11] },
+    { title: '06. ROOM / 방', note: '밝은 마감으로 자연광을 살리고 실링팬을 더했습니다.', indices: [12] },
+    { title: '07. BATHROOM / 공용욕실', note: '그레이 타일과 우드 수납장을 조합하고 유리 파티션으로 샤워 공간을 나눴습니다.', indices: [13] },
+    { title: '08. MASTER BATHROOM / 안방욕실', note: '우드 하부장과 넓은 거울, 유리 샤워 부스를 배치한 욕실입니다.', indices: [14] },
+    { title: '09. LAUNDRY / 세탁실', note: '세탁기와 건조기, 세탁볼과 수납을 한쪽 벽면에 모았습니다.', indices: [15] },
   ] : []
   const gallery = roomGroups.length ? roomGroups.flatMap((group) =>
     group.indices.flatMap((index, position) => sourceImages[index] ? [{
@@ -113,7 +123,7 @@ export default function ProjectView({
   const facts = [
     { label: 'CATEGORY', value: project.category },
     { label: 'YEAR', value: project.year },
-    { label: 'CLIENT', value: project.client },
+    { label: 'CLIENT', value: project.slug === 'gwanggyo-hoban-gardenheim' ? undefined : project.client },
     { label: 'ROLE', value: project.role },
   ].filter((f) => f.value)
 
