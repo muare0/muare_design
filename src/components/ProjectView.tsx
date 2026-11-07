@@ -93,7 +93,7 @@ export default function ProjectView({
     { title: '08. MASTER BATHROOM / 안방욕실', note: '우드 하부장과 넓은 거울, 유리 샤워 부스를 배치한 욕실입니다.', indices: [14] },
     { title: '09. LAUNDRY / 세탁실', note: '세탁기와 건조기, 세탁볼과 수납을 한쪽 벽면에 모았습니다.', indices: [15] },
   ] : project.slug === 'hongeun-byeoksan-23py' ? [
-    { title: 'LIVING ROOM / 거실', note: '곡선 유리 가벽과 밝은 타일로 현관에서 거실까지 시야가 이어지도록 했습니다.', indices: [0, 5] },
+    { title: 'LIVING ROOM / 거실', note: '곡선 유리 가벽과 밝은 타일로 현관에서 거실까지 시야가 이어지도록 했습니다.', indices: [0, 6] },
     { title: 'KITCHEN / 주방', note: '밝은 수납장과 둥근 상판에 따뜻한 펜던트 조명을 더했습니다.', indices: [4] },
     { title: 'ENTRANCE / 현관', note: '곡선 가벽과 유리 중문으로 현관을 구분하고, 신발장 아래에 간접조명을 넣었습니다.', indices: [3] },
     { title: 'KIDS’ ROOM / 아이 방', note: '분홍색 벽과 집 모양 놀이 공간을 만들고, 풍선 모양 조명으로 포인트를 주었습니다.', indices: [2] },
