@@ -167,6 +167,7 @@ export default function ProjectView({
               priority={i < 2}
               onClick={() => setLightboxIndex(i)}
             />
+            </Fragment>
           ))
         )}
       </div>
