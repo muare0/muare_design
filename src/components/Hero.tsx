@@ -24,6 +24,13 @@ export default function Hero({ hero }: { hero: HeroContent }) {
     subtitle: index === 0 ? hero.subtitle : hero.subtitle2 || hero.subtitle,
   }))
   const [active, setActive] = useState(0)
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setActive((current) => (current + 1) % slides.length)
+    }, 5000)
+    return () => window.clearTimeout(timer)
+  }, [active, slides.length])
+
   const activeRef = useRef(0)
   const heroRef = useRef<HTMLElement>(null)
   // 전환 애니메이션이 끝나기 전에 다음 전환이 겹쳐 들어오지 않도록 막는 잠금
