@@ -120,6 +120,11 @@ export default function Hero({ hero }: { hero: HeroContent }) {
         <div className="hero-gradient" />
       </div>
 
+      <style>{`
+.hero-specialties { position: absolute; left: max(40px, calc((100vw - 1280px) / 2 + 40px)); right: 130px; bottom: 48px; z-index: 3; color: rgba(255,255,255,.85); font-size: 10px; font-weight: 500; letter-spacing: .08em; line-height: 1.6; pointer-events: none; }
+@media (max-width: 768px) { .hero-specialties { left: 28px; right: 28px; bottom: 68px; font-size: 8px; letter-spacing: .035em; max-width: 40ch; } }
+`}</style>
+      <div className="hero-specialties">3D VISUALIZATION · INTERIOR · ARCHITECTURE · EXHIBITION · COMMERCIAL</div>
       <div className="wrap hero-inner">
         <div className="hero-eyebrow" key={`eb-${active}`}>
           {slide.eyebrow}
