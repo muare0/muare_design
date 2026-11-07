@@ -9,6 +9,8 @@ export default function About({ about }: { about: AboutContent }) {
 #about .about-photo{aspect-ratio:auto;min-height:620px;position:relative}
 #about .about-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 #about .about-copy{min-width:0}
+#about .about-specialties{font-size:11px;line-height:1.8;letter-spacing:.025em}
+#about .about-specialties::before{flex-shrink:0}
 #about .about-copy .section-title{white-space:pre-line;word-break:keep-all;overflow-wrap:anywhere;line-height:1.35;font-size:clamp(28px,3vw,42px)}
 #about .about-copy p{max-width:none;line-height:1.9;margin-top:28px;white-space:pre-line;word-break:normal;overflow-wrap:break-word;text-wrap:pretty}
 #about .about-copy p strong{color:var(--text);font-size:inherit;font-weight:650}
@@ -19,7 +21,7 @@ export default function About({ about }: { about: AboutContent }) {
           <img src={about.image} alt={about.imageAlt} loading="lazy" />
         </Reveal>
         <Reveal className="about-copy" delay={80}>
-          <div className="eyebrow-plain">{about.eyebrow}</div>
+          <div className="eyebrow-plain about-specialties">3D VISUALIZATION · INTERIOR · ARCHITECTURE · EXHIBITION · COMMERCIAL</div>
           <h2 className="section-title">{about.heading.replace('공간이, 눈앞에', '공간이,\n눈앞에')}</h2>
           <p>머릿속의 공간, 완성 전에 먼저 만나보세요. 뮤아르디자인스튜디오(Muare Design Studio)는 도면에 질감과 빛을 더해, 내 공간을 더 선명하게 보고 자신 있게 선택하도록 돕습니다.</p>
           <Link to="/service" className="service-more">
