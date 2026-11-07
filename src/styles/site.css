@@ -221,6 +221,9 @@ nav.desktop-nav a:hover::after{ width:100%; }
 /* section spacing */
 section{ padding:120px 0; }
 @media(max-width:768px){ section{ padding:72px 0; } }
+#about { padding-bottom: 60px; }
+#portfolio { padding-top: 60px; }
+@media(max-width:768px){ #about { padding-bottom: 40px; } #portfolio { padding-top: 40px; } }
 .divider{ border-top:1px solid var(--line); }
 
 .eyebrow-plain{
