@@ -9,6 +9,8 @@ export default function About({ about }: { about: AboutContent }) {
 #about .about-photo{aspect-ratio:auto;min-height:620px;position:relative}
 #about .about-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 #about .about-copy{min-width:0}
+#about .section-watermark-mark{right:clamp(24px,4vw,80px);width:clamp(240px,38vw,560px);max-width:calc(100% - 48px);max-height:calc(100% - 80px);object-fit:contain}
+@media(max-width:900px){#about .section-watermark-mark{right:24px;width:min(70vw,360px)}}
 #about .about-specialties{font-size:11px;line-height:1.8;letter-spacing:.025em}
 #about .about-specialties::before{flex-shrink:0}
 #about .about-copy .section-title{white-space:pre-line;word-break:keep-all;overflow-wrap:anywhere;line-height:1.35;font-size:clamp(28px,3vw,42px)}
