@@ -136,13 +136,17 @@ export default function Hero({ hero }: { hero: HeroContent }) {
         <div className="hero-gradient" />
       </div>
 
+      <style>{`
+.hero-sub-divided { position: relative; margin-top: clamp(20px, 2.5vw, 28px); padding-top: clamp(20px, 2.5vw, 28px); }
+.hero-sub-divided::before { content: ''; position: absolute; top: 0; left: 0; width: min(100%, 32rem); height: 1px; background: rgba(255,255,255,.55); }
+`}</style>
       <div className="wrap hero-inner">
         <h1 key={`h1-${active}`}>
           {slide.titleTop}
           <br />
           {slide.titleBottom}
         </h1>
-        <p className="hero-sub" ref={subtitleRef} style={{ maxWidth: 'min(100%, 620px)' }} key={`sub-${active}`}>
+        <p className="hero-sub hero-sub-divided" ref={subtitleRef} style={{ maxWidth: 'min(100%, 620px)' }} key={`sub-${active}`}>
           {slide.subtitle.split('\n').map((line) => (
             <span key={line} style={{ display: 'block', whiteSpace: 'nowrap' }}>{line}</span>
           ))}
