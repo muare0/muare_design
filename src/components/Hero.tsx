@@ -136,10 +136,6 @@ export default function Hero({ hero }: { hero: HeroContent }) {
         <div className="hero-gradient" />
       </div>
 
-      <style>{`
-.hero-specialties { position: relative; margin: -8px 0 24px; color: rgba(255,255,255,.85); font-size: 10px; font-weight: 500; letter-spacing: .06em; line-height: 1.6; }
-@media (max-width: 768px) { .hero-specialties { font-size: 8px; margin-bottom: 18px; letter-spacing: .025em; max-width: 42ch; } }
-`}</style>
       <div className="wrap hero-inner">
         <div className="hero-eyebrow" key={`eb-${active}`}>
           {slide.eyebrow}
