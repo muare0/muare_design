@@ -11,21 +11,19 @@ import type { HeroContent } from '../lib/types'
  */
 export default function Hero({ hero }: { hero: HeroContent }) {
   const slides = [
-    {
-      image: hero.image,
-      eyebrow: hero.eyebrow,
-      titleTop: hero.titleTop,
-      titleBottom: hero.titleBottom,
-      subtitle: hero.subtitle,
-    },
-    {
-      image: '/images/back2-clean.png',
-      eyebrow: hero.eyebrow2 || hero.eyebrow,
-      titleTop: hero.titleTop2 || hero.titleTop,
-      titleBottom: hero.titleBottom2 || hero.titleBottom,
-      subtitle: hero.subtitle2 || hero.subtitle,
-    },
-  ]
+    '/images/ChatGPT%20%EC%9D%B4%EB%AF%B8%EC%A7%80%202026%EB%85%84%2011%EC%9B%94%207%EC%9D%BC%20%EC%98%A4%ED%9B%84%2008_14_00.png',
+    '/images/01-arched-living.png',
+    '/images/02-city-apartment.png',
+    '/images/03-dining-courtyard.png',
+    '/images/04-modern-kitchen.png',
+    '/images/05-bedroom-retreat.png',
+  ].map((image, index) => ({
+    image,
+    eyebrow: index === 0 ? hero.eyebrow : hero.eyebrow2 || hero.eyebrow,
+    titleTop: index === 0 ? hero.titleTop : hero.titleTop2 || hero.titleTop,
+    titleBottom: index === 0 ? hero.titleBottom : hero.titleBottom2 || hero.titleBottom,
+    subtitle: index === 0 ? hero.subtitle : hero.subtitle2 || hero.subtitle,
+  }))
   const [active, setActive] = useState(0)
   const activeRef = useRef(0)
   const heroRef = useRef<HTMLElement>(null)
