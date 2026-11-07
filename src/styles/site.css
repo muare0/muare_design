@@ -397,7 +397,7 @@ footer{ padding:56px 0; }
 }
 .project-title{
   font-family:var(--font-heading); font-weight:400; font-style:italic;
-  font-size:calc(clamp(34px,6vw,76px) * var(--heading-scale));
+  font-size:calc(clamp(26px,3.2vw,42px) * var(--heading-scale));
   line-height:1.05; max-width:18ch;
 }
 .project-lede{
@@ -410,7 +410,7 @@ footer{ padding:56px 0; }
 }
 @media(max-width:768px){ .project-facts{ grid-template-columns:repeat(2,1fr); gap:20px; } }
 .fact-label{ font-size:11px; letter-spacing:.14em; color:var(--text-soft); margin-bottom:8px; }
-.fact-value{ font-family:var(--font-heading); font-size:19px; }
+.fact-value{ font-family:var(--font-body); font-size:16px; font-weight:400; }
 
 /* 갤러리: 비율을 존중하고, 리듬을 주기 위해 폭을 번갈아 배치 */
 .project-gallery{ padding-bottom:40px; }
@@ -425,8 +425,8 @@ footer{ padding:56px 0; }
 }
 .gal-figure img.loading{ opacity:0; }
 .gal-figure.wide{ max-width:1280px; }
-.gal-figure.regular{ max-width:1000px; }
-.gal-figure.narrow{ max-width:760px; }
+.gal-figure.regular{ max-width:1280px; }
+.gal-figure.narrow{ max-width:1280px; }
 
 .project-foot{
   /* padding-left/right는 지정하지 않습니다 — .wrap이 주는 좌우 여백(반응형)을 그대로 써야 하므로,
