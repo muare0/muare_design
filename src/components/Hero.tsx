@@ -24,7 +24,7 @@ export default function Hero({ hero }: { hero: HeroContent }) {
   {
     "titleTop": "Detail,",
     "titleBottom": "makes the whole.",
-    "subtitle": "보이지 않는 곳까지 헤아리는 디테일이 브랜드와 공간의 완성도를 만듭니다."
+    "subtitle": "보이지 않는 곳까지 헤아리는 디테일이\n브랜드와 공간의 완성도를 만듭니다."
   },
   {
     "titleTop": "Your vision,",
@@ -104,6 +104,22 @@ export default function Hero({ hero }: { hero: HeroContent }) {
   }
 
   const slide = slides[active]
+  const subtitleRef = useRef<HTMLParagraphElement>(null)
+
+  useEffect(() => {
+    const element = subtitleRef.current
+    if (!element) return
+    const fit = () => {
+      const baseSize = Number.parseFloat(getComputedStyle(element).getPropertyValue('--body-size')) || 16
+      element.style.fontSize = baseSize + 'px'
+      const widest = Math.max(...Array.from(element.children).map((line) => line.scrollWidth))
+      if (widest > element.clientWidth) element.style.fontSize = (baseSize * element.clientWidth / widest) + 'px'
+    }
+    const observer = new ResizeObserver(fit)
+    observer.observe(element)
+    fit()
+    return () => observer.disconnect()
+  }, [active])
 
   return (
     <section className="hero" id="top" ref={heroRef} onPointerDown={onPointerDown} onPointerUp={onPointerUp}>
@@ -134,8 +150,10 @@ export default function Hero({ hero }: { hero: HeroContent }) {
           <br />
           {slide.titleBottom}
         </h1>
-        <p className="hero-sub" style={{ whiteSpace: 'pre-line', maxWidth: '44ch' }} key={`sub-${active}`}>
-          {slide.subtitle}
+        <p className="hero-sub" ref={subtitleRef} style={{ maxWidth: 'min(100%, 620px)' }} key={`sub-${active}`}>
+          {slide.subtitle.split('\n').map((line) => (
+            <span key={line} style={{ display: 'block', whiteSpace: 'nowrap' }}>{line}</span>
+          ))}
         </p>
       </div>
 
