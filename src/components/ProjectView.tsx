@@ -71,9 +71,9 @@ export default function ProjectView({
   const sourceImages = project.images ?? []
   const roomGroups = project.slug === 'gwonseon-xi' ? [
     { title: 'LIVING ROOM / 거실', note: '밝은 벽과 우드 바닥에 간접조명을 더해 편안한 분위기로 구성한 거실입니다.', indices: [4, 5] },
-    { title: 'KITCHEN / 주방', note: '밝은 톤의 수납장과 넓은 작업대, 유리 장식장으로 구성한 주방입니다.', indices: [7, 8] },
+    { title: 'KITCHEN / 주방', note: 'ㄷ자형 배치로 조리공간을 확보하고, 밝은 톤의 수납장과 유리 장식장으로 구성한 주방입니다.', indices: [7, 8] },
     { title: 'ENTRANCE / 현관', note: '벽면 수납과 간접조명으로 정돈된 인상을 주는 현관입니다.', indices: [1] },
-    { title: 'STORAGE / 수납공간', note: '우드 바닥과 밝은 붙박이장으로 통일감을 준 수납공간입니다.', indices: [6] },
+    { title: 'MASTER BEDROOM / 안방', note: '우드 바닥과 밝은 붙박이장으로 통일감을 준 안방입니다.', indices: [6] },
     { title: 'ROOM / 방', note: '발코니와 연결된 창을 중심으로 밝고 간결하게 구성한 방입니다.', indices: [9] },
     { title: 'BATHROOM / 욕실', note: '그레이 타일과 어두운 하부장, 조명 거울로 구성한 욕실입니다.', indices: [0, 2, 3, 10, 11] },
   ] : []
