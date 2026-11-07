@@ -24,7 +24,7 @@ export default function Hero({ hero }: { hero: HeroContent }) {
   {
     "titleTop": "Detail,",
     "titleBottom": "makes the whole.",
-    "subtitle": "보이지 않는 곳까지 헤아리는 디테일이\n브랜드와 공간의 완성도를 만듭니다."
+    "subtitle": "보이지 않는 곳까지 헤아리는 디테일이 브랜드와 공간의 완성도를 만듭니다."
   },
   {
     "titleTop": "Your vision,",
