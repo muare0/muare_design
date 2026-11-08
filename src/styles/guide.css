@@ -606,3 +606,9 @@
  .svc-premium-copy > p{ font-size:14px; }
 }
 @media(prefers-reduced-motion:reduce){ .svc-premium-rating .rating-badge{ animation:none; } }
+
+/* Preserve the supplied portrait composition at its native width, centered on all screens. */
+.svc-reference-opening{ position:relative; width:100%; max-width:652px; margin-inline:auto; }
+.svc-reference-opening picture{ display:block; }
+.svc-reference-opening img{ display:block; width:100%; max-width:652px; height:auto; margin-inline:auto; }
+.svc-reference-opening-title{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
