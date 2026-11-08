@@ -18,8 +18,8 @@ export function MuareWordmark({ name }: { name: string }) {
       <span className="muare-header-lettering">
       <img src="/images/muare-header-lettering.png" alt={name} />
       </span>
-      <svg className="muare-header-descriptor" viewBox="0 0 123 9" aria-label="Design Studio" role="img">
-      <text x="0" y="8" textLength="123" lengthAdjust="spacing">DESIGN STUDIO</text>
+      <svg className="muare-header-descriptor" viewBox="0 0 125 9" aria-label="Design Studio" role="img">
+      <text x="0" y="8" textLength="125" lengthAdjust="spacing">DESIGN STUDIO</text>
       </svg>
     </>
   )
@@ -79,7 +79,7 @@ export default function Header({ site }: { site: SiteMeta }) {
 .muare-header-symbol img { position: absolute; width: 337.84%; max-width: none; left: -118.65%; top: -131.75%; }
 .muare-header-lettering { width: 85px; aspect-ratio: 1056 / 240; }
 .muare-header-lettering img { position: absolute; width: 236.74%; max-width: none; left: -68.37%; top: -17.5%; }
-.muare-header-descriptor { grid-column: 1 / -1; display: block; width: 100%; height: auto; font: 500 9px var(--font-body); fill: currentColor; }
+.muare-header-descriptor { grid-column: 1 / -1; display: block; width: calc(100% + 2px); height: auto; font: 500 9px var(--font-body); fill: currentColor; }
 #site-header:not(.scrolled):has(+ .hero) .muare-header-symbol img,
 #site-header:not(.scrolled):has(+ .hero) .muare-header-lettering img { filter: brightness(0) invert(1); }
 #site-header .desktop-nav { text-transform: uppercase; }
