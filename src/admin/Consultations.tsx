@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import Linkified from '../components/Linkified'
 import AttachmentGallery from '../components/AttachmentGallery'
@@ -193,6 +194,7 @@ export default function Consultations({ onToast }: { onToast: (m: string) => voi
           </h1>
           <p className="admin-desc">상담게시판에 남겨진 글을 확인하고 답변을 남깁니다. 비밀글도 관리자에게는 모두 보입니다.</p>
         </div>
+        <Link to="/admin/consultations/write" className="btn">상담 요청지 테스트</Link>
       </div>
 
       <div className="admin-board-page">
