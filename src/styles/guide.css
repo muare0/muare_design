@@ -393,3 +393,6 @@
   .board-page:has(.consult-form) > .archive-head-form,
   .board-page:has(.consult-form) > .board-form-wrap{ padding-inline:20px; }
 }
+
+/* Give the write action more space above the consultation table. */
+.board-wrap .board-toolbar{ margin-bottom:24px; }
