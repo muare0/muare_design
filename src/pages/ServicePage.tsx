@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Reveal from '../components/Reveal'
-import FloralMark from '../components/FloralMark'
 import RatingBadge from '../components/RatingBadge'
 import { GuideIcon } from '../components/SvcIcons'
 import { useSiteContent } from '../hooks/useSiteData'
@@ -503,7 +502,6 @@ export default function ServicePage() {
 
       {/* 문의 */}
       <section className="cta section-watermark svc-closing-section">
-        <FloralMark />
         <img
           src="/images/muare-mark-light.png"
           alt=""
