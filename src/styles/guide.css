@@ -558,3 +558,16 @@
 }
 @media(max-width:600px){ .svc-editorial-copy h2,.svc-editorial-start h2{ font-size:21px; } .svc-editorial-copy p,.svc-editorial-start p{ font-size:15px; } }
 @media(prefers-reduced-motion:reduce){ .svc-crossfade[data-paused='true'] .svc-crossfade-after{ animation:none; opacity:1; } }
+
+/* Match the supplied detail-page animation: a moving left/right wipe, not a dissolve. */
+.svc-crossfade{ aspect-ratio:5 / 3; }
+.svc-crossfade .svc-crossfade-after{ opacity:1; animation:muareOriginalWipe 8s ease-in-out infinite; }
+.svc-wipe-divider{ position:absolute; top:0; bottom:0; left:96%; width:2px; background:#fff; pointer-events:none; animation:muareOriginalDivider 8s ease-in-out infinite; }
+.svc-wipe-divider > span{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); display:grid; place-items:center; width:36px; height:36px; border:1px solid var(--terracotta); border-radius:50%; background:#fff; color:var(--terracotta); font-size:18px; line-height:1; }
+.svc-wipe-label{ position:absolute; top:12px; z-index:2; padding:7px 11px; border-radius:999px; background:rgba(63,44,32,.84); color:#fff; font-family:var(--font-body); font-size:10px; font-weight:600; letter-spacing:.05em; line-height:1.3; pointer-events:none; }
+.svc-wipe-label-before{ left:12px; }
+.svc-wipe-label-after{ right:12px; }
+.svc-crossfade[data-paused='true'] .svc-wipe-divider{ animation-play-state:paused; }
+@keyframes muareOriginalWipe{ 0%,15%{clip-path:inset(0 0 0 96%)} 45%,60%{clip-path:inset(0 0 0 4%)} 90%,100%{clip-path:inset(0 0 0 96%)} }
+@keyframes muareOriginalDivider{ 0%,15%{left:96%} 45%,60%{left:4%} 90%,100%{left:96%} }
+@media(prefers-reduced-motion:reduce){ .svc-crossfade[data-paused='true'] .svc-wipe-divider{ display:none; } }
