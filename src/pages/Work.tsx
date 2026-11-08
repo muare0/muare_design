@@ -10,7 +10,7 @@ import { PLACEHOLDER_PORTFOLIOS } from '../content/defaults'
 import type { Portfolio } from '../lib/types'
 
 export const sampleProjects: Portfolio[] = [
-  ['따뜻한 주거 공간', '채광을 살린 아파트', '우드톤 거실', '차분한 주방', '미니멀 주택'],
+  [], // 주거 영역은 실제 등록한 프로젝트만 표시합니다.
   ['카페 콘셉트', '쇼룸 콘셉트', '오피스 라운지', '리테일 매장', '레스토랑 콘셉트'],
 ].flatMap((titles, group) => titles.map((title, index): Portfolio => {
   const category = group === 0 ? 'Residential' : 'Commercial'
