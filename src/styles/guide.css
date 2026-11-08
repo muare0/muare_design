@@ -662,3 +662,14 @@
 #svc-revision .guide-grid-2>.guide-card>.guide-card-body{display:flex;flex-direction:column;flex:1;}
 #svc-revision .guide-grid-2 .rev-callout{margin-top:auto;}
 #svc-revision .guide-grid-2 .guide-card-body>ul{margin-bottom:28px;}
+
+/* Only the rating introduction is dark; supporting cards stay light. */
+.svc-adapted-opening{padding:0;background:transparent;border:0;box-shadow:none;color:var(--text);}
+.svc-opening-dark{padding:44px clamp(20px,4vw,64px) 36px;border:1px solid #655039;border-radius:24px;background:radial-gradient(ellipse at 50% 24%,#51402a 0%,#2f251d 42%,#211b17 80%);color:#fff9ee;}
+.svc-opening-benefits{margin:28px 0 24px;}
+.svc-opening-benefits>div{background:#fffcf6;border-color:#ddcdb8;}
+.svc-opening-benefits strong{color:var(--text);}
+.svc-opening-benefits span,.svc-opening-proposal>span{color:#a27842;}
+.svc-opening-proposal{background:#f8f2e9;border-color:#ddcdb8;}
+.svc-opening-note{color:#968773;}
+@media(max-width:600px){.svc-adapted-opening{padding:0;}.svc-opening-dark{padding:32px 16px 28px;}}
