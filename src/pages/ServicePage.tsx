@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Reveal from '../components/Reveal'
 import RatingBadge from '../components/RatingBadge'
+import ServiceTargets from '../components/ServiceTargets'
 import { GuideIcon } from '../components/SvcIcons'
 import { useSiteContent } from '../hooks/useSiteData'
 import {
@@ -213,10 +214,7 @@ export default function ServicePage() {
               </div>
               <figure className="svc-static-example"><img src="/images/service-furniture-balanced-v2.webp" alt="테이블, 트롤리, 의자의 균형을 맞춘 가구 참고 이미지" width={1440} height={864} loading="lazy" /></figure>
             </article>
-            <div className="svc-editorial-start">
-              <div><div className="svc-editorial-no">03 · 부담 없이 시작하기</div><h2>참고 이미지 한 장부터 괜찮습니다.</h2></div>
-              <div><p>미팅·제안용 이미지부터 셀프 인테리어 시안까지. 목적과 예산에 맞는 작업 범위를 함께 정하고, 단계별 확인으로 완성도를 높입니다.</p><Link to="/consult/write" className="link-underline">내 프로젝트 상담하기 →</Link></div>
-            </div>
+            <div className="svc-intro-targets" style={{ marginTop: 48 }}><ServiceTargets /></div>
           </div>
 
         </div>
