@@ -71,16 +71,27 @@ function CardHead({ icon, title, no }: { icon?: string; title: string; no?: stri
 
 /** Original animated examples with a static alternative and pause control. */
 function AnimatedServiceExample({ before, after, alt, caption }: { before: string; after: string; alt: string; caption: string }) {
-  const [paused, setPaused] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  const figureRef = useRef<HTMLElement>(null)
+  const [paused, setPaused] = useState(true)
+  useEffect(() => {
+    const figure = figureRef.current
+    if (!figure) return
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let visible = false
+    const update = () => setPaused(!visible || reducedMotion.matches)
+    const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; update() }, { threshold: 0.2 })
+    observer.observe(figure)
+    reducedMotion.addEventListener('change', update)
+    return () => { observer.disconnect(); reducedMotion.removeEventListener('change', update) }
+  }, [])
   return (
-    <figure className="svc-animated-example svc-original-example" aria-label={caption}>
+    <figure ref={figureRef} className="svc-animated-example svc-original-example" aria-label={caption}>
       <div className="svc-animated-media svc-crossfade" data-paused={paused}>
         <img className="svc-crossfade-before" src={'/images/' + before + '.webp'} alt={alt + ' — 첫 번째 원본'} width={1440} height={864} loading="lazy" decoding="async" />
         <img className="svc-crossfade-after" src={'/images/' + after + '.webp'} alt={alt + ' — 두 번째 원본'} width={1440} height={864} loading="lazy" decoding="async" />
         <span className="svc-wipe-label svc-wipe-label-before">{before.includes('model') ? '3D MODELING' : 'REFERENCE'}</span>
         <span className="svc-wipe-label svc-wipe-label-after">{before.includes('model') ? 'REAL RENDERING' : '3D RENDERING'}</span>
         <span className="svc-wipe-divider" aria-hidden="true"><span>↔</span></span>
-        <button type="button" className="svc-animation-toggle" aria-pressed={paused} onClick={() => setPaused((value) => !value)}>{paused ? '움직임 재생' : '움직임 일시정지'}</button>
       </div>
     </figure>
   )
@@ -173,11 +184,14 @@ export default function ServicePage() {
           (브랜드 소개 사진·문구는 홈 화면에만 두고 여기서는 생략합니다) */}
       <section className="svc-section svc-section-first" id="svc-intro">
         <div className="wrap">
-          <Reveal>
-            <div className="eyebrow-plain">{info.eyebrow}</div>
-            <h1 className="svc-heading svc-plain-heading">{info.heading}</h1>
-            <p className="svc-intro-summary">도면과 아이디어를 완성된 공간의 이미지로 보여드립니다.<br />가구 배치부터 소재와 조명까지, 시공 전에 미리 확인하세요.</p>
-          </Reveal>
+          <div className="svc-premium-hero">
+            <div className="svc-premium-main">
+              <div className="svc-premium-rating"><p>시공 전에, 완성될 공간을 먼저.</p><RatingBadge score={STRENGTHS.rating.score} label={STRENGTHS.rating.label} /></div>
+              <div className="svc-premium-copy"><div className="svc-premium-eyebrow">{info.eyebrow} · MUARE DESIGN STUDIO</div><h1>그리던 공간을,<br />현실처럼.</h1><p>7년 실무 디자이너가 시공까지 고려해 제안합니다.<br />빠르고 유연하게 소통하며 완성도를 높입니다.</p></div>
+            </div>
+            <div className="svc-premium-proof">{STRENGTHS.items.map((item) => <div key={item.key}><span>{item.key}</span><h2>{item.title}</h2></div>)}</div>
+            <p className="svc-premium-note">{STRENGTHS.highlight.text}</p>
+          </div>
 
 
           <div className="svc-editorial-story">
@@ -188,7 +202,7 @@ export default function ServicePage() {
                 <p>좋아하는 가구와 소재가 한 공간에 모이면 어떤 모습일까요? 가구의 크기와 배치, 마감재와 조명의 조화를 미리 확인해보세요.</p>
                 <p>모델링에서 실사 렌더링으로 바뀌는 모습을 보며, 원하는 공간의 방향을 더 자신 있게 결정할 수 있습니다.</p>
               </div>
-              <AnimatedServiceExample before="service-model-aligned" after="service-render-aligned" alt="주방의 3D 모델링과 실사 렌더링 비교" caption="3D MODELING → REAL RENDERING" />
+              <figure className="svc-static-example"><img src="/images/service-render-aligned.webp" alt="실사 렌더링으로 미리 확인하는 주방의 완성 모습" width={1440} height={864} loading="lazy" /></figure>
             </article>
             <article className="svc-editorial-row svc-editorial-reverse">
               <div className="svc-editorial-copy">
@@ -197,7 +211,7 @@ export default function ServicePage() {
                 <p>제품 사진과 치수를 바탕으로 직접 모델링합니다. 형태와 비례를 맞추고, 공간 안에서 다른 소재와 어떻게 어우러지는지 보여드립니다.</p>
                 <p>7년의 공간 설계 실무 경험을 바탕으로, 실제 시공을 고려한 구조와 디테일까지 함께 살핍니다.</p>
               </div>
-              <AnimatedServiceExample before="service-furniture-balanced" after="service-space-aligned" alt="가구 참고 이미지와 공간에 적용된 렌더링 비교" caption="REFERENCE → SPACE RENDERING" />
+              <figure className="svc-static-example"><img src="/images/service-furniture-balanced-v2.webp" alt="테이블, 트롤리, 의자의 균형을 맞춘 가구 참고 이미지" width={1440} height={864} loading="lazy" /></figure>
             </article>
             <div className="svc-editorial-start">
               <div><div className="svc-editorial-no">03 · 부담 없이 시작하기</div><h2>참고 이미지 한 장부터 괜찮습니다.</h2></div>
@@ -205,24 +219,6 @@ export default function ServicePage() {
             </div>
           </div>
 
-          <div className="str-row svc-proof-strip">
-            {STRENGTHS.items.map((s, i) => (
-              <Reveal className="str-card" key={s.key} delay={i * 70}>
-                <div className="str-key">{s.key}</div>
-                <h3 className="str-title">{s.title}</h3>
-                <p className="str-desc">{s.desc}</p>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal className="str-banner" delay={120}>
-            <RatingBadge score={STRENGTHS.rating.score} label={STRENGTHS.rating.label} />
-            <div className="str-banner-copy">
-              <div className="str-banner-label">{STRENGTHS.highlight.label}</div>
-              <p>{STRENGTHS.highlight.text}</p>
-              <span className="str-banner-note">{STRENGTHS.head.lead}</span>
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -308,6 +304,7 @@ export default function ServicePage() {
               </Reveal>
             ))}
           </div>
+          <AnimatedServiceExample before="service-model-aligned" after="service-render-aligned" alt="주방 모델링과 실사 렌더링의 좌우 비교" caption="3D MODELING → REAL RENDERING" />
           <Reveal className="vstep-closing" delay={160}>
             {VISUAL_STEPS.closing}
           </Reveal>
@@ -330,6 +327,7 @@ export default function ServicePage() {
             <div className="custom-band-label">{CUSTOM.modeling.label}</div>
             <h3 className="custom-band-title">{CUSTOM.modeling.title}</h3>
             <p className="custom-band-desc">{CUSTOM.modeling.desc}</p>
+            <AnimatedServiceExample before="service-furniture-balanced-v2" after="service-space-aligned" alt="가구 참고 이미지와 공간 렌더링의 좌우 비교" caption="REFERENCE → SPACE RENDERING" />
             <div className="custom-band-note">
               <span className="guide-note-icon">
                 <GuideIcon name="warn" />
