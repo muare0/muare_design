@@ -75,11 +75,13 @@ function AnimatedServiceExample({ before, after, alt, caption }: { before: strin
   return (
     <figure className="svc-animated-example svc-original-example" aria-label={caption}>
       <div className="svc-animated-media svc-crossfade" data-paused={paused}>
-        <img className="svc-crossfade-before" src={'/images/' + before + '.webp'} alt={alt + ' — 첫 번째 원본'} width={1440} height={960} loading="lazy" decoding="async" />
-        <img className="svc-crossfade-after" src={'/images/' + after + '.webp'} alt={alt + ' — 두 번째 원본'} width={1440} height={960} loading="lazy" decoding="async" />
+        <img className="svc-crossfade-before" src={'/images/' + before + '.webp'} alt={alt + ' — 첫 번째 원본'} width={1440} height={864} loading="lazy" decoding="async" />
+        <img className="svc-crossfade-after" src={'/images/' + after + '.webp'} alt={alt + ' — 두 번째 원본'} width={1440} height={864} loading="lazy" decoding="async" />
+        <span className="svc-wipe-label svc-wipe-label-before">{before.includes('model') ? '3D MODELING' : 'REFERENCE'}</span>
+        <span className="svc-wipe-label svc-wipe-label-after">{before.includes('model') ? 'REAL RENDERING' : '3D RENDERING'}</span>
+        <span className="svc-wipe-divider" aria-hidden="true"><span>↔</span></span>
         <button type="button" className="svc-animation-toggle" aria-pressed={paused} onClick={() => setPaused((value) => !value)}>{paused ? '움직임 재생' : '움직임 일시정지'}</button>
       </div>
-      <figcaption>{caption}</figcaption>
     </figure>
   )
 }
@@ -186,7 +188,7 @@ export default function ServicePage() {
                 <p>좋아하는 가구와 소재가 한 공간에 모이면 어떤 모습일까요? 가구의 크기와 배치, 마감재와 조명의 조화를 미리 확인해보세요.</p>
                 <p>모델링에서 실사 렌더링으로 바뀌는 모습을 보며, 원하는 공간의 방향을 더 자신 있게 결정할 수 있습니다.</p>
               </div>
-              <AnimatedServiceExample before="service-model-original" after="service-render-original" alt="주방의 3D 모델링과 실사 렌더링 비교" caption="3D MODELING → REAL RENDERING" />
+              <AnimatedServiceExample before="service-model-aligned" after="service-render-aligned" alt="주방의 3D 모델링과 실사 렌더링 비교" caption="3D MODELING → REAL RENDERING" />
             </article>
             <article className="svc-editorial-row svc-editorial-reverse">
               <div className="svc-editorial-copy">
@@ -195,7 +197,7 @@ export default function ServicePage() {
                 <p>제품 사진과 치수를 바탕으로 직접 모델링합니다. 형태와 비례를 맞추고, 공간 안에서 다른 소재와 어떻게 어우러지는지 보여드립니다.</p>
                 <p>7년의 공간 설계 실무 경험을 바탕으로, 실제 시공을 고려한 구조와 디테일까지 함께 살핍니다.</p>
               </div>
-              <AnimatedServiceExample before="service-furniture-original" after="service-space-original" alt="가구 참고 이미지와 공간에 적용된 렌더링 비교" caption="REFERENCE → SPACE RENDERING" />
+              <AnimatedServiceExample before="service-furniture-balanced" after="service-space-aligned" alt="가구 참고 이미지와 공간에 적용된 렌더링 비교" caption="REFERENCE → SPACE RENDERING" />
             </article>
             <div className="svc-editorial-start">
               <div><div className="svc-editorial-no">03 · 부담 없이 시작하기</div><h2>참고 이미지 한 장부터 괜찮습니다.</h2></div>
