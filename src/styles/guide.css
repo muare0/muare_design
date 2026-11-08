@@ -400,3 +400,10 @@
 /* Put the accent on field labels and keep consultation answers white. */
 .board-detail-wrap .consult-detail-answers .consult-answer-label{ border-left:3px solid var(--terracotta); padding-left:12px; line-height:1.6; }
 .board-detail-wrap .consult-detail-answers .consult-answer-value{ background:#fff; border-left:1px solid var(--line); border-radius:6px; }
+
+/* Match the detail eyebrow exactly to the outer reading card edge. */
+.board-page:has(.board-detail-wrap) > .archive-head{ width:calc(100% - 80px); max-width:1000px; padding-inline:0; margin-inline:auto; }
+.board-page:has(.board-detail-wrap) > .archive-head > .reveal{ width:100%; max-width:none; margin-inline:0; padding-inline:0; }
+.board-page:has(.board-detail-wrap) .eyebrow-plain{ justify-content:flex-start; text-align:left; margin-left:0; padding-left:0; width:100%; }
+@media(max-width:768px) and (min-width:601px){ .board-page:has(.board-detail-wrap) > .archive-head{ width:calc(100% - 56px); } }
+@media(max-width:600px){ .board-page:has(.board-detail-wrap) > .archive-head{ width:calc(100% - 32px); } }
