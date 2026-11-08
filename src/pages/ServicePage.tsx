@@ -158,22 +158,26 @@ export default function ServicePage() {
           <Reveal>
             <div className="eyebrow-plain">{info.eyebrow}</div>
             <h1 className="svc-heading svc-plain-heading">{info.heading}</h1>
-            {info.intro.map((p, i) => (
-              <p className="svc-intro-p" key={i}>
-                {p}
-              </p>
-            ))}
+            <p className="svc-intro-summary">도면과 아이디어를 완성된 공간의 이미지로 보여드립니다.<br />가구 배치부터 소재와 조명까지, 시공 전에 미리 확인하세요.</p>
           </Reveal>
 
           <div className="str-row">
             {STRENGTHS.items.map((s, i) => (
               <Reveal className="str-card" key={s.key} delay={i * 70}>
+                <span className="str-card-icon" aria-hidden="true"><GuideIcon name={['compass', 'ruler', 'meeting'][i] ?? 'cube'} /></span>
                 <div className="str-key">{s.key}</div>
                 <h3 className="str-title">{s.title}</h3>
                 <p className="str-desc">{s.desc}</p>
               </Reveal>
             ))}
           </div>
+
+          <details className="svc-intro-details">
+            <summary>서비스 소개 자세히 보기</summary>
+            <div>
+              {info.intro.map((p, i) => <p className="svc-intro-p" key={i}>{p}</p>)}
+            </div>
+          </details>
 
           <Reveal className="str-banner" delay={120}>
             <RatingBadge score={STRENGTHS.rating.score} label={STRENGTHS.rating.label} />
