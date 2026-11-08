@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -68,6 +68,25 @@ function CardHead({ icon, title, no }: { icon?: string; title: string; no?: stri
  * "브랜드 소개(사진 + 소개글)"와 "서비스 대상"은 홈 화면에서만 보여줍니다.
  * (같은 내용이 두 화면에 반복되지 않도록)
  */
+
+/** Original animated examples with a static alternative and pause control. */
+function AnimatedServiceExample({ name, alt, caption, height }: { name: string; alt: string; caption: string; height: number }) {
+  const [paused, setPaused] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  const poster = '/images/' + name + '-poster.webp'
+  return (
+    <figure className="svc-animated-example">
+      <div className="svc-animated-media">
+        <picture>
+          <source media="(prefers-reduced-motion: reduce)" srcSet={paused ? poster : undefined} />
+          <img src={'/images/' + name + (paused ? '-poster.webp' : '.webp')} alt={alt} width={556} height={height} loading="lazy" decoding="async" />
+        </picture>
+        <button type="button" className="svc-animation-toggle" aria-pressed={paused} onClick={() => setPaused((value) => !value)}>{paused ? '움직임 재생' : '움직임 일시정지'}</button>
+      </div>
+      <figcaption>{caption}</figcaption>
+    </figure>
+  )
+}
+
 export default function ServicePage() {
   const { content } = useSiteContent()
   const info = content.serviceInfo
@@ -280,6 +299,7 @@ export default function ServicePage() {
               </Reveal>
             ))}
           </div>
+          <AnimatedServiceExample name="service-render-comparison" height={340} alt="같은 주방의 3D 모델링과 실사 렌더링이 좌우로 전환되는 비교" caption="같은 공간이 재질과 빛을 만나 달라지는 과정을 확인해보세요." />
           <Reveal className="vstep-closing" delay={160}>
             {VISUAL_STEPS.closing}
           </Reveal>
@@ -302,6 +322,7 @@ export default function ServicePage() {
             <div className="custom-band-label">{CUSTOM.modeling.label}</div>
             <h3 className="custom-band-title">{CUSTOM.modeling.title}</h3>
             <p className="custom-band-desc">{CUSTOM.modeling.desc}</p>
+            <AnimatedServiceExample name="service-custom-furniture" height={352} alt="가구 참고 이미지와 이를 반영한 공간 렌더링이 전환되는 비교" caption="원하는 가구와 제품을 공간 안에서 어떻게 구현하는지 확인해보세요." />
             <div className="custom-band-note">
               <span className="guide-note-icon">
                 <GuideIcon name="warn" />
