@@ -103,6 +103,11 @@ export default function ProjectView({
     { title: '03. ENTRANCE / 현관', note: '아치형 프레임과 하부 요철 유리를 조합한 중문으로 현관을 구분했습니다. 민트색 벽과 둥근 거울이 실내의 파스텔 분위기를 이어줍니다.', indices: [3] },
     { title: '04. STORAGE / 수납공간', note: '밝은 붙박이장과 오픈 선반을 함께 배치해 수납을 구성했습니다. 창을 가리지 않는 선반으로 자연광이 들어오도록 했습니다.', indices: [4] },
     { title: '05. BATHROOM / 욕실', note: '옐로 타일과 베이지 테라조를 조합해 밝고 따뜻한 욕실을 구성했습니다. 화이트 도기와 수전, 원형 거울로 간결하게 마무리했습니다.', indices: [5] },
+  ] : project.slug === 'dongtan-hanwha-33py' ? [
+    { title: '01. LIVING ROOM / 거실', note: '밝은 벽과 베이지 타일을 바탕으로 블루 소파를 배치했습니다. 커튼 박스의 간접조명과 천장 라인으로 공간을 부드럽게 정리했습니다.', indices: [0, 1] },
+    { title: '02. KITCHEN / 주방', note: '화이트 수납장에 우드 벤치와 오픈 수납을 더해 따뜻한 분위기를 만들었습니다. 둥근 상판과 우드 프레임의 곡선 입구가 거실과 주방을 자연스럽게 이어줍니다.', indices: [3] },
+    { title: '03. ENTRANCE / 현관', note: '아치형 유리 중문으로 현관을 구분하고, 거울과 밝은 수납장으로 개방감을 살렸습니다. 수납장 하부 간접조명이 바닥을 은은하게 비춥니다.', indices: [2] },
+    { title: '04. BATHROOM / 욕실', note: '차분한 베이지 타일에 화이트 도기와 수납장을 조합했습니다. 원형 거울의 간접조명으로 부드러운 빛을 더했습니다.', indices: [4] },
   ] : []
   const gallery = roomGroups.length ? roomGroups.flatMap((group) =>
     group.indices.flatMap((index, position) => sourceImages[index] ? [{
@@ -158,7 +163,7 @@ export default function ProjectView({
           {String((project.sort_order ?? 0) + 1).padStart(2, '0')}
           {project.title_en ? ` — ${project.title_en}` : ''}
         </div>
-        <h1 className="project-title" style={project.slug === 'gwonseon-xi' ? { whiteSpace: 'nowrap', maxWidth: 'none', fontSize: 'clamp(20px, 4.8vw, 38px)' } : (project.slug === 'gwanggyo-hoban-gardenheim' || project.slug === 'suwon-sk-skyview-35b' || project.slug === 'dongtan-booyoung-lakecity-34py') ? { whiteSpace: 'nowrap', maxWidth: 'none', fontSize: 'clamp(15px, 4.5vw, 38px)' } : undefined}>{project.title}</h1>
+        <h1 className="project-title" style={project.slug === 'gwonseon-xi' ? { whiteSpace: 'nowrap', maxWidth: 'none', fontSize: 'clamp(20px, 4.8vw, 38px)' } : (project.slug === 'gwanggyo-hoban-gardenheim' || project.slug === 'suwon-sk-skyview-35b' || project.slug === 'dongtan-booyoung-lakecity-34py' || project.slug === 'dongtan-hanwha-33py') ? { whiteSpace: 'nowrap', maxWidth: 'none', fontSize: 'clamp(15px, 4.5vw, 38px)' } : undefined}>{project.title}</h1>
         {project.description && <p className="project-lede">{project.description}</p>}
 
         {facts.length > 0 && (
