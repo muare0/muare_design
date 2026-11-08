@@ -688,7 +688,7 @@ function ExistingAttachmentList({
 /* ------------------------------------------------------------------ */
 
 /** 상담게시판 — 새 글 작성 / 수정 (뮤아르디자인스튜디오 상담 요청지 체크리스트 기반) */
-export default function ConsultWrite() {
+export default function ConsultWrite({ adminTestMode = false }: { adminTestMode?: boolean }) {
   const { content } = useSiteContent()
   const navigate = useNavigate()
   const { id } = useParams<{ id?: string }>()
@@ -713,7 +713,7 @@ export default function ConsultWrite() {
   const [devFillChecked, setDevFillChecked] = useState(false)
   function onToggleDevFill(checked: boolean) {
     setDevFillChecked(checked)
-    if (!checked) return
+    if (!adminTestMode || !checked) return
     setForm((f) => fillTestData(f))
     setFieldErrors({})
     setTimeout(() => setDevFillChecked(false), 250)
@@ -962,7 +962,7 @@ export default function ConsultWrite() {
                 <div className="form-section-head">
                   <span className="form-section-num">01</span>
                   <h3>기본 정보</h3>
-                  {!isEdit && (
+                  {adminTestMode && !isEdit && (
                     <label className="dev-fill-toggle">
                       <input
                         type="checkbox"
