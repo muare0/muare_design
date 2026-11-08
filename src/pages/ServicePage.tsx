@@ -70,16 +70,13 @@ function CardHead({ icon, title, no }: { icon?: string; title: string; no?: stri
  */
 
 /** Original animated examples with a static alternative and pause control. */
-function AnimatedServiceExample({ name, alt, caption, height }: { name: string; alt: string; caption: string; height: number }) {
+function AnimatedServiceExample({ before, after, alt, caption }: { before: string; after: string; alt: string; caption: string }) {
   const [paused, setPaused] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
-  const poster = '/images/' + name + '-poster.webp'
   return (
-    <figure className="svc-animated-example">
-      <div className="svc-animated-media">
-        <picture>
-          <source media="(prefers-reduced-motion: reduce)" srcSet={paused ? poster : undefined} />
-          <img src={'/images/' + name + (paused ? '-poster.webp' : '.webp')} alt={alt} width={556} height={height} loading="lazy" decoding="async" />
-        </picture>
+    <figure className="svc-animated-example svc-original-example" aria-label={caption}>
+      <div className="svc-animated-media svc-crossfade" data-paused={paused}>
+        <img className="svc-crossfade-before" src={'/images/' + before + '.webp'} alt={alt + ' — 첫 번째 원본'} width={1440} height={960} loading="lazy" decoding="async" />
+        <img className="svc-crossfade-after" src={'/images/' + after + '.webp'} alt={alt + ' — 두 번째 원본'} width={1440} height={960} loading="lazy" decoding="async" />
         <button type="button" className="svc-animation-toggle" aria-pressed={paused} onClick={() => setPaused((value) => !value)}>{paused ? '움직임 재생' : '움직임 일시정지'}</button>
       </div>
       <figcaption>{caption}</figcaption>
@@ -181,24 +178,34 @@ export default function ServicePage() {
           </Reveal>
 
 
-          <div className="svc-story-grid">
-            {[
-              { icon: 'render', title: '선택하기 전에, 완성될 공간을 먼저', text: '좋아하는 가구와 소재가 한 공간에 모이면 어떤 모습일까요? 가구의 크기와 배치부터 마감재와 조명의 조화까지 이미지로 미리 확인합니다. 막연한 상상을 구체적으로 비교하며, 더 자신 있게 선택할 수 있습니다.' },
-              { icon: 'ruler', title: '보기 좋은 이미지에, 실무의 디테일까지', text: '7년의 공간 설계 실무 경험을 바탕으로 실제 시공을 고려한 구조와 디테일을 살핍니다. 원하는 가구나 제품이 기성 소스에 없다면 사진과 치수를 바탕으로 직접 모델링해, 구상한 공간에 더 가까운 모습을 보여드립니다.' },
-              { icon: 'meeting', title: '아이디어 한 장에서, 목적에 맞는 결과물로', text: '미팅·제안을 위한 이미지, 셀프 인테리어의 방향을 잡는 시안, 완성도를 높이는 실사 렌더링까지. 목적과 예산에 맞춰 필요한 범위를 함께 정합니다. 참고 이미지 한 장부터 시작해도 괜찮습니다. 단계별 확인과 피드백으로 방향을 구체화합니다.' },
-            ].map((item) => (
-              <article className="svc-story-item" key={item.title}>
-                <span className="svc-story-icon" aria-hidden="true"><GuideIcon name={item.icon} /></span>
-                <h2>{item.title}</h2>
-                <p>{item.text}</p>
-              </article>
-            ))}
+          <div className="svc-editorial-story">
+            <article className="svc-editorial-row">
+              <div className="svc-editorial-copy">
+                <div className="svc-editorial-no">01 · 미리 보고 결정하기</div>
+                <h2>완성되기 전에,<br />비교하고 선택하세요.</h2>
+                <p>좋아하는 가구와 소재가 한 공간에 모이면 어떤 모습일까요? 가구의 크기와 배치, 마감재와 조명의 조화를 미리 확인해보세요.</p>
+                <p>모델링에서 실사 렌더링으로 바뀌는 모습을 보며, 원하는 공간의 방향을 더 자신 있게 결정할 수 있습니다.</p>
+              </div>
+              <AnimatedServiceExample before="service-model-original" after="service-render-original" alt="주방의 3D 모델링과 실사 렌더링 비교" caption="3D MODELING → REAL RENDERING" />
+            </article>
+            <article className="svc-editorial-row svc-editorial-reverse">
+              <div className="svc-editorial-copy">
+                <div className="svc-editorial-no">02 · 내 공간에 맞게 만들기</div>
+                <h2>기성 소스에 없는 가구도,<br />원하는 모습에 가깝게.</h2>
+                <p>제품 사진과 치수를 바탕으로 직접 모델링합니다. 형태와 비례를 맞추고, 공간 안에서 다른 소재와 어떻게 어우러지는지 보여드립니다.</p>
+                <p>7년의 공간 설계 실무 경험을 바탕으로, 실제 시공을 고려한 구조와 디테일까지 함께 살핍니다.</p>
+              </div>
+              <AnimatedServiceExample before="service-furniture-original" after="service-space-original" alt="가구 참고 이미지와 공간에 적용된 렌더링 비교" caption="REFERENCE → SPACE RENDERING" />
+            </article>
+            <div className="svc-editorial-start">
+              <div><div className="svc-editorial-no">03 · 부담 없이 시작하기</div><h2>참고 이미지 한 장부터 괜찮습니다.</h2></div>
+              <div><p>미팅·제안용 이미지부터 셀프 인테리어 시안까지. 목적과 예산에 맞는 작업 범위를 함께 정하고, 단계별 확인으로 완성도를 높입니다.</p><Link to="/consult/write" className="link-underline">내 프로젝트 상담하기 →</Link></div>
+            </div>
           </div>
 
-          <div className="str-row">
+          <div className="str-row svc-proof-strip">
             {STRENGTHS.items.map((s, i) => (
               <Reveal className="str-card" key={s.key} delay={i * 70}>
-                <span className="str-card-icon" aria-hidden="true"><GuideIcon name={['compass', 'ruler', 'meeting'][i] ?? 'cube'} /></span>
                 <div className="str-key">{s.key}</div>
                 <h3 className="str-title">{s.title}</h3>
                 <p className="str-desc">{s.desc}</p>
@@ -299,7 +306,6 @@ export default function ServicePage() {
               </Reveal>
             ))}
           </div>
-          <AnimatedServiceExample name="service-render-comparison" height={340} alt="같은 주방의 3D 모델링과 실사 렌더링이 좌우로 전환되는 비교" caption="같은 공간이 재질과 빛을 만나 달라지는 과정을 확인해보세요." />
           <Reveal className="vstep-closing" delay={160}>
             {VISUAL_STEPS.closing}
           </Reveal>
@@ -322,7 +328,6 @@ export default function ServicePage() {
             <div className="custom-band-label">{CUSTOM.modeling.label}</div>
             <h3 className="custom-band-title">{CUSTOM.modeling.title}</h3>
             <p className="custom-band-desc">{CUSTOM.modeling.desc}</p>
-            <AnimatedServiceExample name="service-custom-furniture" height={352} alt="가구 참고 이미지와 이를 반영한 공간 렌더링이 전환되는 비교" caption="원하는 가구와 제품을 공간 안에서 어떻게 구현하는지 확인해보세요." />
             <div className="custom-band-note">
               <span className="guide-note-icon">
                 <GuideIcon name="warn" />
