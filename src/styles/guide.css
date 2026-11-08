@@ -503,3 +503,17 @@
 /* Keep project numbering compact and Korean description words intact. */
 .project-index{ letter-spacing:.02em; }
 .project-lede{ word-break:keep-all; overflow-wrap:break-word; }
+
+/* Service story: visible benefits, practical proof and a clear starting point. */
+.svc-story-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:36px; margin:40px 0 44px; }
+.svc-story-item{ min-width:0; padding:24px 0 0; border-top:1px solid var(--line); }
+.svc-story-icon{ display:flex; width:34px; height:34px; margin-bottom:18px; color:var(--terracotta); }
+.svc-story-icon svg{ width:34px; height:34px; }
+.svc-story-item h2{ font-family:var(--font-body); font-size:18px; line-height:1.55; font-weight:600; word-break:keep-all; }
+.svc-story-item p{ margin-top:14px; font-size:15px; line-height:1.9; color:var(--text-soft); word-break:keep-all; overflow-wrap:break-word; }
+@media(max-width:900px){
+  .svc-story-grid{ grid-template-columns:1fr; gap:28px; }
+  .svc-story-item{ display:grid; grid-template-columns:34px minmax(0,1fr); column-gap:18px; }
+  .svc-story-icon{ grid-row:1 / 3; margin:0; }
+  .svc-story-item h2,.svc-story-item p{ grid-column:2; }
+}
