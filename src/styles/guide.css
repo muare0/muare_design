@@ -362,3 +362,34 @@
 
 /* Long reading cards must remain visible regardless of intersection ratio. */
 .board-detail-wrap > .reveal{ opacity:1; transform:none; transition:none; }
+
+
+/* Match each board heading to its content edges. */
+.board-page > .archive-head,
+.board-page > .board-wrap{ width:100%; box-sizing:border-box; margin-inline:auto; }
+.board-page:has(.board-table-card) > .archive-head,
+.board-page:has(.board-table-card) > .board-wrap,
+.board-page:has(.board-empty):not(:has(.board-detail-wrap)):not(:has(.board-form-wrap)) > .archive-head{ max-width:1280px; padding-inline:40px; }
+.board-page:has(.consult-form) > .archive-head-form,
+.board-page:has(.consult-form) > .board-form-wrap{ max-width:980px; padding-inline:40px; }
+.board-page:has(.consult-form) .archive-head-form > .reveal{ width:100%; }
+.board-page:has(.consult-form) .board-intro{ width:100%; max-width:none; }
+.board-page:has(.consult-form) .board-intro br{ display:initial; }
+.board-page:has(.consult-form) .consult-form{ width:100%; max-width:none; }
+.consult-form .form-row label.form-checkbox-label{
+  flex-direction:row; align-items:center; justify-content:flex-start;
+  align-self:end; gap:10px; min-height:54px;
+}
+.consult-form .form-row label.form-checkbox-label input{ margin:0; }
+.consult-form .form-agree{ margin-top:24px; align-items:flex-start; gap:12px; }
+.consult-form .form-agree input{ margin-top:5px; }
+.consult-form .form-agree span{ flex:1; min-width:0; }
+@media(max-width:768px){
+  .board-page:has(.board-table-card) > .archive-head,
+  .board-page:has(.board-table-card) > .board-wrap,
+  .board-page:has(.board-empty):not(:has(.board-detail-wrap)):not(:has(.board-form-wrap)) > .archive-head{ padding-inline:28px; }
+}
+@media(max-width:640px){
+  .board-page:has(.consult-form) > .archive-head-form,
+  .board-page:has(.consult-form) > .board-form-wrap{ padding-inline:20px; }
+}
