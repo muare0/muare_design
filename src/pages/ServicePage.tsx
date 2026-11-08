@@ -161,6 +161,21 @@ export default function ServicePage() {
             <p className="svc-intro-summary">도면과 아이디어를 완성된 공간의 이미지로 보여드립니다.<br />가구 배치부터 소재와 조명까지, 시공 전에 미리 확인하세요.</p>
           </Reveal>
 
+
+          <div className="svc-story-grid">
+            {[
+              { icon: 'render', title: '선택하기 전에, 완성될 공간을 먼저', text: '좋아하는 가구와 소재가 한 공간에 모이면 어떤 모습일까요? 가구의 크기와 배치부터 마감재와 조명의 조화까지 이미지로 미리 확인합니다. 막연한 상상을 구체적으로 비교하며, 더 자신 있게 선택할 수 있습니다.' },
+              { icon: 'ruler', title: '보기 좋은 이미지에, 실무의 디테일까지', text: '7년의 공간 설계 실무 경험을 바탕으로 실제 시공을 고려한 구조와 디테일을 살핍니다. 원하는 가구나 제품이 기성 소스에 없다면 사진과 치수를 바탕으로 직접 모델링해, 구상한 공간에 더 가까운 모습을 보여드립니다.' },
+              { icon: 'meeting', title: '아이디어 한 장에서, 목적에 맞는 결과물로', text: '미팅·제안을 위한 이미지, 셀프 인테리어의 방향을 잡는 시안, 완성도를 높이는 실사 렌더링까지. 목적과 예산에 맞춰 필요한 범위를 함께 정합니다. 참고 이미지 한 장부터 시작해도 괜찮습니다. 단계별 확인과 피드백으로 방향을 구체화합니다.' },
+            ].map((item) => (
+              <article className="svc-story-item" key={item.title}>
+                <span className="svc-story-icon" aria-hidden="true"><GuideIcon name={item.icon} /></span>
+                <h2>{item.title}</h2>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+
           <div className="str-row">
             {STRENGTHS.items.map((s, i) => (
               <Reveal className="str-card" key={s.key} delay={i * 70}>
@@ -171,13 +186,6 @@ export default function ServicePage() {
               </Reveal>
             ))}
           </div>
-
-          <details className="svc-intro-details">
-            <summary>서비스 소개 자세히 보기</summary>
-            <div>
-              {info.intro.map((p, i) => <p className="svc-intro-p" key={i}>{p}</p>)}
-            </div>
-          </details>
 
           <Reveal className="str-banner" delay={120}>
             <RatingBadge score={STRENGTHS.rating.score} label={STRENGTHS.rating.label} />
