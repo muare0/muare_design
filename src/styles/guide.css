@@ -412,7 +412,7 @@
 
 /* Preserve the original consultation palette; only contact details get a neutral card. */
 .board-detail-wrap .consult-detail-answers .consult-answer-label{ font-size:18px; }
-.board-detail-wrap .consult-contact-card{ background:#f3f3f3; border-color:#dedede; }
+.board-detail-wrap .consult-contact-card{ background:color-mix(in srgb, var(--line) 32%, transparent); border-color:var(--line); }
 .board-detail-wrap .consult-contact-photo{ display:none; }
 .board-detail-wrap .consult-contact-row .consult-answer-label{ font-size:18px; }
-.board-detail-wrap .consult-contact-row-value{ background:#fff; border:1px solid #dedede; border-radius:6px; }
+.board-detail-wrap .consult-contact-row-value{ background:#fff; border:1px solid var(--line); border-radius:6px; }
