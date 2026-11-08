@@ -359,3 +359,6 @@
   .board-detail-wrap .consult-reply-thread{ margin:0 20px 24px; }
   .board-detail-wrap .consult-answer-section-head h4{ font-size:20px; }
 }
+
+/* Long reading cards must remain visible regardless of intersection ratio. */
+.board-detail-wrap > .reveal{ opacity:1; transform:none; transition:none; }
