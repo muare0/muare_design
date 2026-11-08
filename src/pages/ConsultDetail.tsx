@@ -58,13 +58,14 @@ function ContactCard({ item }: { item: ConsultFull }) {
 }
 
 /** 체크리스트 답변 한 섹션 — 관리자 페이지와 동일한 번호 배지 + 라벨/값 박스 스타일 */
-function AnswerSectionBlock({ section }: { section: AnswerSection }) {
+function AnswerSectionBlock({ section, item }: { section: AnswerSection; item?: ConsultFull }) {
   return (
     <div className="consult-answer-section">
       <div className="consult-answer-section-head">
         <span className="consult-answer-num">{section.num}</span>
         <h4>{section.title}</h4>
       </div>
+      {item && <ContactCard item={item} />}
       <div className="consult-answer-grid">
         {section.fields.map((f, i) => (
           <div key={i} className="consult-answer-item">
@@ -323,13 +324,13 @@ export default function ConsultDetail() {
                   </div>
                 )}
 
-                <ContactCard item={item} />
+                {!item.answers?.some((section) => section.num === '01' || section.title === '기본 정보') && <ContactCard item={item} />}
 
                 <div className="consult-detail-body-label">문의 내용</div>
                 {item.answers && item.answers.length > 0 ? (
                   <div className="consult-detail-answers">
                     {item.answers.map((section) => (
-                      <AnswerSectionBlock key={section.num} section={section} />
+                      <AnswerSectionBlock key={section.num} section={section} item={section.num === '01' || section.title === '기본 정보' ? item : undefined} />
                     ))}
                   </div>
                 ) : (
