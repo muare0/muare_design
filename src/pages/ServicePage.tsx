@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Reveal from '../components/Reveal'
+import RatingBadge from '../components/RatingBadge'
 import { GuideIcon } from '../components/SvcIcons'
 import { useSiteContent } from '../hooks/useSiteData'
 import {
@@ -181,12 +182,14 @@ export default function ServicePage() {
           (브랜드 소개 사진·문구는 홈 화면에만 두고 여기서는 생략합니다) */}
       <section className="svc-section svc-section-first" id="svc-intro">
         <div className="wrap">
-          <div className="svc-reference-opening">
-            <picture>
-              <source media="(prefers-reduced-motion: reduce)" srcSet="/images/service-opening-exact-poster.webp" />
-              <img src="/images/service-opening-exact.webp" width={652} height={1176} alt="뮤아르 디자인 스튜디오. 시공 전에 완성될 공간을 먼저. 금빛 테두리가 흐르는 고객 만족도 5.0 배지. 그리던 공간을, 현실처럼. 7년 실무 경력, 작업 범위에 맞춘 합리적인 견적, 빠른 소통과 긴급·주말 협의. 시공 가능한 구조와 디테일까지 고려합니다." decoding="async" fetchPriority="high" />
-            </picture>
-            <h1 className="svc-reference-opening-title">그리던 공간을, 현실처럼.</h1>
+          <div className="svc-adapted-opening">
+            <p className="svc-opening-eyebrow">시공 전에, 완성될 공간을 먼저.</p>
+            <div className="svc-opening-score"><RatingBadge /><svg className="svc-score-orbit" viewBox="0 34 240 172" aria-hidden="true"><g><circle cx="120" cy="108" r="62" fill="none" stroke="#ffe9a8" strokeWidth="6" strokeDasharray="26 364" strokeLinecap="round" opacity=".55" style={{filter:'blur(3px)'}} /><circle cx="120" cy="108" r="62" fill="none" stroke="#fff5ce" strokeWidth="2.5" strokeDasharray="26 364" strokeLinecap="round" /></g></svg></div>
+            <h1>그리던 공간을, 현실처럼.</h1>
+            <p className="svc-opening-desc">7년 실무 디자이너가 시공까지 고려해 제안합니다.<br />빠르고 유연하게 소통하며 완성도를 높입니다.</p>
+            <div className="svc-opening-benefits"><div><span>7 YEARS</span><strong>7년 실무 경력</strong></div><div><span>REASONABLE</span><strong>작업 범위에 맞춘<br />합리적인 견적</strong></div><div><span>FLEXIBLE</span><strong>빠른 소통과<br />긴급 · 주말 협의</strong></div></div>
+            <div className="svc-opening-proposal"><span>PRACTICAL DESIGN PROPOSAL</span><p>예쁜 이미지에서 끝나지 않도록,<br />시공 가능한 구조와 디테일까지 고려합니다.</p></div>
+            <p className="svc-opening-note">※ 긴급 작업 및 주말 작업은 일정 확인 후 협의 가능합니다.</p>
           </div>
 
           <div className="svc-editorial-story">
