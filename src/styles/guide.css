@@ -696,3 +696,13 @@
 @keyframes rb-glint{0%,100%{opacity:.12;}45%{opacity:1;}65%{opacity:.3;}}
 @keyframes rb-base-glow{0%,100%{opacity:.3;}50%{opacity:.8;}}
 @media(prefers-reduced-motion:reduce){.rb-moving-light,.rb-leaf-glint,.rb-ground-glow{animation:none;}}
+
+/* Floating gold dust and a diffused pool of light beneath the medal. */
+.svc-opening-dark{position:relative;isolation:isolate;overflow:hidden;}
+.svc-opening-dark>.svc-opening-eyebrow,.svc-opening-dark>.svc-opening-score,.svc-opening-dark>h1,.svc-opening-dark>.svc-opening-desc{position:relative;z-index:1;}
+.svc-gold-dust{position:absolute;inset:0;pointer-events:none;z-index:0;mask-image:radial-gradient(ellipse at 50% 33%,#000 10%,#000a 55%,transparent 90%);}
+.svc-gold-dust i{position:absolute;display:block;border-radius:50%;background:#ffe9a0;box-shadow:0 0 5px 1px #ecc45c88;animation:svc-dust-twinkle ease-in-out infinite;opacity:.15;}
+.svc-opening-score:after{content:'';position:absolute;left:-16%;right:-16%;height:30%;bottom:-5%;z-index:-1;background:radial-gradient(ellipse at center,#ffe59b9c 0%,#e9b64344 27%,#ca8c2411 55%,transparent 72%);filter:blur(8px);animation:svc-light-pool 4.5s ease-in-out infinite;pointer-events:none;}
+@keyframes svc-dust-twinkle{0%,100%{opacity:.1;transform:translateY(4px) scale(.7);}45%{opacity:.8;transform:translateY(-5px) scale(1.15);}70%{opacity:.3;}}
+@keyframes svc-light-pool{0%,100%{opacity:.55;transform:scaleX(.92);}50%{opacity:.95;transform:scaleX(1.06);}}
+@media(prefers-reduced-motion:reduce){.svc-gold-dust i,.svc-opening-score:after{animation:none;}}
