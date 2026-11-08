@@ -185,7 +185,7 @@ export default function ServicePage() {
         <div className="wrap">
           <div className="svc-adapted-opening">
             <div className="svc-opening-dark">
-            <div className="svc-gold-dust" aria-hidden="true">{Array.from({length:48},(_,i)=><i key={i} style={{left:((i*37+11)%100)+'%',top:((i*29+3)%69)+'%',width:(i%4===0?2.5:1.3),height:(i%4===0?2.5:1.3),animationDelay:(-(i%13)*.57)+'s',animationDuration:(3+i%5)+'s'}} />)}</div>
+            <div className="svc-gold-dust" aria-hidden="true">{Array.from({length:120},(_,i)=><i key={i} style={{left:((i*37+11)%100)+'%',top:((i*29+3)%88)+'%',width:(i%4===0?2.5:1.3),height:(i%4===0?2.5:1.3),animationDelay:(-(i%23)*.83)+'s',animationDuration:(9+i%8)+'s'}} />)}</div>
             <p className="svc-opening-eyebrow">시공 전에, 완성될 공간을 먼저.</p>
             <div className="svc-opening-score"><RatingBadge /><svg className="svc-score-orbit" viewBox="0 34 240 172" aria-hidden="true"><g><circle cx="120" cy="108" r="62" fill="none" stroke="#ffe9a8" strokeWidth="6" strokeDasharray="26 364" strokeLinecap="round" opacity=".55" style={{filter:'blur(3px)'}} /><circle cx="120" cy="108" r="62" fill="none" stroke="#fff5ce" strokeWidth="2.5" strokeDasharray="26 364" strokeLinecap="round" /></g></svg></div>
             <h1>그리던 공간을, 현실처럼.</h1>
