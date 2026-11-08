@@ -478,3 +478,8 @@
 .board-detail-wrap .consult-detail-body-label,
 .board-detail-wrap .consult-thread-body,
 .board-detail-wrap .consult-thread-form textarea{ font-size:16px; }
+
+/* Match portfolio-to-targets spacing to the about-to-portfolio section rhythm. */
+#portfolio{ padding-bottom:60px; }
+#home-targets.svc-section{ padding-top:60px; }
+@media(max-width:768px){ #portfolio{ padding-bottom:40px; } #home-targets.svc-section{ padding-top:40px; } }
