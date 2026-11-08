@@ -214,3 +214,88 @@
   .consult-detail-head h2{ flex-basis:100%; white-space:normal; overflow:visible; text-overflow:unset; }
   .consult-detail-meta{ margin-left:auto; }
 }
+
+
+/* Center the consultation editor and keep every control comfortably readable. */
+.board-page:has(.consult-form) .archive-head-form,
+.board-page:has(.consult-form) .board-form-wrap{ max-width:980px; }
+.board-page:has(.consult-form) .section-title,
+.board-page:has(.consult-form) .eyebrow-plain{ text-align:center; }
+.board-page:has(.consult-form) .board-intro{
+  max-width:none; margin:28px auto 0; padding:28px 32px;
+  background:#fff; border-radius:18px; text-align:center;
+  font-size:18px; line-height:1.85; color:var(--text);
+  word-break:keep-all; overflow-wrap:anywhere;
+}
+.board-page:has(.consult-form) .board-intro br{ display:none; }
+.board-page:has(.consult-form) .consult-form{
+  width:100%; max-width:900px; margin-inline:auto; padding:36px;
+  font-size:18px; line-height:1.65;
+}
+.consult-form .form-section{ padding-block:36px; }
+.consult-form .form-section:first-child{ padding-top:0; }
+.consult-form .form-section-head{ margin-bottom:24px; flex-wrap:wrap; }
+.consult-form .form-section-head h3{ font-size:22px; }
+.consult-form .form-section-num{ font-size:18px; min-width:38px; height:38px; }
+.consult-form .form-field{ gap:10px; margin-top:28px; }
+.consult-form .form-row + .form-field,
+.consult-form .form-field + .form-row{ margin-top:28px; }
+.consult-form .form-row-2 > .form-field{ margin-top:0; }
+.consult-form .field-label,
+.consult-form .form-row label,
+.consult-form .form-checkbox-label{ font-size:18px; color:var(--text); }
+.consult-form .field-label{ flex-wrap:wrap; }
+.consult-form .form-note,
+.consult-form .service-card-desc,
+.consult-form .space-group-title,
+.consult-form .field-error-msg,
+.consult-form .form-error,
+.consult-form .file-list li,
+.consult-form .existing-attachments-label{ font-size:16px; line-height:1.7; }
+.consult-form input:not([type='checkbox']):not([type='radio']):not([type='file']),
+.consult-form textarea,
+.consult-form select{
+  font-size:18px; min-height:54px; padding:13px 16px;
+  background:#fff; line-height:1.5; max-width:100%;
+}
+.consult-form textarea{ min-height:130px; }
+.consult-form .field-basic-card{ margin-top:0; background:none; border:0; overflow:visible; }
+.consult-form .field-basic-rows{ padding:0; gap:28px; }
+.consult-form .field-basic-rows label{ flex-direction:column; align-items:stretch; gap:10px; }
+.consult-form .field-basic-rows label .field-label{ flex:none; }
+.consult-form .field-basic-rows input{ flex:none; width:100%; border:1px solid var(--line); border-radius:4px; }
+.consult-form .field-basic-rows label .field-error-msg{ flex:none; margin:0; }
+.consult-form .field-basic-avatar{ margin-left:24px; border:0; border-radius:8px; flex-basis:150px; }
+.consult-form .building-image-box{ width:120px; height:160px; }
+.consult-form .building-image-placeholder{ font-size:14px; }
+.consult-form .field-basic-card + .form-row{ margin-top:28px; }
+.consult-form .option-grid{ gap:12px; }
+.consult-form .option-check{ font-size:18px; padding:10px 16px; min-height:48px; color:var(--text); }
+.consult-form input[type='checkbox'],
+.consult-form input[type='radio']{ width:20px; height:20px; flex-shrink:0; accent-color:var(--terracotta); }
+.consult-form .service-card{ padding:20px; gap:8px; }
+.consult-form .service-card input{ width:1px; height:1px; }
+.consult-form .service-card-title{ font-size:18px; }
+.consult-form .service-card:focus-within{ outline:2px solid var(--terracotta); outline-offset:3px; }
+.consult-form .btn-outline,
+.consult-form .btn-solid,
+.consult-form .file-field-btn,
+.consult-form .unit-btn,
+.consult-form .unit-suffix,
+.consult-form .link-underline{ font-size:16px; }
+.consult-form .btn-outline,
+.consult-form .btn-solid{ min-height:48px; }
+.consult-form .dev-fill-toggle{ font-size:13px; }
+.consult-form .form-actions{ gap:20px; flex-wrap:wrap; margin-top:24px; }
+@media(max-width:640px){
+  .board-page:has(.consult-form) .archive-head-form,
+  .board-page:has(.consult-form) .board-form-wrap{ padding-inline:20px; }
+  .board-page:has(.consult-form) .board-intro{ font-size:16px; padding:24px 20px; }
+  .board-page:has(.consult-form) .consult-form{ padding:24px 20px; }
+  .consult-form .form-section-head h3{ font-size:20px; }
+  .consult-form .field-basic-avatar{ margin:24px 0 0; flex-basis:auto; }
+  .consult-form .address-row{ flex-wrap:wrap; }
+  .consult-form .address-row input{ min-width:0; flex-basis:100%; }
+  .consult-form .address-row .btn-outline{ padding:10px 16px; }
+  .consult-form .option-check{ font-size:16px; }
+}
