@@ -10,7 +10,6 @@ import {
   getConsultation,
   uploadConsultFile,
   newConsultSessionId,
-  avatarUrl,
   buildingImageIdFor,
   type UploadedAttachment,
   type ConsultAttachment,
