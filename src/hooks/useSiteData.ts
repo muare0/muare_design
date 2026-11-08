@@ -102,6 +102,17 @@ export function usePortfolios({ includeUnpublished = false }: UsePortfoliosOptio
           (a, b) => a.sort_order - b.sort_order,
         ),
       })) as Portfolio[]
+      // 공개 목록은 작업 연도와 같은 연도의 작업 완료 월을 기준으로 최신순 표시합니다.
+      if (!includeUnpublished) {
+        const recency = (p: Portfolio) => {
+          const year = Number(String(p.year ?? '').match(/\d{4}/)?.[0]) || 0
+          const period = (p.description ?? '').split('\n').find((line) => /작업\s*기간/.test(line)) ?? ''
+          const dates = [...period.matchAll(/(\d{4})\s*[.\/-]\s*(\d{1,2})/g)]
+          const months = dates.filter((date) => Number(date[1]) === year).map((date) => Number(date[2])).filter((month) => month >= 1 && month <= 12)
+          return year * 100 + (months.length ? Math.max(...months) : 0)
+        }
+        rows.sort((a, b) => recency(b) - recency(a))
+      }
       setPortfolios(rows)
     }
     setLoading(false)
