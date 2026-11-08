@@ -686,3 +686,13 @@
 #svc-notices .guide-grid-2{align-items:stretch;}
 #svc-notices .guide-grid-2>.guide-card{height:100%;box-sizing:border-box;display:flex;flex-direction:column;}
 #svc-notices .guide-grid-2>.guide-card>.guide-card-body{flex:1;}
+
+/* Award-inspired metallic ring: circulating highlights and small laurel glints. */
+.svc-opening-score{width:320px;filter:drop-shadow(0 0 14px #d8aa4c65);}
+.svc-score-orbit{display:none;}
+.rb-moving-light{animation:svc-gold-orbit 7s linear infinite;}
+.rb-leaf-glint{animation:rb-glint 3.6s ease-in-out infinite;opacity:.15;}
+.rb-ground-glow{animation:rb-base-glow 4s ease-in-out infinite;}
+@keyframes rb-glint{0%,100%{opacity:.12;}45%{opacity:1;}65%{opacity:.3;}}
+@keyframes rb-base-glow{0%,100%{opacity:.3;}50%{opacity:.8;}}
+@media(prefers-reduced-motion:reduce){.rb-moving-light,.rb-leaf-glint,.rb-ground-glow{animation:none;}}
