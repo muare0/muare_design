@@ -151,8 +151,8 @@ export default function PortfolioSection({
           <Link to="/work" className="link-underline">포트폴리오 전체 보기</Link>
         </div>
 
-        {groups.map(({ title, items }) => (
-          <div key={title} style={{ marginTop: 32 }}>
+        {groups.map(({ title, items }, groupIndex) => (
+          <div key={title} style={{ marginTop: groupIndex === 0 ? 32 : 'clamp(56px, 6vw, 88px)' }}>
             <h3 style={{ marginBottom: 16 }}>
               {title === '기타' ? title : (
                 <Link to={title === '주거' ? '/work?category=residential' : '/work?category=commercial'}>
