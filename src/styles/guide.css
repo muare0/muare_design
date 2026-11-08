@@ -426,3 +426,9 @@
 
 /* Contact fields share the first checklist section without extra side margins. */
 .board-detail-wrap .consult-detail-answers .consult-contact-card{ margin:0 0 20px; }
+
+/* Slightly smaller section headings and number badges in consultation details. */
+.board-detail-wrap .consult-answer-section-head{ gap:10px; }
+.board-detail-wrap .consult-answer-section-head h4{ font-size:19px; }
+.board-detail-wrap .consult-answer-num{ min-width:32px; height:32px; font-size:16px; border-radius:6px; }
+@media(max-width:600px){ .board-detail-wrap .consult-answer-section-head h4{ font-size:18px; } }
