@@ -706,3 +706,10 @@
 @keyframes svc-dust-twinkle{0%,100%{opacity:.1;transform:translateY(4px) scale(.7);}45%{opacity:.8;transform:translateY(-5px) scale(1.15);}70%{opacity:.3;}}
 @keyframes svc-light-pool{0%,100%{opacity:.55;transform:scaleX(.92);}50%{opacity:.95;transform:scaleX(1.06);}}
 @media(prefers-reduced-motion:reduce){.svc-gold-dust i,.svc-opening-score:after{animation:none;}}
+
+/* Fine gold dust falls gently; the ring glows without a rotating beam. */
+.svc-gold-dust i{animation-name:svc-gold-fall;animation-timing-function:linear;box-shadow:0 0 4px #ebc87588;}
+@keyframes svc-gold-fall{0%{transform:translate3d(-5px,-150px,0);opacity:0;}15%{opacity:.6;}48%{opacity:.25;}72%{opacity:.8;}100%{transform:translate3d(12px,230px,0);opacity:0;}}
+.rb-soft-halo{animation:rb-soft-shine 5s ease-in-out infinite;}
+@keyframes rb-soft-shine{0%,100%{opacity:.25;}50%{opacity:.65;}}
+@media(prefers-reduced-motion:reduce){.svc-gold-dust i,.rb-soft-halo{animation:none;}}
