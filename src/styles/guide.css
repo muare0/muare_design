@@ -396,3 +396,7 @@
 
 /* Give the write action more space above the consultation table. */
 .board-wrap .board-toolbar{ margin-bottom:24px; }
+
+/* Put the accent on field labels and keep consultation answers white. */
+.board-detail-wrap .consult-detail-answers .consult-answer-label{ border-left:3px solid var(--terracotta); padding-left:12px; line-height:1.6; }
+.board-detail-wrap .consult-detail-answers .consult-answer-value{ background:#fff; border-left:1px solid var(--line); border-radius:6px; }
