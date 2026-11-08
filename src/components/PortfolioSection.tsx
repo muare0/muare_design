@@ -16,11 +16,18 @@ export function PortfolioCard({
 }) {
   const cover = coverOf(project)
   const category = project.category ?? ''
-  const label = /주거|residential|^home$/i.test(category)
-    ? 'RESIDENTIAL'
-    : /상업|commercial|restaurant|bar|café|cafe|bakery|retail|showroom|office|clinic|beauty|spa|hospitality|식음|카페|매장/i.test(category)
-      ? 'COMMERCIAL'
-      : category.toUpperCase()
+  const categoryLabels: Record<string,string> = {
+    '학교':'SCHOOL','학원':'ACADEMY','공공 · 관공서':'PUBLIC & CIVIC',
+    '운동 · 필라테스':'PILATES & FITNESS','전시 · 팝업':'EXHIBITION',
+    '문화 공간':'CULTURE','식음 공간':'RESTAURANT & BAR','음식점':'RESTAURANT',
+    '카페 · 베이커리':'CAFÉ & BAKERY','매장 · 쇼룸':'RETAIL & SHOWROOM',
+    '오피스':'OFFICE','의료':'CLINIC','뷰티 · 스파':'BEAUTY & SPA','숙박':'HOSPITALITY',
+  }
+  const label = /머니박스|money.?box/i.test(project.title)
+    ? 'CURRENCY EXCHANGE'
+    : /주거|residential|^home$/i.test(category) ? 'RESIDENTIAL'
+    : /상업|^commercial$/i.test(category) ? 'COMMERCIAL'
+    : categoryLabels[category] || category.toUpperCase()
 
   return (
     <Reveal delay={(index % 3) * 90}>
