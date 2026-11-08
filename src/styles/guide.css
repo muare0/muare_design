@@ -467,3 +467,14 @@
   .consult-form .form-section-head h3{ font-size:18px; }
   .consult-form .option-check{ font-size:14px; }
 }
+
+/* Match consultation reading labels and body text to the 16px writing form. */
+.board-detail-wrap .consult-detail{ font-size:16px; }
+.board-detail-wrap .consult-detail-answers .consult-answer-label,
+.board-detail-wrap .consult-contact-row .consult-answer-label,
+.board-detail-wrap .consult-answer-value,
+.board-detail-wrap .consult-detail-answers .consult-answer-value,
+.board-detail-wrap .consult-detail-body,
+.board-detail-wrap .consult-detail-body-label,
+.board-detail-wrap .consult-thread-body,
+.board-detail-wrap .consult-thread-form textarea{ font-size:16px; }
