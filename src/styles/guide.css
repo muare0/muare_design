@@ -517,3 +517,13 @@
   .svc-story-icon{ grid-row:1 / 3; margin:0; }
   .svc-story-item h2,.svc-story-item p{ grid-column:2; }
 }
+
+/* Animated examples retain the reference timing and provide playback controls. */
+.svc-animated-example{ max-width:820px; margin:32px auto; }
+.svc-animated-media{ position:relative; overflow:hidden; border:1px solid var(--line); border-radius:14px; line-height:0; }
+.svc-animated-media picture{ display:block; }
+.svc-animated-media img{ display:block; width:100%; height:auto; }
+.svc-animation-toggle{ position:absolute; right:12px; bottom:12px; min-height:40px; padding:8px 14px; border:1px solid rgba(255,255,255,.5); border-radius:999px; background:rgba(33,30,27,.85); color:#fff; font:inherit; font-size:12px; line-height:1.5; cursor:pointer; }
+.svc-animation-toggle:focus-visible{ outline:2px solid var(--terracotta); outline-offset:3px; }
+.svc-animated-example figcaption{ margin-top:12px; font-size:14px; line-height:1.7; text-align:center; color:inherit; opacity:.75; }
+@media(max-width:600px){ .svc-animation-toggle{ right:8px; bottom:8px; padding:7px 11px; } }
