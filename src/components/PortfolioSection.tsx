@@ -146,7 +146,7 @@ export default function PortfolioSection({
           <Reveal>
             <div className="eyebrow-plain">{head.eyebrow}</div>
             <h2 className="section-title">{heading}</h2>
-            <p style={{ marginTop: 16, fontSize: 14, lineHeight: 1.8, color: 'var(--text-soft)' }}>뮤아르와 함께 그려낸 공간들을 만나보세요.</p>
+            <p style={{ marginTop: 16, fontSize: 14, lineHeight: 1.8, color: 'var(--text-soft)' }}>뮤아르디자인스튜디오와 함께 그려낸 공간들을 만나보세요.</p>
           </Reveal>
           <Link to="/work" className="link-underline">포트폴리오 전체 보기</Link>
         </div>
