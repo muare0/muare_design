@@ -34,15 +34,15 @@ function star(cx: number, cy: number, R: number) {
 
 /** 월계수 한 가지 (왼쪽) — 오른쪽은 좌우 반전해서 씁니다 */
 function LaurelBranch() {
-  return <g opacity=".88">
-    <path d={arc(84, 118, 192)} fill="none" stroke="url(#rbGold)" strokeWidth=".7" strokeLinecap="round" />
-    {[124,135,146,157,168,179,190].map((a,i)=>{
+  return <g>
+    <path d={arc(84,118,192)} fill="none" stroke="url(#rbGold)" strokeWidth="1.5" strokeLinecap="round" />
+    {[122,135,148,161,174,187].map((a,i)=>{
       const p=pt(84,a)
-      const size=.8-i*.035
-      return <g key={a} transform={`translate(${p.x} ${p.y}) rotate(${a+47}) scale(${size})`}>
-        <path d="M 0 0 C -5 -1 -13 -5 -16 -11 C -8 -12 -1 -7 0 0 Z" fill="url(#rbGold)" />
-        <path d="M -1 -1 L -13 -9" fill="none" stroke="#f0dfbc" strokeWidth=".4" opacity=".65" />
-        <path d="M 0 0 C 4 0 10 3 12 8 C 6 9 1 6 0 0 Z" fill="url(#rbGold)" opacity=".65" />
+      const size=1-i*.045
+      return <g key={a} transform={`translate(${p.x} ${p.y}) rotate(${a+42}) scale(${size})`}>
+        <path d="M 0 0 C -6 1 -21 -3 -25 -10 C -14 -16 -3 -8 0 0 Z" fill="url(#rbGold)" />
+        <path d="M -1 -1 Q -11 -7 -22 -10" fill="none" stroke="#ffe9b5" strokeWidth=".5" opacity=".55" />
+        <path d="M 0 0 C 5 -1 15 1 19 7 C 11 12 2 7 0 0 Z" fill="url(#rbGold)" opacity=".9" />
       </g>
     })}
   </g>
@@ -60,9 +60,9 @@ export default function RatingBadge({
       <svg viewBox="0 34 240 172" role="img" aria-label={`${label} ${score}점`}>
         <defs>
           <linearGradient id="rbGold" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#E9DCC2" />
-            <stop offset="42%" stopColor="#BFA77B" />
-            <stop offset="100%" stopColor="#7F6B48" />
+            <stop offset="0%" stopColor="#FFE8AB" />
+            <stop offset="42%" stopColor="#D4A653" />
+            <stop offset="100%" stopColor="#91652B" />
           </linearGradient>
           <radialGradient id="rbBg" cx="50%" cy="40%" r="62%">
             <stop offset="0%" stopColor="#4A3D33" />
@@ -107,7 +107,7 @@ export default function RatingBadge({
         {/* 별점 */}
         <g fill="url(#rbGold)">
           {[0, 1, 2, 3, 4].map((i) => (
-            <polygon key={i} points={star(CX + (i - 2) * 15, 75, 4.4)} />
+            <polygon key={i} points={star(CX + (i - 2) * 17, 74, 7)} />
           ))}
         </g>
 
