@@ -618,3 +618,23 @@
 #svc-scope .guide-grid-2{align-items:stretch;}
 #svc-scope .guide-grid-2 > .guide-card{height:100%;display:flex;flex-direction:column;background:#fffdfa;box-sizing:border-box;}
 #svc-scope .guide-card-body{flex:1;background:#fffdfa;}
+
+/* Native, full-column service opening with a softly lit rating. */
+.svc-adapted-opening{width:100%;box-sizing:border-box;padding:48px clamp(20px,4vw,64px) 32px;text-align:center;border:1px solid #e2d4c2;border-radius:24px;background:radial-gradient(ellipse at 50% 20%,#fffaf0 0%,#f4ecdf 48%,#efe5d8 100%);}
+.svc-opening-eyebrow{margin:0 0 16px;color:#796b59;font-size:16px;}
+.svc-opening-score{position:relative;width:280px;max-width:80%;margin:0 auto 26px;filter:drop-shadow(0 0 18px #dcb66c55);}
+.svc-opening-score .rating-badge{width:100%;}
+.svc-score-orbit{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.svc-score-orbit g{transform-origin:120px 108px;animation:svc-gold-orbit 6s linear infinite;}
+@keyframes svc-gold-orbit{to{transform:rotate(360deg);}}
+.svc-adapted-opening h1{font-family:var(--font-body);font-size:clamp(26px,3vw,40px);line-height:1.4;margin:0 0 20px;font-weight:700;}
+.svc-opening-desc{font-size:17px;line-height:1.9;margin:0;color:#756956;}
+.svc-opening-benefits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:36px 0 24px;}
+.svc-opening-benefits>div{background:#fffcf6;border:1px solid #d9c3a3;border-radius:18px;padding:24px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
+.svc-opening-benefits span,.svc-opening-proposal>span{font-size:12px;font-weight:700;letter-spacing:.12em;color:#a27842;}
+.svc-opening-benefits strong{font-size:17px;line-height:1.6;}
+.svc-opening-proposal{border:1px solid #d9c3a3;border-radius:18px;padding:26px 20px;background:#fffaf1;}
+.svc-opening-proposal p{font-size:20px;font-weight:600;line-height:1.7;margin:14px 0 0;}
+.svc-opening-note{font-size:12px;line-height:1.7;margin:20px 0 0;color:#968773;}
+@media(max-width:600px){.svc-adapted-opening{padding:32px 16px 24px;}.svc-opening-benefits{gap:8px;}.svc-opening-benefits>div{padding:20px 6px;}.svc-opening-benefits strong{font-size:13px;}.svc-opening-benefits span{font-size:9px;letter-spacing:.06em;}.svc-opening-desc{font-size:15px;}.svc-opening-proposal p{font-size:17px;}}
+@media(prefers-reduced-motion:reduce){.svc-score-orbit g{animation:none;}}
