@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { Portfolio } from '../lib/types'
 import Lightbox from './Lightbox'
 
@@ -68,6 +68,26 @@ export default function ProjectView({
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const [barScrolled, setBarScrolled] = useState(false)
   const scrollerRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  useLayoutEffect(() => {
+    const title = titleRef.current
+    if (!title) return
+    let active = true
+    const fitTitle = () => {
+      if (!active) return
+      title.style.fontSize = 'clamp(18px, 2.5vw, 32px)'
+      const available = title.clientWidth
+      if (available > 0 && title.scrollWidth > available) {
+        const base = parseFloat(getComputedStyle(title).fontSize)
+        title.style.fontSize = Math.max(1, base * available / title.scrollWidth - 0.5) + 'px'
+      }
+    }
+    fitTitle()
+    const observer = new ResizeObserver(fitTitle)
+    observer.observe(title.parentElement ?? title)
+    void document.fonts.ready.then(fitTitle)
+    return () => { active = false; observer.disconnect() }
+  }, [project.title])
   const sourceImages = project.images ?? []
   const roomGroups = project.slug === 'gwonseon-xi' ? [
     { title: 'LIVING ROOM / 거실', note: '밝은 벽과 우드 바닥에 간접조명을 더해 편안한 분위기로 구성한 거실입니다.', indices: [4, 5] },
@@ -163,7 +183,7 @@ export default function ProjectView({
           {String((project.sort_order ?? 0) + 1).padStart(2, '0')}
           {project.title_en ? ` — ${project.title_en}` : ''}
         </div>
-        <h1 className="project-title" style={project.slug === 'gwonseon-xi' ? { whiteSpace: 'nowrap', maxWidth: 'none', fontSize: 'clamp(20px, 4.8vw, 38px)' } : (project.slug === 'gwanggyo-hoban-gardenheim' || project.slug === 'suwon-sk-skyview-35b' || project.slug === 'dongtan-booyoung-lakecity-34py' || project.slug === 'dongtan-hanwha-33py') ? { whiteSpace: 'nowrap', maxWidth: 'none', fontSize: 'clamp(15px, 4.5vw, 38px)' } : undefined}>{project.title}</h1>
+        <h1 ref={titleRef} className="project-title" style={{ whiteSpace: 'nowrap', maxWidth: 'none', width: '100%', fontSize: 'clamp(18px, 2.5vw, 32px)' }}>{project.title}</h1>
         {project.description && <p className="project-lede">{project.description}</p>}
 
         {facts.length > 0 && (
