@@ -97,6 +97,12 @@ export default function ProjectView({
     { title: 'KITCHEN / 주방', note: '밝은 수납장과 둥근 상판에 따뜻한 펜던트 조명을 더했습니다.', indices: [4] },
     { title: 'ENTRANCE / 현관', note: '곡선 가벽과 유리 중문으로 현관을 구분하고, 신발장 아래에 간접조명을 넣었습니다.', indices: [3] },
     { title: 'KIDS’ ROOM / 아이 방', note: '분홍색 벽과 집 모양 놀이 공간을 만들고, 풍선 모양 조명으로 포인트를 주었습니다.', indices: [2] },
+  ] : project.slug === 'dongtan-booyoung-lakecity-34py' ? [
+    { title: '01. KITCHEN / 주방', note: '화이트 수납장과 밝은 타일을 바탕으로 민트색 아일랜드와 파스텔 컬러를 더했습니다. 둥근 상판과 유리 펜던트 조명으로 부드러운 분위기를 만들었습니다.', indices: [0, 1] },
+    { title: '02. BEDROOM / 침실', note: '밝은 벽과 차분한 바닥에 코랄색 아치형 입구로 포인트를 주었습니다. 안쪽 수납공간까지 시선이 자연스럽게 이어집니다.', indices: [2] },
+    { title: '03. ENTRANCE / 현관', note: '아치형 프레임과 하부 요철 유리를 조합한 중문으로 현관을 구분했습니다. 민트색 벽과 둥근 거울이 실내의 파스텔 분위기를 이어줍니다.', indices: [3] },
+    { title: '04. STORAGE / 수납공간', note: '밝은 붙박이장과 오픈 선반을 함께 배치해 수납을 구성했습니다. 창을 가리지 않는 선반으로 자연광이 들어오도록 했습니다.', indices: [4] },
+    { title: '05. BATHROOM / 욕실', note: '옐로 타일과 베이지 테라조를 조합해 밝고 따뜻한 욕실을 구성했습니다. 화이트 도기와 수전, 원형 거울로 간결하게 마무리했습니다.', indices: [5] },
   ] : []
   const gallery = roomGroups.length ? roomGroups.flatMap((group) =>
     group.indices.flatMap((index, position) => sourceImages[index] ? [{
@@ -152,7 +158,7 @@ export default function ProjectView({
           {String((project.sort_order ?? 0) + 1).padStart(2, '0')}
           {project.title_en ? ` — ${project.title_en}` : ''}
         </div>
-        <h1 className="project-title" style={project.slug === 'gwonseon-xi' ? { whiteSpace: 'nowrap', maxWidth: 'none', fontSize: 'clamp(20px, 4.8vw, 38px)' } : (project.slug === 'gwanggyo-hoban-gardenheim' || project.slug === 'suwon-sk-skyview-35b') ? { whiteSpace: 'nowrap', maxWidth: 'none', fontSize: 'clamp(15px, 4.5vw, 38px)' } : undefined}>{project.title}</h1>
+        <h1 className="project-title" style={project.slug === 'gwonseon-xi' ? { whiteSpace: 'nowrap', maxWidth: 'none', fontSize: 'clamp(20px, 4.8vw, 38px)' } : (project.slug === 'gwanggyo-hoban-gardenheim' || project.slug === 'suwon-sk-skyview-35b' || project.slug === 'dongtan-booyoung-lakecity-34py') ? { whiteSpace: 'nowrap', maxWidth: 'none', fontSize: 'clamp(15px, 4.5vw, 38px)' } : undefined}>{project.title}</h1>
         {project.description && <p className="project-lede">{project.description}</p>}
 
         {facts.length > 0 && (
