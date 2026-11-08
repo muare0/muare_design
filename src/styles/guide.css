@@ -638,3 +638,20 @@
 .svc-opening-note{font-size:12px;line-height:1.7;margin:20px 0 0;color:#968773;}
 @media(max-width:600px){.svc-adapted-opening{padding:32px 16px 24px;}.svc-opening-benefits{gap:8px;}.svc-opening-benefits>div{padding:20px 6px;}.svc-opening-benefits strong{font-size:13px;}.svc-opening-benefits span{font-size:9px;letter-spacing:.06em;}.svc-opening-desc{font-size:15px;}.svc-opening-proposal p{font-size:17px;}}
 @media(prefers-reduced-motion:reduce){.svc-score-orbit g{animation:none;}}
+
+/* Warm dark opening gives the gold rating light depth and contrast. */
+.svc-adapted-opening{background:radial-gradient(ellipse at 50% 17%,#51402a 0%,#2f251d 38%,#211b17 76%);border-color:#655039;color:#fff9ee;box-shadow:0 16px 40px #33251a15;}
+.svc-opening-eyebrow{color:#d1c1a7;}
+.svc-opening-score{filter:drop-shadow(0 0 22px #e8bf6877);}
+.svc-opening-desc{color:#d5cab9;}
+.svc-opening-benefits>div{background:#ffffff05;border-color:#846440;}
+.svc-opening-benefits span,.svc-opening-proposal>span{color:#dcba80;}
+.svc-opening-benefits strong{color:#fff9ee;}
+.svc-opening-proposal{background:#ffffff03;border-color:#846440;}
+.svc-opening-note{color:#b2a18a;}
+
+/* A compact, uninterrupted transition into service scope. */
+#svc-intro .svc-editorial-start{border-bottom:0;margin-bottom:0;padding-bottom:12px;}
+#svc-intro{padding-bottom:28px;}
+#svc-scope{border-top:0;padding-top:36px;}
+@media(max-width:768px){#svc-intro{padding-bottom:20px;}#svc-scope{padding-top:24px;}}
