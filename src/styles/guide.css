@@ -407,3 +407,30 @@
 .board-page:has(.board-detail-wrap) .eyebrow-plain{ justify-content:flex-start; text-align:left; margin-left:0; padding-left:0; width:100%; }
 @media(max-width:768px) and (min-width:601px){ .board-page:has(.board-detail-wrap) > .archive-head{ width:calc(100% - 56px); } }
 @media(max-width:600px){ .board-page:has(.board-detail-wrap) > .archive-head{ width:calc(100% - 32px); } }
+
+
+/* Consultation detail: restrained monochrome treatment and consistent reading size. */
+.board-detail-wrap .consult-detail{
+  --line:#e3e3e3; --text-soft:#666; --terracotta:#333; --bg:#fff;
+  background:#fff; border-color:#e3e3e3;
+}
+.board-detail-wrap .consult-detail-head{ background:#fff; }
+.board-detail-wrap .consult-detail-meta .status-pill{ background:#f6f6f6; color:#555; border-color:#e3e3e3; }
+.board-detail-wrap .consult-contact-card{ background:#fff; border-color:#e3e3e3; }
+.board-detail-wrap .consult-contact-photo{ display:none; }
+.board-detail-wrap .consult-contact-row .consult-answer-label,
+.board-detail-wrap .consult-detail-answers .consult-answer-label{
+  font-size:18px; line-height:1.75; letter-spacing:0;
+  color:var(--text); border-left:0; padding-left:0;
+}
+.board-detail-wrap .consult-answer-value,
+.board-detail-wrap .consult-detail-answers .consult-answer-value{
+  font-size:18px; line-height:1.75; background:#fff;
+  border:1px solid #e3e3e3; border-radius:6px;
+}
+.board-detail-wrap .consult-answer-num{
+  background:#fff; color:var(--text); border:1px solid #d8d8d8;
+  border-radius:6px;
+}
+.board-detail-wrap .consult-answer-section + .consult-answer-section{ border-color:#e3e3e3; }
+.board-detail-wrap .consult-thread-item{ background:#fafafa; border-color:#e3e3e3; }
