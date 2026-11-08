@@ -300,7 +300,6 @@ function buildContent(f: FormState): string {
   const lines: string[] = []
 
   lines.push('[01. 기본 정보]')
-  lines.push(`상담 예약: ${f.apptDate}${f.apptTime ? ' ' + f.apptTime : ''}`)
   {
     const other = f.sourceChannels.includes('기타') && f.sourceOther.trim() ? ` (${f.sourceOther.trim()})` : ''
     lines.push(`알게 된 경로: ${f.sourceChannels.join(', ')}${other}`)
@@ -360,7 +359,6 @@ function buildAnswers(f: FormState): AnswerSection[] {
       num: '01',
       title: '기본 정보',
       fields: [
-        { label: '상담 예약', value: `${f.apptDate}${f.apptTime ? ' ' + f.apptTime : ''}` },
         {
           label: '알게 된 경로',
           value:
@@ -506,7 +504,6 @@ function validate(f: FormState, isEdit: boolean): FieldError[] {
   if (!f.name.trim()) push('field-name', '성함을 입력해 주세요.')
   if (!f.phone.trim()) push('field-phone', '연락처를 입력해 주세요.')
   if (!f.email.trim()) push('field-email', '이메일을 입력해 주세요.')
-  if (!f.apptDate || !f.apptTime) push('field-appt', '상담 예약 날짜와 시간을 선택해 주세요.')
   if (f.sourceChannels.length === 0) push('field-source', '뮤아르디자인스튜디오를 알게 된 경로를 선택해 주세요.')
   if (f.serviceTypes.length === 0) push('field-service', '원하시는 서비스 유형을 선택해 주세요.')
   if (!f.addressBase.trim()) push('field-address', '현장 주소를 입력해 주세요.')
@@ -1009,32 +1006,6 @@ export default function ConsultWrite() {
                       <FieldErrorMsg id="field-email" errors={fieldErrors} />
                     </label>
                   </div>
-                  <div className="field-basic-avatar">
-                    {/* "나의 이미지" — 아래 "03. 프로젝트 정보"에서 공간 용도를 고르면 그에 맞는 건물 이미지가 여기 바로 표시됩니다 */}
-                    <div className={`building-image-box${form.avatar ? ' has-image' : ''}`}>
-                      {form.avatar ? (
-                        <img src={avatarUrl(form.avatar)} alt="선택한 공간 용도의 건물 이미지" />
-                      ) : (
-                        <span className="building-image-placeholder">
-                          공간 용도를
-                          <br />
-                          선택하면 표시됩니다
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                <div id="field-appt" className={`form-row form-row-2${fieldErrors['field-appt'] ? ' field-invalid' : ''}`}>
-                  <label>
-                    <FieldLabel required>상담 예약 날짜</FieldLabel>
-                    <input type="date" value={form.apptDate} onChange={(e) => patch({ apptDate: e.target.value })} />
-                  </label>
-                  <label>
-                    <FieldLabel required>상담 예약 시간</FieldLabel>
-                    <input type="time" value={form.apptTime} onChange={(e) => patch({ apptTime: e.target.value })} />
-                  </label>
-                  <FieldErrorMsg id="field-appt" errors={fieldErrors} />
                 </div>
 
                 <div id="field-source" className={`form-field${fieldErrors['field-source'] ? ' field-invalid' : ''}`}>
@@ -1314,7 +1285,7 @@ export default function ConsultWrite() {
                   <FieldLabel required>현장 사진 및 동영상</FieldLabel>
                   <Note>
                     평면도만으로 확인하기 어려운 기둥, 보, 창호, 설비, 단차, 기존 마감 및 현장 구조 등을 파악하기 위한
-                    자료입니다. 실제 현장 여건에 따라 공간 활용 및 설계 방향이 달라질 수 있습니다.
+                    자료입니다.<br />실제 현장 여건에 따라 공간 활용 및 설계 방향이 달라질 수 있습니다.
                   </Note>
                   <CheckGroup
                     options={SITE_MEDIA_OPTIONS}
@@ -1542,8 +1513,7 @@ export default function ConsultWrite() {
                       className={`form-checkbox-label form-agree${fieldErrors['field-agree'] ? ' field-invalid' : ''}`}
                     >
                       <input type="checkbox" checked={form.agree} onChange={(e) => patch({ agree: e.target.checked })} />
-                      남겨주신 정보는 상담 목적으로만 사용되며, 상담 종료 후 별도 요청 시 삭제됩니다. 개인정보 수집 및 이용에
-                      동의합니다.
+                      <span>남겨주신 정보는 상담 목적으로만 사용되며, 상담 종료 후 별도 요청 시 삭제됩니다.<br />개인정보 수집 및 이용에 동의합니다.</span>
                     </label>
                     <FieldErrorMsg id="field-agree" errors={fieldErrors} />
                   </>
