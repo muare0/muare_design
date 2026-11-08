@@ -34,17 +34,18 @@ function star(cx: number, cy: number, R: number) {
 
 /** 월계수 한 가지 (왼쪽) — 오른쪽은 좌우 반전해서 씁니다 */
 function LaurelBranch() {
+  const leaves = [
+    [37,128,-42,12], [40,137,-51,5], [46,145,-60,-5],
+    [53,153,-68,-13], [62,160,-76,-23], [72,166,-84,-32],
+  ]
   return <g>
-    <path d={arc(84,118,192)} fill="none" stroke="url(#rbGold)" strokeWidth="1.5" strokeLinecap="round" />
-    {[122,135,148,161,174,187].map((a,i)=>{
-      const p=pt(84,a)
-      const size=1-i*.045
-      return <g key={a} transform={`translate(${p.x} ${p.y}) rotate(${a+42}) scale(${size})`}>
-        <path d="M 0 0 C -6 1 -21 -3 -25 -10 C -14 -16 -3 -8 0 0 Z" fill="url(#rbGold)" />
-        <path d="M -1 -1 Q -11 -7 -22 -10" fill="none" stroke="#ffe9b5" strokeWidth=".5" opacity=".55" />
-        <path d="M 0 0 C 5 -1 15 1 19 7 C 11 12 2 7 0 0 Z" fill="url(#rbGold)" opacity=".9" />
-      </g>
-    })}
+    <path d="M 22 113 C 26 139 47 159 78 170" fill="none" stroke="url(#rbGold)" strokeWidth=".85" strokeLinecap="round" />
+    <path d="M 36 119 C 36 141 49 157 77 169" fill="none" stroke="url(#rbGold)" strokeWidth=".65" />
+    <path d="M 36 121 C 32 117 33 111 36 107 C 39 112 39 117 36 121 Z" fill="url(#rbGold)" />
+    {leaves.map(([x,y,outer,inner],i)=><g key={i}>
+      <path d="M 0 0 C -3 -2 -4 -8 0 -12 C 4 -8 3 -2 0 0 Z" transform={`translate(${x} ${y}) rotate(${outer})`} fill="url(#rbGold)" />
+      <path d="M 0 0 C -2 -3 -3 -8 0 -12 C 3 -8 3 -3 0 0 Z" transform={`translate(${x+1} ${y-1}) rotate(${inner})`} fill="url(#rbGold)" />
+    </g>)}
   </g>
 }
 
@@ -94,7 +95,7 @@ export default function RatingBadge({
           opacity=".15"
           filter="url(#rbBlur)"
         />
-        <circle cx={CX} cy={CY} r={RING_R} fill="none" stroke="url(#rbGold)" strokeWidth=".8" />
+        <circle cx={CX} cy={CY} r={RING_R} fill="none" stroke="url(#rbGold)" strokeWidth="1.4" />
         <path
           d={arc(RING_R, 198, 342)}
           fill="none"
