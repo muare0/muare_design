@@ -111,8 +111,10 @@ export default function RatingBadge({
         <ellipse className="rb-ground-glow" cx="120" cy="180" rx="58" ry="2" fill="#e8bb52" filter="url(#rbBlur)" opacity=".6" />
         {[ [30,130],[43,151],[62,165],[210,130],[197,151],[178,165] ].map(([x,y],i)=><g key={i} className="rb-leaf-glint" style={{animationDelay:(i*.6)+'s'}}><circle cx={x} cy={y} r="2" fill="#ffe9a1" filter="url(#rbBlur)" /><path d={`M ${x-2.4} ${y} h4.8 M ${x} ${y-2.4} v4.8`} stroke="#fff2bc" strokeWidth=".55" /></g>)}
         <g className="rb-moving-light" style={{transformOrigin:'120px 108px'}}>
-          <circle cx={CX} cy={CY} r="65" fill="none" stroke="#ffe49b" strokeWidth="2.5" strokeDasharray="24 384" strokeLinecap="round" filter="url(#rbBlur)" opacity=".85" />
-          <circle cx={CX} cy={CY} r="65" fill="none" stroke="#fff8df" strokeWidth=".9" strokeDasharray="12 396" strokeLinecap="round" />
+          <circle cx={CX} cy={CY} r="65" fill="none" stroke="#fff1b7" strokeWidth=".8" strokeDasharray="8 400" strokeLinecap="round" />
+          <circle cx="185" cy="108" r="2.8" fill="#ffe39b" opacity=".4" />
+          <path d="M 185 102.5 Q 185.8 107.2 190.5 108 Q 185.8 108.8 185 113.5 Q 184.2 108.8 179.5 108 Q 184.2 107.2 185 102.5 Z" fill="#fff7d8" />
+          <circle cx="185" cy="108" r="1.1" fill="#fff" />
         </g>
         {/* 별점 */}
         <g fill="url(#rbGold)">
