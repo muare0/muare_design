@@ -436,3 +436,34 @@
 /* Keep the requested introduction line breaks with slightly quieter type. */
 .board-page:has(.consult-form) .board-intro{ font-size:16px; }
 @media(max-width:640px){ .board-page:has(.consult-form) .board-intro{ font-size:15px; } }
+
+/* Reduce all consultation writing form text by two pixels below the introduction. */
+.board-page:has(.consult-form) .consult-form{ font-size:16px; }
+.consult-form .form-section-head h3{ font-size:20px; }
+.consult-form .form-section-num{ font-size:16px; }
+.consult-form .field-label,
+.consult-form .form-row label,
+.consult-form .form-checkbox-label,
+.consult-form .option-check,
+.consult-form .service-card-title{ font-size:16px; }
+.consult-form input:not([type='checkbox']):not([type='radio']):not([type='file']),
+.consult-form textarea,
+.consult-form select{ font-size:16px; }
+.consult-form .form-note,
+.consult-form .service-card-desc,
+.consult-form .space-group-title,
+.consult-form .field-error-msg,
+.consult-form .form-error,
+.consult-form .file-list li,
+.consult-form .existing-attachments-label,
+.consult-form .btn-outline,
+.consult-form .btn-solid,
+.consult-form .file-field-btn,
+.consult-form .unit-btn,
+.consult-form .unit-suffix,
+.consult-form .link-underline{ font-size:14px; }
+.consult-form .dev-fill-toggle{ font-size:11px; }
+@media(max-width:640px){
+  .consult-form .form-section-head h3{ font-size:18px; }
+  .consult-form .option-check{ font-size:14px; }
+}
