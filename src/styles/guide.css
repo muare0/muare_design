@@ -655,3 +655,10 @@
 #svc-intro{padding-bottom:28px;}
 #svc-scope{border-top:0;padding-top:36px;}
 @media(max-width:768px){#svc-intro{padding-bottom:20px;}#svc-scope{padding-top:24px;}}
+
+/* Shared card and callout baselines in the revision comparison. */
+#svc-revision .guide-grid-2{align-items:stretch;}
+#svc-revision .guide-grid-2>.guide-card{display:flex;flex-direction:column;height:100%;box-sizing:border-box;}
+#svc-revision .guide-grid-2>.guide-card>.guide-card-body{display:flex;flex-direction:column;flex:1;}
+#svc-revision .guide-grid-2 .rev-callout{margin-top:auto;}
+#svc-revision .guide-grid-2 .guide-card-body>ul{margin-bottom:28px;}
