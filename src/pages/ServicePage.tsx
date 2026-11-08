@@ -3,11 +3,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Reveal from '../components/Reveal'
-import RatingBadge from '../components/RatingBadge'
 import { GuideIcon } from '../components/SvcIcons'
 import { useSiteContent } from '../hooks/useSiteData'
 import {
-  STRENGTHS,
   SCOPE,
   VISUAL_STEPS,
   CUSTOM,
@@ -99,7 +97,6 @@ function AnimatedServiceExample({ before, after, alt, caption }: { before: strin
 
 export default function ServicePage() {
   const { content } = useSiteContent()
-  const info = content.serviceInfo
   const navigate = useNavigate()
   const jumpListRef = useRef<HTMLDivElement>(null)
 
@@ -184,15 +181,13 @@ export default function ServicePage() {
           (브랜드 소개 사진·문구는 홈 화면에만 두고 여기서는 생략합니다) */}
       <section className="svc-section svc-section-first" id="svc-intro">
         <div className="wrap">
-          <div className="svc-premium-hero">
-            <div className="svc-premium-main">
-              <div className="svc-premium-rating"><p>시공 전에, 완성될 공간을 먼저.</p><RatingBadge score={STRENGTHS.rating.score} label={STRENGTHS.rating.label} /></div>
-              <div className="svc-premium-copy"><div className="svc-premium-eyebrow">{info.eyebrow} · MUARE DESIGN STUDIO</div><h1>그리던 공간을,<br />현실처럼.</h1><p>7년 실무 디자이너가 시공까지 고려해 제안합니다.<br />빠르고 유연하게 소통하며 완성도를 높입니다.</p></div>
-            </div>
-            <div className="svc-premium-proof">{STRENGTHS.items.map((item) => <div key={item.key}><span>{item.key}</span><h2>{item.title}</h2></div>)}</div>
-            <p className="svc-premium-note">{STRENGTHS.highlight.text}</p>
+          <div className="svc-reference-opening">
+            <picture>
+              <source media="(prefers-reduced-motion: reduce)" srcSet="/images/service-opening-exact-poster.webp" />
+              <img src="/images/service-opening-exact.webp" width={652} height={1176} alt="뮤아르 디자인 스튜디오. 시공 전에 완성될 공간을 먼저. 금빛 테두리가 흐르는 고객 만족도 5.0 배지. 그리던 공간을, 현실처럼. 7년 실무 경력, 작업 범위에 맞춘 합리적인 견적, 빠른 소통과 긴급·주말 협의. 시공 가능한 구조와 디테일까지 고려합니다." decoding="async" fetchPriority="high" />
+            </picture>
+            <h1 className="svc-reference-opening-title">그리던 공간을, 현실처럼.</h1>
           </div>
-
 
           <div className="svc-editorial-story">
             <article className="svc-editorial-row">
