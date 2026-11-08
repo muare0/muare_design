@@ -499,3 +499,7 @@
   #svc-intro .str-card{ padding:24px; }
   .str-card-icon{ margin-bottom:16px; }
 }
+
+/* Keep project numbering compact and Korean description words intact. */
+.project-index{ letter-spacing:.02em; }
+.project-lede{ word-break:keep-all; overflow-wrap:break-word; }
