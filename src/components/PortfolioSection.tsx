@@ -16,9 +16,16 @@ export function PortfolioCard({
 }) {
   const cover = coverOf(project)
   const category = project.category ?? ''
-  const label = /주거|residential|^home$/i.test(category)
+  const categoryLabels: Record<string, string> = {
+    School: '학교', Academy: '학원', 'Public & Civic': '공공 · 관공서',
+    'Pilates & Fitness': '운동 · 필라테스', Exhibition: '전시 · 팝업', Culture: '문화 공간',
+    'Restaurant & Bar': '식음 공간', 'Café & Bakery': '카페 · 베이커리',
+    'Retail & Showroom': '매장 · 쇼룸', Office: '오피스', Clinic: '의료',
+    'Beauty & Spa': '뷰티 · 스파', Hospitality: '숙박',
+  }
+  const label = categoryLabels[category] || (/주거|residential|^home$/i.test(category)
     ? 'RESIDENTIAL'
-    : /상업|commercial/i.test(category) ? 'COMMERCIAL' : category
+    : /상업|commercial/i.test(category) ? 'COMMERCIAL' : category)
 
   return (
     <Reveal delay={(index % 3) * 90}>
@@ -118,7 +125,7 @@ export default function PortfolioSection({
     const category = project.category ?? ''
     if (/주거|residential|^home$/i.test(category) || project.id === 'sample-residential-concept') {
       residential.push(project)
-    } else if (/상업|commercial/i.test(category)) {
+    } else if (category) {
       commercial.push(project)
     } else {
       other.push(project)
