@@ -10,6 +10,7 @@ import ContentSettings from './ContentSettings'
 import DesignSettings from './DesignSettings'
 import SiteSettings from './SiteSettings'
 import Consultations from './Consultations'
+import ConsultWrite from '../pages/ConsultWrite'
 import '../styles/admin.css'
 
 export default function AdminApp() {
@@ -48,6 +49,7 @@ export default function AdminApp() {
   return (
     <div className="admin-root">
       <Routes>
+        <Route path="consultations/write" element={<ConsultWrite adminTestMode />} />
         <Route
           element={
             <AdminLayout
