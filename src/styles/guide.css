@@ -681,3 +681,8 @@
 .svc-score-orbit circle{stroke-width:.9px;}
 .svc-opening-score .rb-score{font-weight:400;font-size:51px;letter-spacing:-.035em;}
 .svc-opening-score .rb-label{font-size:10px;letter-spacing:.1em;fill:#c8baa0;}
+
+/* Keep delivery and copyright cards aligned on each shared row. */
+#svc-notices .guide-grid-2{align-items:stretch;}
+#svc-notices .guide-grid-2>.guide-card{height:100%;box-sizing:border-box;display:flex;flex-direction:column;}
+#svc-notices .guide-grid-2>.guide-card>.guide-card-body{flex:1;}
