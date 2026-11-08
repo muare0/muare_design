@@ -34,44 +34,18 @@ function star(cx: number, cy: number, R: number) {
 
 /** 월계수 한 가지 (왼쪽) — 오른쪽은 좌우 반전해서 씁니다 */
 function LaurelBranch() {
-  const outer = [122, 135, 148, 161, 174, 187]
-  const inner = [129, 142, 155, 168, 181]
-  return (
-    <g>
-      <path d={arc(84, 118, 192)} fill="none" stroke="url(#rbGold)" strokeWidth="2.2" strokeLinecap="round" />
-      {outer.map((a, i) => {
-        const p = pt(93, a)
-        const s = 1 - i * 0.06
-        return (
-          <ellipse
-            key={`o${a}`}
-            cx={p.x}
-            cy={p.y}
-            rx={13 * s}
-            ry={5 * s}
-            transform={`rotate(${a + 42} ${p.x} ${p.y})`}
-            fill="url(#rbGold)"
-          />
-        )
-      })}
-      {inner.map((a, i) => {
-        const p = pt(73, a)
-        const s = 1 - i * 0.07
-        return (
-          <ellipse
-            key={`i${a}`}
-            cx={p.x}
-            cy={p.y}
-            rx={9 * s}
-            ry={3.6 * s}
-            transform={`rotate(${a + 42} ${p.x} ${p.y})`}
-            fill="url(#rbGold)"
-            opacity=".78"
-          />
-        )
-      })}
-    </g>
-  )
+  return <g opacity=".88">
+    <path d={arc(84, 118, 192)} fill="none" stroke="url(#rbGold)" strokeWidth=".7" strokeLinecap="round" />
+    {[124,135,146,157,168,179,190].map((a,i)=>{
+      const p=pt(84,a)
+      const size=.8-i*.035
+      return <g key={a} transform={`translate(${p.x} ${p.y}) rotate(${a+47}) scale(${size})`}>
+        <path d="M 0 0 C -5 -1 -13 -5 -16 -11 C -8 -12 -1 -7 0 0 Z" fill="url(#rbGold)" />
+        <path d="M -1 -1 L -13 -9" fill="none" stroke="#f0dfbc" strokeWidth=".4" opacity=".65" />
+        <path d="M 0 0 C 4 0 10 3 12 8 C 6 9 1 6 0 0 Z" fill="url(#rbGold)" opacity=".65" />
+      </g>
+    })}
+  </g>
 }
 
 export default function RatingBadge({
@@ -86,9 +60,9 @@ export default function RatingBadge({
       <svg viewBox="0 34 240 172" role="img" aria-label={`${label} ${score}점`}>
         <defs>
           <linearGradient id="rbGold" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#F6E4B6" />
-            <stop offset="42%" stopColor="#CFA766" />
-            <stop offset="100%" stopColor="#7A5A29" />
+            <stop offset="0%" stopColor="#E9DCC2" />
+            <stop offset="42%" stopColor="#BFA77B" />
+            <stop offset="100%" stopColor="#7F6B48" />
           </linearGradient>
           <radialGradient id="rbBg" cx="50%" cy="40%" r="62%">
             <stop offset="0%" stopColor="#4A3D33" />
@@ -96,7 +70,7 @@ export default function RatingBadge({
             <stop offset="100%" stopColor="#140F0C" />
           </radialGradient>
           <filter id="rbBlur" x="-45%" y="-45%" width="190%" height="190%">
-            <feGaussianBlur stdDeviation="4" />
+            <feGaussianBlur stdDeviation="2" />
           </filter>
         </defs>
 
@@ -116,16 +90,16 @@ export default function RatingBadge({
           r={RING_R}
           fill="none"
           stroke="url(#rbGold)"
-          strokeWidth="7"
-          opacity=".3"
+          strokeWidth="3"
+          opacity=".15"
           filter="url(#rbBlur)"
         />
-        <circle cx={CX} cy={CY} r={RING_R} fill="none" stroke="url(#rbGold)" strokeWidth="2" />
+        <circle cx={CX} cy={CY} r={RING_R} fill="none" stroke="url(#rbGold)" strokeWidth=".8" />
         <path
           d={arc(RING_R, 198, 342)}
           fill="none"
           stroke="#F8E9C4"
-          strokeWidth="1.6"
+          strokeWidth=".7"
           strokeLinecap="round"
           opacity=".85"
         />
@@ -133,7 +107,7 @@ export default function RatingBadge({
         {/* 별점 */}
         <g fill="url(#rbGold)">
           {[0, 1, 2, 3, 4].map((i) => (
-            <polygon key={i} points={star(CX + (i - 2) * 17, 74, 7.2)} />
+            <polygon key={i} points={star(CX + (i - 2) * 15, 75, 4.4)} />
           ))}
         </g>
 
