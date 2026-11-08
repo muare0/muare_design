@@ -6,44 +6,20 @@ import { PortfolioGallery } from '../components/PortfolioSection'
 import ProjectView from '../components/ProjectView'
 import Reveal from '../components/Reveal'
 import { useSiteContent, usePortfolios } from '../hooks/useSiteData'
-import { PLACEHOLDER_PORTFOLIOS } from '../content/defaults'
 import type { Portfolio } from '../lib/types'
 
-export const sampleProjects: Portfolio[] = [
-  [], // 주거 영역은 실제 등록한 프로젝트만 표시합니다.
-  ['카페 콘셉트', '쇼룸 콘셉트', '오피스 라운지', '리테일 매장', '레스토랑 콘셉트'],
-].flatMap((titles, group) => titles.map((title, index): Portfolio => {
-  const category = group === 0 ? 'Residential' : 'Commercial'
-  const id = group === 0 && index === 0 ? 'sample-residential-concept' : `sample-${category.toLowerCase()}-${index + 1}`
-  const image = (group + index) % 2 === 0 ? '/images/hero-arch.webp' : '/images/back2-clean.png'
-  return {
-    ...PLACEHOLDER_PORTFOLIOS[0],
-    id,
-    slug: id,
-    title,
-    category: `${category} · 임시 예시`,
-    year: null,
-    description: '홈페이지 구성을 확인하기 위한 임시 예시입니다.',
-    images: [{
-      id: `${id}-cover`,
-      portfolio_id: id,
-      storage_path: image,
-      image_url: image,
-      thumb_path: null,
-      original_path: null,
-      thumb_url: null,
-      quality: 'web',
-      width: null,
-      height: null,
-      bytes: null,
-      original_bytes: null,
-      original_name: null,
-      alt: `${title} 임시 예시`,
-      caption: null,
-      sort_order: 0,
-    }],
-  }
-}))
+export const sampleProjects: Portfolio[] = []
+
+const commercialGroups = [
+  { key: 'education', label: '학교 · 공공 · 학원', match: /school|academy|public|civic|학교|학원|공공|관공서/i },
+  { key: 'fitness', label: '운동 · 필라테스', match: /pilates|fitness|필라테스|운동/i },
+  { key: 'exhibition', label: '전시 · 팝업', match: /exhibition|culture|전시|팝업/i },
+  { key: 'food', label: '식음 공간', match: /restaurant|bar|caf[eé]|bakery|식음|음식점|카페/i },
+  { key: 'retail', label: '매장 · 쇼룸', match: /retail|showroom|매장|쇼룸/i },
+  { key: 'office', label: '오피스', match: /office|오피스|사무/i },
+  { key: 'wellness', label: '의료 · 뷰티', match: /clinic|beauty|spa|의료|뷰티/i },
+  { key: 'hospitality', label: '숙박', match: /hospitality|숙박/i },
+]
 
 /** 전체 포트폴리오 아카이브 — 카테고리별로 걸러볼 수 있습니다 */
 export default function Work() {
@@ -62,11 +38,16 @@ export default function Work() {
     { key: 'commercial', label: 'COMMERCIAL', match: /상업|commercial/i },
   ]
   const active = categories.find(({ key }) => key === filter)!
-  const filtered = loading ? [] : [...portfolios, ...sampleProjects].filter(({ category }) => active.match.test(category ?? ''))
+  const isResidential = (category: string | null) => /주거|residential|^home$/i.test(category ?? '')
+  const commercial = portfolios.filter((p) => p.category && !isResidential(p.category))
+  const availableGroups = commercialGroups.filter((group) => commercial.some((p) => group.match.test(p.category ?? '')))
+  const selectedGroup = availableGroups.find((group) => group.key === params.get('type'))
+  const base = filter === 'residential' ? portfolios.filter((p) => isResidential(p.category)) : commercial
+  const filtered = loading ? [] : base.filter((p) => filter !== 'commercial' || !selectedGroup || selectedGroup.match.test(p.category ?? ''))
 
   useEffect(() => {
     setPage(1)
-  }, [filter])
+  }, [filter, params.get('type')])
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
   const paged = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
@@ -100,6 +81,16 @@ export default function Work() {
                 </Link>
               ))}
             </nav>
+            {filter === 'commercial' && availableGroups.length > 0 && (
+              <nav className="archive-filters" aria-label="상업 공간 세부 분류" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 10, marginTop: 18 }}>
+                <Link to="/work?category=commercial" className={'filter-chip' + (!selectedGroup ? ' active' : '')} aria-current={!selectedGroup ? 'page' : undefined}>전체 ({commercial.length})</Link>
+                {availableGroups.map((group) => (
+                  <Link key={group.key} to={'/work?category=commercial&type=' + group.key} className={'filter-chip' + (selectedGroup?.key === group.key ? ' active' : '')} aria-current={selectedGroup?.key === group.key ? 'page' : undefined}>
+                    {group.label} ({commercial.filter((p) => group.match.test(p.category ?? '')).length})
+                  </Link>
+                ))}
+              </nav>
+            )}
           </div>
         </Reveal>
       </div>
