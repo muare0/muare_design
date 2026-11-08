@@ -483,3 +483,19 @@
 #portfolio{ padding-bottom:60px; }
 #home-targets.svc-section{ padding-top:60px; }
 @media(max-width:768px){ #portfolio{ padding-bottom:40px; } #home-targets.svc-section{ padding-top:40px; } }
+
+/* Concise service introduction using the site's existing line icon language. */
+.svc-jumpnav-home{ font-family:var(--font-body); font-weight:600; }
+.svc-intro-summary{ max-width:68ch; margin-top:24px; font-size:16px; line-height:1.85; color:var(--text-soft); word-break:keep-all; }
+#svc-intro .str-row{ margin-top:32px; }
+.str-card-icon{ display:flex; align-items:center; width:36px; height:36px; margin-bottom:20px; color:var(--text); }
+.str-card-icon svg{ width:36px; height:36px; }
+.svc-intro-details{ margin-top:24px; border-block:1px solid var(--line); padding:18px 0; }
+.svc-intro-details summary{ cursor:pointer; font-size:14px; font-weight:600; color:var(--text); }
+.svc-intro-details > div{ max-width:78ch; padding:6px 0 8px; }
+.svc-intro-details .svc-intro-p{ font-size:14px; line-height:1.85; margin-top:16px; }
+@media(max-width:600px){
+  .svc-intro-summary{ font-size:15px; }
+  #svc-intro .str-card{ padding:24px; }
+  .str-card-icon{ margin-bottom:16px; }
+}
