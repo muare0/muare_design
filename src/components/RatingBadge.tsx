@@ -111,9 +111,9 @@ export default function RatingBadge({
         <ellipse className="rb-ground-glow" cx="120" cy="180" rx="58" ry="2" fill="#e8bb52" filter="url(#rbBlur)" opacity=".6" />
         {[ [30,130],[43,151],[62,165],[210,130],[197,151],[178,165] ].map(([x,y],i)=><g key={i} className="rb-leaf-glint" style={{animationDelay:(i*.6)+'s'}}><circle cx={x} cy={y} r="2" fill="#ffe9a1" filter="url(#rbBlur)" /><path d={`M ${x-2.4} ${y} h4.8 M ${x} ${y-2.4} v4.8`} stroke="#fff2bc" strokeWidth=".55" /></g>)}
         <g className="rb-moving-light" style={{transformOrigin:'120px 108px',animationDuration:'9s'}}>
-          <circle cx={CX} cy={CY} r="65" fill="none" stroke="#D4A653" strokeWidth="3" strokeDasharray="20 388" strokeLinecap="round" opacity=".6" filter="url(#rbBlur)" />
-          <ellipse cx="185" cy="108" rx="3.5" ry="6" fill="#FFE8AB" opacity=".7" filter="url(#rbBlur)" />
-          <circle cx="185" cy="108" r="1.8" fill="#FFE8AB" opacity=".65" filter="url(#rbBlur)" />
+          <circle cx={CX} cy={CY} r="65" fill="none" stroke="#D4A653" strokeWidth="3.5" strokeDasharray="20 388" strokeLinecap="round" opacity=".6" filter="url(#rbBlur)" />
+          <ellipse cx="185" cy="108" rx="4" ry="6.8" fill="#FFE8AB" opacity=".7" filter="url(#rbBlur)" />
+          <circle cx="185" cy="108" r="2" fill="#FFE8AB" opacity=".65" filter="url(#rbBlur)" />
         </g>
         {/* 별점 */}
         <g fill="url(#rbGold)">
